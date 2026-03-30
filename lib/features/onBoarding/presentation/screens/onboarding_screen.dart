@@ -46,17 +46,14 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         width: double.infinity,
         height: double.infinity,
         decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
+          gradient: RadialGradient(
+            center: Alignment.topLeft,
+            radius: 1.2,
             colors: [
+              AppColors.primary.withValues(alpha: 0.1),
               AppColors.darkBackground,
-              AppColors.primary.withValues(alpha: 0.0),
-              AppColors.primary.withValues(alpha: 0.05),
-              AppColors.primary.withValues(alpha: 0.10),
-              AppColors.primary.withValues(alpha: 0.15),
             ],
-            stops: const [0.0, 0.8, 0.85, 0.95, 1.0],
+            stops: const [0.0, 0.4],
           ),
         ),
         child: SafeArea(
