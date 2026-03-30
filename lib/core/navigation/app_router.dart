@@ -1,0 +1,23 @@
+import 'package:crypto_trade/core/navigation/routes.dart';
+import 'package:crypto_trade/features/onBoarding/presentation/screens/onboarding_screen.dart';
+import 'package:crypto_trade/features/splash/splash_screen.dart';
+import 'package:flutter/material.dart';
+
+class AppRouter {
+  Route? onGenerateRoute(RouteSettings routeSettings) {
+    final arguments = routeSettings.arguments;
+
+    switch (routeSettings.name) {
+      case Routes.splashScreen:
+        return MaterialPageRoute(
+          builder: (_) {
+            return const SplashScreen();
+          },
+        );
+
+      case Routes.onBoardingScreen:
+        return MaterialPageRoute(builder: (_) => const OnboardingScreen());
+    }
+    return null;
+  }
+}
