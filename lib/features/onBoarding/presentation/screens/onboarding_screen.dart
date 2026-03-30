@@ -23,7 +23,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
   void _onNextPressed() {
     if (_isLastPage) {
-      Navigator.pushReplacementNamed(context, Routes.loginScreen);
+      Navigator.pushReplacementNamed(context, Routes.authScreen);
     } else {
       _pageController.nextPage(
         duration: const Duration(milliseconds: 400),
