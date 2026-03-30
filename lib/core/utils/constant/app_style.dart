@@ -183,22 +183,22 @@ class AppStyle {
 
   static InputBorder borderDone({Color? color}) {
     return OutlineInputBorder(
-      borderSide: BorderSide(color: color ?? AppColors.lightGrey),
-      borderRadius: BorderRadius.circular(20.r),
+      borderSide: BorderSide(color: color ?? AppColors.darkBackground),
+      borderRadius: BorderRadius.circular(12.r),
     );
   }
 
   static InputBorder borderFocuse({Color? color}) {
     return OutlineInputBorder(
-      borderSide: BorderSide(color: color ?? AppColors.lightGrey),
-      borderRadius: BorderRadius.circular(20.r),
+      borderSide: BorderSide(color: color ?? AppColors.darkBackground),
+      borderRadius: BorderRadius.circular(12.r),
     );
   }
 
   static InputBorder borderError(BuildContext context) {
     return OutlineInputBorder(
       borderSide: BorderSide(color: Theme.of(context).colorScheme.error),
-      borderRadius: BorderRadius.circular(20.r),
+      borderRadius: BorderRadius.circular(12.r),
     );
   }
 

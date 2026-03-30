@@ -67,13 +67,13 @@ class CustomTextFormField extends StatefulWidget {
     this.onTap,
     this.isDense = true,
     this.floatingLabelBehavior = FloatingLabelBehavior.auto,
-    this.bgColor = AppColors.white,
+    this.bgColor = AppColors.darkBackground,
     this.focusNode,
     this.maxLength,
     this.margin,
     this.contentPadding = const EdgeInsets.all(15),
     this.floatingLabelColor = AppColors.primary,
-    this.textColor = Colors.black,
+    this.textColor = AppColors.white,
     this.cursorColor = AppColors.primary,
     this.borderColor,
     this.expands = false,
@@ -121,14 +121,14 @@ class _DefaultTextFormFieldState extends State<CustomTextFormField> {
             children: [
               Text(
                 widget.label!,
-                style: AppStyle.font18_600Weight.copyWith(
-                  color: widget.labelColor ?? AppColors.primary,
+                style: AppStyle.font13_400Weight.copyWith(
+                  color: widget.labelColor ?? AppColors.lightGrey,
                 ),
               ),
               if (widget.isRequired)
                 Text(
                   ' *',
-                  style: AppStyle.font18_600Weight.copyWith(
+                  style: AppStyle.font13_400Weight.copyWith(
                     color: AppColors.error,
                   ),
                 ),
@@ -179,7 +179,7 @@ class _DefaultTextFormFieldState extends State<CustomTextFormField> {
                 ? Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      SizedBox(width: 20.w),
+                      horizontalSpace(20),
                       SvgPicture.asset(
                         widget.prefixImage!,
                         fit: BoxFit.cover,
@@ -194,11 +194,19 @@ class _DefaultTextFormFieldState extends State<CustomTextFormField> {
                 : null,
             isDense: widget.isDense,
             contentPadding: widget.contentPadding,
-            border: AppStyle.borderDone(color: widget.borderColor),
-            disabledBorder: AppStyle.borderDone(color: widget.borderColor),
-            enabledBorder: AppStyle.borderDone(color: widget.borderColor),
+            border: AppStyle.borderDone(
+              color: widget.borderColor ?? AppColors.darkBackground,
+            ),
+            disabledBorder: AppStyle.borderDone(
+              color: widget.borderColor ?? AppColors.darkBackground,
+            ),
+            enabledBorder: AppStyle.borderDone(
+              color: widget.borderColor ?? AppColors.darkBackground,
+            ),
             errorBorder: AppStyle.borderError(context),
-            focusedBorder: AppStyle.borderFocuse(color: widget.borderColor),
+            focusedBorder: AppStyle.borderFocuse(
+              color: widget.borderColor ?? AppColors.darkBackground,
+            ),
             errorMaxLines: 1,
           ),
           onFieldSubmitted: widget.onSubmit,

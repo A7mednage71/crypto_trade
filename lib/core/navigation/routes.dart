@@ -4,6 +4,7 @@ class Routes {
   static const String onBoardingScreen = '/onBoarding';
 
   // --- Authentication Screens ---
+  static const String authScreen = '/auth';
   static const String loginScreen = '/login';
   static const String registerScreen = '/register';
   static const String registerWithMobile = '/registerWithMobile';
