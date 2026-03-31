@@ -1,6 +1,7 @@
 import 'package:crypto_trade/core/export.dart';
 import 'package:crypto_trade/core/navigation/routes.dart';
 import 'package:flutter/material.dart';
+import 'package:crypto_trade/core/utils/constant/app_assets.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -45,7 +46,7 @@ class _SplashScreenState extends State<SplashScreen> {
           children: [
             Expanded(
               child: Image.asset(
-                'assets/images/png/splash_logo.png',
+                Assets.imagesPngSplashLogo,
                 fit: BoxFit.contain,
               ),
             ),

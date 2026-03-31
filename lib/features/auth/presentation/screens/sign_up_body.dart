@@ -2,6 +2,7 @@ import 'package:crypto_trade/core/export.dart';
 import 'package:crypto_trade/features/auth/presentation/widgets/auth_social_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:crypto_trade/core/utils/constant/app_assets.dart';
 
 class SignUpBody extends StatefulWidget {
   const SignUpBody({super.key});
@@ -118,13 +119,13 @@ class _SignUpBodyState extends State<SignUpBody> {
             children: [
               AuthSocialButton(
                 label: 'Facebook',
-                svgAsset: 'assets/images/svg/facebook.svg',
+                svgAsset: Assets.imagesSvgFacebook,
                 onTap: () {},
               ),
               horizontalSpace(20),
               AuthSocialButton(
                 label: 'Google',
-                svgAsset: 'assets/images/svg/google.svg',
+                svgAsset: Assets.imagesSvgGoogle,
                 onTap: () {},
               ),
             ],
