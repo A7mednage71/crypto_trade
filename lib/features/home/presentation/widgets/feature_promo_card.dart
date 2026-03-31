@@ -1,4 +1,5 @@
 import 'package:crypto_trade/core/export.dart';
+import 'package:crypto_trade/core/utils/constant/app_assets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -30,22 +31,29 @@ class FeaturePromoCard extends StatelessWidget {
         ),
         child: Row(
           children: [
-            Container(
-              width: 48.w,
-              height: 48.w,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(12.r),
-                color: AppColors.darkBackground,
-              ),
-              child: Image.asset(
-                imagePath,
-                fit: BoxFit.fill,
-                errorBuilder: (context, error, stackTrace) => Icon(
-                  Icons.rocket_launch,
-                  color: AppColors.primary,
-                  size: 24.sp,
+            Stack(
+              children: [
+                Container(
+                  width: 48.w,
+                  height: 48.w,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(12.r),
+                    color: AppColors.darkBackground,
+                    image: DecorationImage(
+                      image: AssetImage(Assets.imagesPngMask),
+                    ),
+                  ),
                 ),
-              ),
+                Image.asset(
+                  imagePath,
+                  fit: BoxFit.fill,
+                  errorBuilder: (context, error, stackTrace) => Icon(
+                    Icons.rocket_launch,
+                    color: AppColors.primary,
+                    size: 24.sp,
+                  ),
+                ),
+              ],
             ),
             horizontalSpace(16),
             Expanded(
