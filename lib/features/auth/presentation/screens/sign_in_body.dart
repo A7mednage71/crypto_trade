@@ -143,7 +143,7 @@ class _SignInBodyState extends State<SignInBody> {
                 label: 'Google',
                 svgAsset: 'assets/images/svg/google.svg',
                 onTap: () {
-                  context.pushNamed(Routes.settingsScreen);
+                  context.pushNamed(Routes.profileScreen);
                 },
               ),
             ],
