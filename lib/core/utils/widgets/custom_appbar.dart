@@ -35,26 +35,14 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           child: context.isArabic
               ? RotatedBox(
                   quarterTurns: 2,
-                  child: SvgPicture.asset(
-                    'assets/images/svgs/arrow_back.svg',
-                    colorFilter: ColorFilter.mode(
-                      textColor ?? AppColors.lightGrey,
-                      BlendMode.srcIn,
-                    ),
-                  ),
+                  child: SvgPicture.asset('assets/images/svg/arrow_back.svg'),
                 )
-              : SvgPicture.asset(
-                  'assets/images/svgs/arrow_back.svg',
-                  colorFilter: ColorFilter.mode(
-                    AppColors.lightGrey,
-                    BlendMode.srcIn,
-                  ),
-                ),
+              : SvgPicture.asset('assets/images/svg/arrow_back.svg'),
         ),
       ),
       title: Text(
         title ?? '',
-        style: AppStyle.font24_600Weight.copyWith(color: textColor),
+        style: AppStyle.font20_600Weight.copyWith(color: textColor),
         textAlign: TextAlign.center,
         overflow: TextOverflow.ellipsis,
         maxLines: 1,
