@@ -1,4 +1,5 @@
 import 'package:crypto_trade/core/export.dart';
+import 'package:crypto_trade/core/navigation/routes.dart';
 import 'package:crypto_trade/features/auth/presentation/widgets/auth_social_button.dart';
 import 'package:crypto_trade/features/auth/presentation/widgets/fingerprint_section.dart';
 import 'package:flutter/material.dart';
@@ -133,13 +134,17 @@ class _SignInBodyState extends State<SignInBody> {
               AuthSocialButton(
                 label: 'Facebook',
                 svgAsset: 'assets/images/svg/facebook.svg',
-                onTap: () {},
+                onTap: () {
+                  context.pushNamed(Routes.settingsScreen);
+                },
               ),
               horizontalSpace(20),
               AuthSocialButton(
                 label: 'Google',
                 svgAsset: 'assets/images/svg/google.svg',
-                onTap: () {},
+                onTap: () {
+                  context.pushNamed(Routes.settingsScreen);
+                },
               ),
             ],
           ),

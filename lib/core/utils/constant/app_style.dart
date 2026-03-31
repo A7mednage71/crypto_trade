@@ -63,6 +63,12 @@ class AppStyle {
     color: AppColors.white,
   );
 
+  static TextStyle font20_700Weight = TextStyle(
+    fontSize: 20.sp,
+    fontWeight: FontWeight.w700,
+    color: AppColors.white,
+  );
+
   static TextStyle font20_600Weight = TextStyle(
     fontSize: 20.sp,
     fontWeight: FontWeight.w600,
