@@ -1,3 +1,5 @@
+import 'package:crypto_trade/core/utils/constant/app_assets.dart';
+
 class OnboardingModel {
   final String image;
   final String title;
@@ -11,19 +13,19 @@ class OnboardingModel {
 
   static const List<OnboardingModel> pages = [
     OnboardingModel(
-      image: 'assets/images/png/onboarding_one.png',
+      image: Assets.imagesPngOnboardingOne,
       title: 'Trade anytime anywhere',
       subTitle:
           'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.',
     ),
     OnboardingModel(
-      image: 'assets/images/png/onboarding_two.png',
+      image: Assets.imagesPngOnboardingTwo,
       title: 'Save and invest at the same time',
       subTitle:
           'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.',
     ),
     OnboardingModel(
-      image: 'assets/images/png/onboarding_three.png',
+      image: Assets.imagesPngOnboardingThree,
       title: 'Transact fast and easy',
       subTitle:
           'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.',

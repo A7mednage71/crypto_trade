@@ -1,6 +1,7 @@
 import 'package:crypto_trade/core/export.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:crypto_trade/core/utils/constant/app_assets.dart';
 
 class ProfileAvatarWidget extends StatelessWidget {
   final String userName;
@@ -47,7 +48,7 @@ class ProfileAvatarWidget extends StatelessWidget {
                 ),
                 child: ClipOval(
                   child: Image.asset(
-                    avatarImagePath ?? 'assets/images/png/user_avatar.png',
+                    avatarImagePath ?? Assets.imagesPngUserAvatar,
                     fit: BoxFit.cover,
                   ),
                 ),

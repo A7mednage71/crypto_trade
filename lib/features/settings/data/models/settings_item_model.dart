@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:crypto_trade/core/utils/constant/app_assets.dart';
 
 class SettingsItemModel {
   final String icon;
@@ -17,27 +18,27 @@ class SettingsItemModel {
 
   static const List<SettingsItemModel> settingsList = [
     SettingsItemModel(
-      icon: 'assets/images/svg/language.svg',
+      icon: Assets.imagesSvgLanguage,
       title: 'Language',
       trailingText: 'English',
     ),
     SettingsItemModel(
-      icon: 'assets/images/svg/dollar.svg',
+      icon: Assets.imagesSvgDollar,
       title: 'Currency',
       trailingText: 'USD',
     ),
     SettingsItemModel(
-      icon: 'assets/images/svg/appearance.svg',
+      icon: Assets.imagesSvgAppearance,
       title: 'Appearance',
       trailingText: 'Use Device Settings',
     ),
     SettingsItemModel(
-      icon: 'assets/images/svg/filter_settings.svg',
+      icon: Assets.imagesSvgFilterSettings,
       title: 'Preference',
       trailingText: 'Customize',
     ),
     SettingsItemModel(
-      icon: 'assets/images/svg/group.svg',
+      icon: Assets.imagesSvgGroup,
       title: 'About Us',
       trailingText: 'v1.2.3',
       showDivider: false,

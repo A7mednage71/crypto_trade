@@ -1,5 +1,6 @@
 import 'package:crypto_trade/core/export.dart';
 import 'package:crypto_trade/core/navigation/routes.dart';
+import 'package:crypto_trade/core/utils/constant/app_assets.dart';
 import 'package:crypto_trade/features/auth/presentation/widgets/auth_social_button.dart';
 import 'package:crypto_trade/features/auth/presentation/widgets/fingerprint_section.dart';
 import 'package:flutter/material.dart';
@@ -104,7 +105,9 @@ class _SignInBodyState extends State<SignInBody> {
             width: double.infinity,
             height: 54.h,
             child: ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                context.pushNamed(Routes.mainLayoutScreen);
+              },
               style: ElevatedButton.styleFrom(
                 backgroundColor: AppColors.primary,
                 foregroundColor: AppColors.darkBackground,
@@ -133,7 +136,7 @@ class _SignInBodyState extends State<SignInBody> {
             children: [
               AuthSocialButton(
                 label: 'Facebook',
-                svgAsset: 'assets/images/svg/facebook.svg',
+                svgAsset: Assets.imagesSvgFacebook,
                 onTap: () {
                   context.pushNamed(Routes.settingsScreen);
                 },
@@ -141,7 +144,7 @@ class _SignInBodyState extends State<SignInBody> {
               horizontalSpace(20),
               AuthSocialButton(
                 label: 'Google',
-                svgAsset: 'assets/images/svg/google.svg',
+                svgAsset: Assets.imagesSvgGoogle,
                 onTap: () {
                   context.pushNamed(Routes.profileScreen);
                 },

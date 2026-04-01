@@ -101,6 +101,7 @@ dependencies:
 
   # ------------ Security -------------
   flutter_secure_storage: ^9.2.4
+  fl_chart: ^0.70.0
 
 dev_dependencies:
   flutter_test:
@@ -155,5 +156,8 @@ flutter:
         - asset: assets/fonts/neue_montreal_bold.otf
           weight: 700
 
-  # For details regarding fonts from package dependencies,
-  # see https://flutter.dev/to/font-from-package
+flutter_assets:
+  assets_path: assets/
+  output_path: lib/core/utils/constant
+  filename: app_assets.dart
+  field_prefix:
