@@ -122,6 +122,10 @@ class Assets {
   /// assets/images/svg/check.svg
   static const String imagesSvgCheck = "assets/images/svg/check.svg";
 
+  /// Assets for imagesSvgCoin
+  /// assets/images/svg/coin.svg
+  static const String imagesSvgCoin = "assets/images/svg/coin.svg";
+
   /// Assets for imagesSvgConvert
   /// assets/images/svg/convert.svg
   static const String imagesSvgConvert = "assets/images/svg/convert.svg";
@@ -322,6 +326,10 @@ class Assets {
   /// assets/images/svg/shipa_inu.svg
   static const String imagesSvgShipaInu = "assets/images/svg/shipa_inu.svg";
 
+  /// Assets for imagesSvgShoppingCart
+  /// assets/images/svg/shopping_cart.svg
+  static const String imagesSvgShoppingCart = "assets/images/svg/shopping_cart.svg";
+
   /// Assets for imagesSvgSpot
   /// assets/images/svg/spot.svg
   static const String imagesSvgSpot = "assets/images/svg/spot.svg";
@@ -365,6 +373,10 @@ class Assets {
   /// Assets for imagesSvgWalletDark
   /// assets/images/svg/wallet_dark.svg
   static const String imagesSvgWalletDark = "assets/images/svg/wallet_dark.svg";
+
+  /// Assets for imagesSvgWalletTick
+  /// assets/images/svg/wallet_tick.svg
+  static const String imagesSvgWalletTick = "assets/images/svg/wallet_tick.svg";
 
   /// Assets for translationsAr
   /// assets/translations/ar.json
