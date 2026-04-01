@@ -1,10 +1,10 @@
 import 'package:crypto_trade/core/export.dart';
 import 'package:crypto_trade/core/navigation/routes.dart';
+import 'package:crypto_trade/core/utils/constant/app_assets.dart';
 import 'package:crypto_trade/features/auth/presentation/widgets/auth_social_button.dart';
 import 'package:crypto_trade/features/auth/presentation/widgets/fingerprint_section.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:crypto_trade/core/utils/constant/app_assets.dart';
 
 class SignInBody extends StatefulWidget {
   const SignInBody({super.key});
@@ -106,7 +106,7 @@ class _SignInBodyState extends State<SignInBody> {
             height: 54.h,
             child: ElevatedButton(
               onPressed: () {
-                context.pushNamed(Routes.homeScreen);
+                context.pushNamed(Routes.mainLayoutScreen);
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: AppColors.primary,

@@ -82,10 +82,6 @@ class Assets {
   /// assets/images/svg/activity.svg
   static const String imagesSvgActivity = "assets/images/svg/activity.svg";
 
-  /// Assets for imagesSvgAhibaInu
-  /// assets/images/svg/ahiba_inu.svg
-  static const String imagesSvgAhibaInu = "assets/images/svg/ahiba_inu.svg";
-
   /// Assets for imagesSvgAppearance
   /// assets/images/svg/appearance.svg
   static const String imagesSvgAppearance = "assets/images/svg/appearance.svg";
@@ -117,6 +113,10 @@ class Assets {
   /// Assets for imagesSvgCardano
   /// assets/images/svg/cardano.svg
   static const String imagesSvgCardano = "assets/images/svg/cardano.svg";
+
+  /// Assets for imagesSvgChainLink
+  /// assets/images/svg/chain_link.svg
+  static const String imagesSvgChainLink = "assets/images/svg/chain_link.svg";
 
   /// Assets for imagesSvgCheck
   /// assets/images/svg/check.svg
@@ -318,9 +318,9 @@ class Assets {
   /// assets/images/svg/search.svg
   static const String imagesSvgSearch = "assets/images/svg/search.svg";
 
-  /// Assets for imagesSvgSolana
-  /// assets/images/svg/solana.svg
-  static const String imagesSvgSolana = "assets/images/svg/solana.svg";
+  /// Assets for imagesSvgShipaInu
+  /// assets/images/svg/shipa_inu.svg
+  static const String imagesSvgShipaInu = "assets/images/svg/shipa_inu.svg";
 
   /// Assets for imagesSvgSpot
   /// assets/images/svg/spot.svg

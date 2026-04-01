@@ -1,6 +1,7 @@
 import 'package:crypto_trade/core/navigation/routes.dart';
 import 'package:crypto_trade/features/auth/presentation/screens/auth_screen.dart';
 import 'package:crypto_trade/features/home/presentation/screens/home_screen.dart';
+import 'package:crypto_trade/features/main_layout/presentation/screens/main_layout_screen.dart';
 import 'package:crypto_trade/features/onBoarding/presentation/screens/onboarding_screen.dart';
 import 'package:crypto_trade/features/profile/presentation/screens/edit_profile_screen.dart';
 import 'package:crypto_trade/features/profile/presentation/screens/view_profile_screen.dart';
@@ -32,6 +33,8 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => const ViewProfileScreen());
       case Routes.editProfileScreen:
         return MaterialPageRoute(builder: (_) => const EditProfileScreen());
+      case Routes.mainLayoutScreen:
+        return MaterialPageRoute(builder: (_) => const MainLayoutScreen());
       case Routes.homeScreen:
         return MaterialPageRoute(builder: (_) => const HomeScreen());
     }

@@ -1,3 +1,4 @@
+import 'package:fl_chart/fl_chart.dart';
 import 'package:crypto_trade/core/export.dart';
 import 'package:crypto_trade/features/home/data/models/coin_card_model.dart';
 import 'package:flutter/material.dart';
@@ -35,14 +36,69 @@ class CoinCardWidget extends StatelessWidget {
             bottom: 0,
             child: SizedBox(
               height: 50.h,
-              child: SvgPicture.asset(
-                coin.sparklineChartPath,
-                fit: BoxFit.fill,
-                colorFilter: ColorFilter.mode(
-                  coin.isPositive
-                      ? AppColors.primary.withValues(alpha: 0.5)
-                      : AppColors.error.withValues(alpha: 0.5),
-                  BlendMode.srcIn,
+              child: LineChart(
+                LineChartData(
+                  gridData: const FlGridData(show: false),
+                  titlesData: const FlTitlesData(show: false),
+                  borderData: FlBorderData(show: false),
+                  lineTouchData: const LineTouchData(enabled: false), // Disable touch for sparkline
+                  minX: 0,
+                  maxX: 9,
+                  minY: 0,
+                  maxY: 10,
+                  lineBarsData: [
+                    LineChartBarData(
+                      spots: coin.isPositive
+                          ? const [
+                              FlSpot(0, 3),
+                              FlSpot(1, 4.5),
+                              FlSpot(2, 3.5),
+                              FlSpot(3, 5),
+                              FlSpot(4, 4),
+                              FlSpot(5, 6.5),
+                              FlSpot(6, 5.5),
+                              FlSpot(7, 7),
+                              FlSpot(8, 6),
+                              FlSpot(9, 8),
+                            ]
+                          : const [
+                              FlSpot(0, 7),
+                              FlSpot(1, 6.5),
+                              FlSpot(2, 8),
+                              FlSpot(3, 5),
+                              FlSpot(4, 6),
+                              FlSpot(5, 4),
+                              FlSpot(6, 4.5),
+                              FlSpot(7, 3),
+                              FlSpot(8, 4),
+                              FlSpot(9, 2),
+                            ],
+                      isCurved: true,
+                      color: coin.isPositive
+                          ? AppColors.primary
+                          : AppColors.error,
+                      barWidth: 1.5.w,
+                      isStrokeCapRound: true,
+                      dotData: const FlDotData(show: false),
+                      belowBarData: BarAreaData(
+                        show: true,
+                        gradient: LinearGradient(
+                          colors: [
+                            (coin.isPositive
+                                    ? AppColors.primary
+                                    : AppColors.error)
+                                .withValues(alpha: 0.3),
+                            (coin.isPositive
+                                    ? AppColors.primary
+                                    : AppColors.error)
+                                .withValues(alpha: 0.0),
+                          ],
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ),

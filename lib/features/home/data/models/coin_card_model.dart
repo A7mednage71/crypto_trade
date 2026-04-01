@@ -31,7 +31,7 @@ class CoinCardModel {
       pair: 'SOL/BUSD',
       change: '-0.81%',
       isPositive: false,
-      iconPath: Assets.imagesSvgEthernum,
+      iconPath: Assets.imagesSvgChainLink,
       sparklineChartPath: Assets.imagesSvgGraph,
     ),
     CoinCardModel(
@@ -39,7 +39,7 @@ class CoinCardModel {
       pair: 'ETH/BUSD',
       change: '+1.20%',
       isPositive: true,
-      iconPath: Assets.imagesSvgBitcoin,
+      iconPath: Assets.imagesSvgCardano,
       sparklineChartPath: Assets.imagesSvgGraph,
     ),
   ];
@@ -50,7 +50,7 @@ class CoinCardModel {
       pair: 'USDT/BUSD',
       change: '+0.01%',
       isPositive: true,
-      iconPath: Assets.imagesSvgEthernum,
+      iconPath: Assets.imagesSvgChainLink,
       sparklineChartPath: Assets.imagesSvgGraph,
     ),
     CoinCardModel(
@@ -66,7 +66,7 @@ class CoinCardModel {
       pair: 'ADA/BUSD',
       change: '+5.40%',
       isPositive: true,
-      iconPath: Assets.imagesSvgEthernum,
+      iconPath: Assets.imagesSvgCardano,
       sparklineChartPath: Assets.imagesSvgGraph,
     ),
   ];
