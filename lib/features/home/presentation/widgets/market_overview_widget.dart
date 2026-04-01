@@ -1,11 +1,10 @@
-import 'package:crypto_trade/core/helpers/space_helper.dart';
-import 'package:crypto_trade/core/utils/constant/app_color.dart';
-import 'package:crypto_trade/features/home/data/models/coin_card_model.dart';
-import 'package:crypto_trade/features/home/presentation/widgets/coin_section_widget.dart';
+import 'package:crypto_trade/core/export.dart';
+import 'package:crypto_trade/core/utils/constant/app_assets.dart';
 import 'package:crypto_trade/features/home/presentation/widgets/feature_promo_card.dart';
+import 'package:crypto_trade/features/home/presentation/widgets/recent_coins_bloc_builder.dart';
+import 'package:crypto_trade/features/home/presentation/widgets/top_coins_bloc_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:crypto_trade/core/utils/constant/app_assets.dart';
 
 class MarketOverviewWidget extends StatelessWidget {
   const MarketOverviewWidget({super.key});
@@ -35,16 +34,10 @@ class MarketOverviewWidget extends StatelessWidget {
             imagePath: Assets.imagesPngCredit,
             onTap: () {},
           ),
-          verticalSpace(32),
-          const CoinSectionWidget(
-            title: 'Recent Coin',
-            coins: CoinCardModel.recentCoins,
-          ),
           verticalSpace(16),
-          const CoinSectionWidget(
-            title: 'Top Coins',
-            coins: CoinCardModel.topCoins,
-          ),
+          const RecentCoinsBlocBuilder(),
+          verticalSpace(16),
+          const TopCoinsBlocBuilder(),
           verticalSpace(100),
         ],
       ),

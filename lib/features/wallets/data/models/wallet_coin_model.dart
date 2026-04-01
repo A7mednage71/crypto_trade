@@ -1,15 +1,20 @@
-import 'package:crypto_trade/core/models/coin_model.dart';
 import 'package:crypto_trade/core/utils/constant/app_assets.dart';
 
-class WalletCoinModel extends CoinModel {
+class WalletCoinModel {
+  final String name;
+  final String symbol;
+  final String price;
+  final bool isPositive;
+  final String iconPath;
+
   final String fiatBalance;
 
   const WalletCoinModel({
-    required super.name,
-    required super.symbol,
-    required super.price,
-    required super.isPositive,
-    required super.iconPath,
+    required this.name,
+    required this.symbol,
+    required this.price,
+    required this.isPositive,
+    required this.iconPath,
     required this.fiatBalance,
   });
 }

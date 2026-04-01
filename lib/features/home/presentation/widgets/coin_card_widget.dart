@@ -1,17 +1,19 @@
-import 'package:fl_chart/fl_chart.dart';
 import 'package:crypto_trade/core/export.dart';
-import 'package:crypto_trade/features/home/data/models/coin_card_model.dart';
+import 'package:crypto_trade/features/home/data/models/coin_response_model.dart';
+import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class CoinCardWidget extends StatelessWidget {
-  final CoinCardModel coin;
+  final CoinResponseModel coin;
 
   const CoinCardWidget({super.key, required this.coin});
 
   @override
   Widget build(BuildContext context) {
+    final Color stateColor = coin.isPositive
+        ? AppColors.primary
+        : AppColors.error;
     return Container(
       width: 170.w,
       margin: EdgeInsets.only(right: 16.w),
@@ -31,52 +33,24 @@ class CoinCardWidget extends StatelessWidget {
       child: Stack(
         children: [
           Positioned(
-            left: 0,
-            right: 0,
-            bottom: 0,
+            left: 10,
+            right: 10,
+            bottom: 10,
             child: SizedBox(
-              height: 50.h,
+              height: 30.h,
               child: LineChart(
                 LineChartData(
                   gridData: const FlGridData(show: false),
                   titlesData: const FlTitlesData(show: false),
                   borderData: FlBorderData(show: false),
-                  lineTouchData: const LineTouchData(enabled: false), // Disable touch for sparkline
+                  lineTouchData: const LineTouchData(enabled: false),
                   minX: 0,
-                  maxX: 9,
-                  minY: 0,
-                  maxY: 10,
+                  maxX: coin.sparklineSpots.length.toDouble() - 1,
                   lineBarsData: [
                     LineChartBarData(
-                      spots: coin.isPositive
-                          ? const [
-                              FlSpot(0, 3),
-                              FlSpot(1, 4.5),
-                              FlSpot(2, 3.5),
-                              FlSpot(3, 5),
-                              FlSpot(4, 4),
-                              FlSpot(5, 6.5),
-                              FlSpot(6, 5.5),
-                              FlSpot(7, 7),
-                              FlSpot(8, 6),
-                              FlSpot(9, 8),
-                            ]
-                          : const [
-                              FlSpot(0, 7),
-                              FlSpot(1, 6.5),
-                              FlSpot(2, 8),
-                              FlSpot(3, 5),
-                              FlSpot(4, 6),
-                              FlSpot(5, 4),
-                              FlSpot(6, 4.5),
-                              FlSpot(7, 3),
-                              FlSpot(8, 4),
-                              FlSpot(9, 2),
-                            ],
+                      spots: coin.sparklineSpots,
                       isCurved: true,
-                      color: coin.isPositive
-                          ? AppColors.primary
-                          : AppColors.error,
+                      color: stateColor,
                       barWidth: 1.5.w,
                       isStrokeCapRound: true,
                       dotData: const FlDotData(show: false),
@@ -84,14 +58,8 @@ class CoinCardWidget extends StatelessWidget {
                         show: true,
                         gradient: LinearGradient(
                           colors: [
-                            (coin.isPositive
-                                    ? AppColors.primary
-                                    : AppColors.error)
-                                .withValues(alpha: 0.3),
-                            (coin.isPositive
-                                    ? AppColors.primary
-                                    : AppColors.error)
-                                .withValues(alpha: 0.0),
+                            stateColor.withValues(alpha: 0.3),
+                            stateColor.withValues(alpha: 0.0),
                           ],
                           begin: Alignment.topCenter,
                           end: Alignment.bottomCenter,
@@ -114,11 +82,9 @@ class CoinCardWidget extends StatelessWidget {
                   children: [
                     Expanded(
                       child: Text(
-                        coin.price,
-                        style: AppStyle.font18_600Weight.copyWith(
-                          color: coin.isPositive
-                              ? AppColors.primary
-                              : AppColors.error,
+                        coin.formattedPrice,
+                        style: AppStyle.font16_600Weight.copyWith(
+                          color: stateColor,
                         ),
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
@@ -126,12 +92,15 @@ class CoinCardWidget extends StatelessWidget {
                     ),
                     horizontalSpace(8),
                     Container(
-                      width: 28.w,
-                      height: 28.w,
+                      width: 24.w,
+                      height: 24.w,
                       decoration: const BoxDecoration(shape: BoxShape.circle),
-                      child: SvgPicture.asset(
-                        coin.iconPath,
-                        fit: BoxFit.contain,
+                      child: CustomNetworkImage(
+                        imageUrl: coin.image,
+                        height: 24.h,
+                        width: 24.w,
+                        fit: BoxFit.cover,
+                        borderRadius: BorderRadius.circular(10.r),
                       ),
                     ),
                   ],
@@ -139,18 +108,16 @@ class CoinCardWidget extends StatelessWidget {
                 verticalSpace(12),
                 RichText(
                   text: TextSpan(
-                    text: coin.pair,
-                    style: AppStyle.font13_400Weight.copyWith(
+                    text: '${coin.symbol.toUpperCase()}/USD',
+                    style: AppStyle.font14_400Weight.copyWith(
                       color: AppColors.darkBackground,
                       fontWeight: FontWeight.w600,
                     ),
                     children: [
                       TextSpan(
-                        text: ' ${coin.change}',
-                        style: AppStyle.font13_400Weight.copyWith(
-                          color: coin.isPositive
-                              ? AppColors.primary
-                              : AppColors.error,
+                        text: '  ${coin.formattedChange}',
+                        style: AppStyle.font14_400Weight.copyWith(
+                          color: stateColor,
                         ),
                       ),
                     ],
