@@ -17,6 +17,7 @@ class AppColors {
 
   // --- UI Accents ---
   static const Color blue = Color(0xFF0033AD);
+  static const Color red = Color(0xFFDD4B4B);
   static const Color orange = Color(0xFFFCBD68);
   static const Color skyBlue = Color(0xFF4AA8FF);
   static const Color warning = Color(0xFFF7931A);

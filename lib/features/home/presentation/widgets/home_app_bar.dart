@@ -1,8 +1,9 @@
 import 'package:crypto_trade/core/export.dart';
+import 'package:crypto_trade/core/navigation/routes.dart';
+import 'package:crypto_trade/core/utils/constant/app_assets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:crypto_trade/core/utils/constant/app_assets.dart';
 
 class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
   const HomeAppBar({super.key});
@@ -14,22 +15,29 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Container(
-            width: 40.w,
-            height: 40.w,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              border: Border.all(
-                color: AppColors.primary.withValues(alpha: 0.5),
-                width: 1.5.w,
+          InkWell(
+            borderRadius: BorderRadius.circular(50.r),
+            onTap: () {
+              context.pushNamed(Routes.profileScreen);
+            },
+            child: Container(
+              width: 40.w,
+              height: 40.w,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                border: Border.all(
+                  color: AppColors.primary.withValues(alpha: 0.5),
+                  width: 1.5.w,
+                ),
               ),
-            ),
-            child: ClipOval(
-              child: Image.asset(
-                Assets.imagesPngUser,
-                fit: BoxFit.cover,
-                errorBuilder: (context, error, stackTrace) =>
-                    Container(color: AppColors.primary.withValues(alpha: 0.5)),
+              child: ClipOval(
+                child: Image.asset(
+                  Assets.imagesPngUser,
+                  fit: BoxFit.cover,
+                  errorBuilder: (context, error, stackTrace) => Container(
+                    color: AppColors.primary.withValues(alpha: 0.5),
+                  ),
+                ),
               ),
             ),
           ),
@@ -39,7 +47,14 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
               horizontalSpace(8),
               _buildActionIcon(Assets.imagesSvgScanner),
               horizontalSpace(8),
-              _buildActionIcon(Assets.imagesSvgNotif),
+              InkWell(
+                highlightColor: Colors.transparent,
+                splashColor: Colors.transparent,
+                onTap: () {
+                  context.pushNamed(Routes.notificationScreen);
+                },
+                child: _buildActionIcon(Assets.imagesSvgNotif),
+              ),
             ],
           ),
         ],
