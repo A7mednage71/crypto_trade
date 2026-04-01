@@ -10,7 +10,7 @@ part of 'api_service.dart';
 
 class _ApiService implements ApiService {
   _ApiService(this._dio, {this.baseUrl, this.errorLogger}) {
-    baseUrl ??= 'https://elshamypharmacies.com/api/';
+    baseUrl ??= 'https://api.coingecko.com/api/v3/';
   }
 
   final Dio _dio;
@@ -20,28 +20,33 @@ class _ApiService implements ApiService {
   final ParseErrorLogger? errorLogger;
 
   @override
-  Future<BaseResponseModel<dynamic>> register(FormData registerRequest) async {
+  Future<List<CoinResponseModel>> getMarketsData(
+    Map<String, dynamic> queries,
+  ) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
+    queryParameters.addAll(queries);
     final _headers = <String, dynamic>{};
-    final _data = registerRequest;
-    final _options = _setStreamType<BaseResponseModel<dynamic>>(
-      Options(method: 'POST', headers: _headers, extra: _extra)
+    const Map<String, dynamic>? _data = null;
+    final _options = _setStreamType<List<CoinResponseModel>>(
+      Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            'register',
+            'coins/markets',
             queryParameters: queryParameters,
             data: _data,
           )
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
-    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late BaseResponseModel<dynamic> _value;
+    final _result = await _dio.fetch<List<dynamic>>(_options);
+    late List<CoinResponseModel> _value;
     try {
-      _value = BaseResponseModel<dynamic>.fromJson(
-        _result.data!,
-        (json) => json as dynamic,
-      );
+      _value = _result.data!
+          .map(
+            (dynamic i) =>
+                CoinResponseModel.fromJson(i as Map<String, dynamic>),
+          )
+          .toList();
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
       rethrow;

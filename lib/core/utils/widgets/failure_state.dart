@@ -7,68 +7,104 @@ class FailureState extends StatelessWidget {
   const FailureState({
     super.key,
     required this.size,
+    this.title,
     this.message,
-    this.messageStyle,
     this.onPressed,
-    this.buttonStyle,
     this.withContainer = false,
-    this.mainAxisAlignment,
+    this.isFullPage = false,
   });
 
   final double size;
+  final String? title;
   final String? message;
-  final TextStyle? messageStyle;
   final void Function()? onPressed;
-  final TextStyle? buttonStyle;
   final bool withContainer;
-  final MainAxisAlignment? mainAxisAlignment;
+  final bool isFullPage;
+
   @override
   Widget build(BuildContext context) {
-    final content = Column(
-      mainAxisAlignment: mainAxisAlignment ?? MainAxisAlignment.spaceEvenly,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        Lottie.asset(
-          'assets/animations/failure_state.json',
-          height: size.h,
-          width: size.w,
-        ),
-        horizontalSpace(10),
-        Text(
-          message ?? "Something went wrong",
-          style: messageStyle ?? AppStyle.font16_600Weight,
-          textAlign: TextAlign.start,
-        ),
-        if (onPressed != null)
-          Align(
-            alignment: context.isArabic
-                ? Alignment.bottomLeft
-                : Alignment.bottomRight,
-            child: TextButton(
-              onPressed: onPressed,
+    final content = Center(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Lottie.asset(
+            'assets/animations/failure_state.json',
+            height: size.h,
+            width: size.w,
+            fit: BoxFit.contain,
+          ),
+          verticalSpace(16),
+          Text(
+            title ?? "Oops! Something went wrong",
+            style: AppStyle.font16_400Weight.copyWith(
+              color: AppColors.darkBackground,
+            ),
+            textAlign: TextAlign.center,
+          ),
+          verticalSpace(8),
+          if (message != null)
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 24.w),
               child: Text(
-                "Try Again",
-                style:
-                    buttonStyle ??
-                    AppStyle.font16_600Weight.copyWith(
-                      color: AppColors.primary,
-                    ),
+                message!,
+                style: AppStyle.font14_400Weight.copyWith(
+                  color: Colors.grey[600],
+                ),
+                textAlign: TextAlign.center,
               ),
             ),
-          ),
-      ],
+          verticalSpace(12),
+          if (onPressed != null)
+            SizedBox(
+              width: isFullPage ? 180.w : 120.w,
+              child: ElevatedButton(
+                onPressed: onPressed,
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: AppColors.primary.withValues(alpha: 0.1),
+                  foregroundColor: AppColors.primary,
+                  elevation: 0,
+                  padding: EdgeInsets.symmetric(vertical: 10.h),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12.r),
+                    side: BorderSide(
+                      color: AppColors.primary.withValues(alpha: 0.3),
+                    ),
+                  ),
+                ),
+                child: Text(
+                  "Try Again",
+                  style: AppStyle.font14_700Weight.copyWith(
+                    color: AppColors.primary,
+                  ),
+                ),
+              ),
+            ),
+        ],
+      ),
     );
 
-    return withContainer
-        ? Container(
-            padding: EdgeInsets.all(16.sp),
-            decoration: BoxDecoration(
-              color: AppColors.white,
-              borderRadius: BorderRadius.all(Radius.circular(15.sp)),
-              border: Border.all(color: AppColors.lightGrey, width: 1),
+    if (withContainer) {
+      return Container(
+        margin: EdgeInsets.all(16.r),
+        padding: EdgeInsets.all(16.r),
+        width: double.infinity,
+        decoration: BoxDecoration(
+          color: AppColors.error16,
+          borderRadius: BorderRadius.circular(20.r),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withValues(alpha: 0.04),
+              blurRadius: 20,
+              offset: Offset(0, 10),
             ),
-            child: content,
-          )
-        : content;
+          ],
+        ),
+        child: content,
+      );
+    }
+
+    return content;
   }
 }
