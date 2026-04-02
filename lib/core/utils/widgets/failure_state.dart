@@ -8,6 +8,7 @@ class FailureState extends StatelessWidget {
     super.key,
     required this.size,
     this.title,
+    this.titleColor,
     this.message,
     this.onPressed,
     this.withContainer = false,
@@ -16,6 +17,7 @@ class FailureState extends StatelessWidget {
 
   final double size;
   final String? title;
+  final Color? titleColor;
   final String? message;
   final void Function()? onPressed;
   final bool withContainer;
@@ -39,7 +41,7 @@ class FailureState extends StatelessWidget {
           Text(
             title ?? "Oops! Something went wrong",
             style: AppStyle.font16_400Weight.copyWith(
-              color: AppColors.darkBackground,
+              color: titleColor ?? AppColors.darkBackground,
             ),
             textAlign: TextAlign.center,
           ),

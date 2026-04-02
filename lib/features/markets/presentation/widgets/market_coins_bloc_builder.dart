@@ -20,7 +20,10 @@ class MarketCoinsBlocBuilder extends StatelessWidget {
           case MarketsStatus.loading:
             return Skeletonizer(
               enabled: true,
-              child: MarketScreenListView(coins: CoinsDummyModel.dummyCoins),
+              containersColor: AppColors.lightGrey,
+              child: MarketScreenListView(
+                coins: CoinsDummyModel.dummyCoins + CoinsDummyModel.dummyCoins,
+              ),
             );
           case MarketsStatus.success:
             if (state.coins.isEmpty) {
