@@ -102,6 +102,8 @@ dependencies:
   # ------------ Security -------------
   flutter_secure_storage: ^9.2.4
   fl_chart: ^0.70.0
+  k_chart: ^0.7.1
+  sliding_up_panel: ^2.0.0+1
 
 dev_dependencies:
   flutter_test:

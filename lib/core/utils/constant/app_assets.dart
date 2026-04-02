@@ -2,6 +2,26 @@
 class Assets {
   Assets._();
   
+  /// Assets for animationsEmptyBox
+  /// assets/animations/empty_box.json
+  static const String animationsEmptyBox = "assets/animations/empty_box.json";
+
+  /// Assets for animationsEmptyState
+  /// assets/animations/empty_state.json
+  static const String animationsEmptyState = "assets/animations/empty_state.json";
+
+  /// Assets for animationsFailureState
+  /// assets/animations/failure_state.json
+  static const String animationsFailureState = "assets/animations/failure_state.json";
+
+  /// Assets for animationsLoading
+  /// assets/animations/loading.json
+  static const String animationsLoading = "assets/animations/loading.json";
+
+  /// Assets for animationsWorning
+  /// assets/animations/worning.json
+  static const String animationsWorning = "assets/animations/worning.json";
+
   /// Assets for fontsNeueMontrealBold
   /// assets/fonts/neue_montreal_bold.otf
   static const String fontsNeueMontrealBold = "assets/fonts/neue_montreal_bold.otf";
