@@ -88,6 +88,8 @@ class ShowBottomSheetCoinsBlocBuilder extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: BlocBuilder<MarketsCubit, MarketsState>(
+        buildWhen: (p, c) =>
+            p.status != c.status || p.isLoadingMore != c.isLoadingMore,
         builder: (context, state) {
           switch (state.status) {
             case MarketsStatus.initial:
@@ -95,15 +97,18 @@ class ShowBottomSheetCoinsBlocBuilder extends StatelessWidget {
               return Skeletonizer(
                 enabled: true,
                 child: SearchCoinsBottomSheetListView(
-                  filteredCoins: CoinsDummyModel.dummyCoins,
+                  filteredCoins:
+                      CoinsDummyModel.dummyCoins + CoinsDummyModel.dummyCoins,
                 ),
               );
+
             case MarketsStatus.failure:
               return FailureState(
                 titleColor: AppColors.white,
                 size: 150,
                 onPressed: () => context.read<MarketsCubit>().getMarketsCoins(),
               );
+
             case MarketsStatus.success:
               return ValueListenableBuilder<String>(
                 valueListenable: searchNotifier,
@@ -112,6 +117,7 @@ class ShowBottomSheetCoinsBlocBuilder extends StatelessWidget {
                     return coin.name.toLowerCase().contains(query) ||
                         coin.symbol.toLowerCase().contains(query);
                   }).toList();
+
                   if (filteredCoins.isEmpty) {
                     return const EmptyState(
                       message: 'No coins found',
@@ -119,6 +125,7 @@ class ShowBottomSheetCoinsBlocBuilder extends StatelessWidget {
                       animationSize: 150,
                     );
                   }
+
                   return SearchCoinsBottomSheetListView(
                     filteredCoins: filteredCoins,
                     onCoinSelected: widget.onCoinSelected,

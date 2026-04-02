@@ -19,6 +19,9 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$MarketsState {
   MarketsStatus get status => throw _privateConstructorUsedError;
   List<CoinResponseModel> get coins => throw _privateConstructorUsedError;
+  int get currentPage => throw _privateConstructorUsedError;
+  int get totalPages => throw _privateConstructorUsedError;
+  bool get isLoadingMore => throw _privateConstructorUsedError;
   String? get errorMessage => throw _privateConstructorUsedError;
 
   /// Create a copy of MarketsState
@@ -38,6 +41,9 @@ abstract class $MarketsStateCopyWith<$Res> {
   $Res call({
     MarketsStatus status,
     List<CoinResponseModel> coins,
+    int currentPage,
+    int totalPages,
+    bool isLoadingMore,
     String? errorMessage,
   });
 }
@@ -59,6 +65,9 @@ class _$MarketsStateCopyWithImpl<$Res, $Val extends MarketsState>
   $Res call({
     Object? status = null,
     Object? coins = null,
+    Object? currentPage = null,
+    Object? totalPages = null,
+    Object? isLoadingMore = null,
     Object? errorMessage = freezed,
   }) {
     return _then(
@@ -71,6 +80,18 @@ class _$MarketsStateCopyWithImpl<$Res, $Val extends MarketsState>
                 ? _value.coins
                 : coins // ignore: cast_nullable_to_non_nullable
                       as List<CoinResponseModel>,
+            currentPage: null == currentPage
+                ? _value.currentPage
+                : currentPage // ignore: cast_nullable_to_non_nullable
+                      as int,
+            totalPages: null == totalPages
+                ? _value.totalPages
+                : totalPages // ignore: cast_nullable_to_non_nullable
+                      as int,
+            isLoadingMore: null == isLoadingMore
+                ? _value.isLoadingMore
+                : isLoadingMore // ignore: cast_nullable_to_non_nullable
+                      as bool,
             errorMessage: freezed == errorMessage
                 ? _value.errorMessage
                 : errorMessage // ignore: cast_nullable_to_non_nullable
@@ -93,6 +114,9 @@ abstract class _$$MarketsStateImplCopyWith<$Res>
   $Res call({
     MarketsStatus status,
     List<CoinResponseModel> coins,
+    int currentPage,
+    int totalPages,
+    bool isLoadingMore,
     String? errorMessage,
   });
 }
@@ -113,6 +137,9 @@ class __$$MarketsStateImplCopyWithImpl<$Res>
   $Res call({
     Object? status = null,
     Object? coins = null,
+    Object? currentPage = null,
+    Object? totalPages = null,
+    Object? isLoadingMore = null,
     Object? errorMessage = freezed,
   }) {
     return _then(
@@ -125,6 +152,18 @@ class __$$MarketsStateImplCopyWithImpl<$Res>
             ? _value._coins
             : coins // ignore: cast_nullable_to_non_nullable
                   as List<CoinResponseModel>,
+        currentPage: null == currentPage
+            ? _value.currentPage
+            : currentPage // ignore: cast_nullable_to_non_nullable
+                  as int,
+        totalPages: null == totalPages
+            ? _value.totalPages
+            : totalPages // ignore: cast_nullable_to_non_nullable
+                  as int,
+        isLoadingMore: null == isLoadingMore
+            ? _value.isLoadingMore
+            : isLoadingMore // ignore: cast_nullable_to_non_nullable
+                  as bool,
         errorMessage: freezed == errorMessage
             ? _value.errorMessage
             : errorMessage // ignore: cast_nullable_to_non_nullable
@@ -140,6 +179,9 @@ class _$MarketsStateImpl implements _MarketsState {
   const _$MarketsStateImpl({
     this.status = MarketsStatus.initial,
     final List<CoinResponseModel> coins = const [],
+    this.currentPage = 1,
+    this.totalPages = 1,
+    this.isLoadingMore = false,
     this.errorMessage,
   }) : _coins = coins;
 
@@ -156,11 +198,20 @@ class _$MarketsStateImpl implements _MarketsState {
   }
 
   @override
+  @JsonKey()
+  final int currentPage;
+  @override
+  @JsonKey()
+  final int totalPages;
+  @override
+  @JsonKey()
+  final bool isLoadingMore;
+  @override
   final String? errorMessage;
 
   @override
   String toString() {
-    return 'MarketsState(status: $status, coins: $coins, errorMessage: $errorMessage)';
+    return 'MarketsState(status: $status, coins: $coins, currentPage: $currentPage, totalPages: $totalPages, isLoadingMore: $isLoadingMore, errorMessage: $errorMessage)';
   }
 
   @override
@@ -170,6 +221,12 @@ class _$MarketsStateImpl implements _MarketsState {
             other is _$MarketsStateImpl &&
             (identical(other.status, status) || other.status == status) &&
             const DeepCollectionEquality().equals(other._coins, _coins) &&
+            (identical(other.currentPage, currentPage) ||
+                other.currentPage == currentPage) &&
+            (identical(other.totalPages, totalPages) ||
+                other.totalPages == totalPages) &&
+            (identical(other.isLoadingMore, isLoadingMore) ||
+                other.isLoadingMore == isLoadingMore) &&
             (identical(other.errorMessage, errorMessage) ||
                 other.errorMessage == errorMessage));
   }
@@ -179,6 +236,9 @@ class _$MarketsStateImpl implements _MarketsState {
     runtimeType,
     status,
     const DeepCollectionEquality().hash(_coins),
+    currentPage,
+    totalPages,
+    isLoadingMore,
     errorMessage,
   );
 
@@ -195,6 +255,9 @@ abstract class _MarketsState implements MarketsState {
   const factory _MarketsState({
     final MarketsStatus status,
     final List<CoinResponseModel> coins,
+    final int currentPage,
+    final int totalPages,
+    final bool isLoadingMore,
     final String? errorMessage,
   }) = _$MarketsStateImpl;
 
@@ -202,6 +265,12 @@ abstract class _MarketsState implements MarketsState {
   MarketsStatus get status;
   @override
   List<CoinResponseModel> get coins;
+  @override
+  int get currentPage;
+  @override
+  int get totalPages;
+  @override
+  bool get isLoadingMore;
   @override
   String? get errorMessage;
 

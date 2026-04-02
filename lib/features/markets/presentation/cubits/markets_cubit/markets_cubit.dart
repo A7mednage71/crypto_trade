@@ -12,19 +12,52 @@ class MarketsCubit extends Cubit<MarketsState> {
 
   MarketsCubit(this._marketsRepo) : super(const MarketsState());
 
-  Future<void> getMarketsCoins() async {
-    emit(state.copyWith(status: MarketsStatus.loading));
+  Future<void> getMarketsCoins({int page = 1}) async {
+    if (page == 1) {
+      emit(
+        state.copyWith(
+          status: MarketsStatus.loading,
+          currentPage: 1,
+          coins: [],
+        ),
+      );
+    } else {
+      emit(state.copyWith(isLoadingMore: true));
+    }
+
     final result = await _marketsRepo.getMarketsCoins(
-      CoinMarketsRequestModel(perPage: 30),
+      CoinMarketsRequestModel(perPage: 15, page: page),
     );
+
     result.when(
-      success: (coins) {
-        emit(state.copyWith(status: MarketsStatus.success, coins: coins));
+      success: (newCoins) {
+        final List<CoinResponseModel> updatedCoins = page == 1
+            ? newCoins
+            : [...state.coins, ...newCoins];
+
+        emit(
+          state.copyWith(
+            status: MarketsStatus.success,
+            coins: updatedCoins,
+            currentPage: page,
+            isLoadingMore: false,
+          ),
+        );
       },
       failure: (error) {
-        emit(state.copyWith(status: MarketsStatus.failure, errorMessage: error.errMessages));
+        emit(
+          state.copyWith(
+            status: MarketsStatus.failure,
+            errorMessage: error.errMessages,
+            isLoadingMore: false,
+          ),
+        );
       },
     );
   }
-}
 
+  void loadMore() {
+    if (state.isLoadingMore || state.status == MarketsStatus.loading) return;
+    getMarketsCoins(page: state.currentPage + 1);
+  }
+}

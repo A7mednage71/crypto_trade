@@ -13,7 +13,10 @@ class MarketCoinsBlocBuilder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<MarketsCubit, MarketsState>(
-      buildWhen: (p, c) => p.status != c.status,
+      buildWhen: (p, c) =>
+          p.status != c.status ||
+          p.isLoadingMore != c.isLoadingMore ||
+          p.coins.length != c.coins.length,
       builder: (context, state) {
         switch (state.status) {
           case MarketsStatus.initial:
