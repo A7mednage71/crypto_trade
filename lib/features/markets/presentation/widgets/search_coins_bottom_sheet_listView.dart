@@ -2,7 +2,7 @@
 import 'package:crypto_trade/core/export.dart';
 import 'package:crypto_trade/features/home/data/models/coin_response_model.dart';
 import 'package:crypto_trade/features/markets/presentation/cubits/markets_cubit/markets_cubit.dart';
-import 'package:crypto_trade/features/trades/presentation/widgets/coin_picker_sheet_Item.dart';
+import 'package:crypto_trade/features/markets/presentation/widgets/coin_picker_sheet_Item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
