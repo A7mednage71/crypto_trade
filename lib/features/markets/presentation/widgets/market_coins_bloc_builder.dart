@@ -38,6 +38,7 @@ class MarketCoinsBlocBuilder extends StatelessWidget {
             return MarketScreenListView(coins: state.coins);
           case MarketsStatus.failure:
             return FailureState(
+              titleColor: AppColors.white,
               message: state.errorMessage,
               onPressed: () => context.read<MarketsCubit>().getMarketsCoins(),
               size: 50.h,

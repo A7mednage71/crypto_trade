@@ -17,27 +17,27 @@ class ConvertTabBody extends StatefulWidget {
 class _ConvertTabBodyState extends State<ConvertTabBody> {
   final TextEditingController _fromController = TextEditingController();
   final TextEditingController _toController = TextEditingController();
+  bool _isUpdating = false;
 
-  String _fromCurrency = "BTC";
-  String _fromIcon =
-      "https://assets.coingecko.com/coins/images/1/large/bitcoin.png";
-  String _toCurrency = "USDT";
-  String _toIcon =
-      "https://assets.coingecko.com/coins/images/325/large/Tether.png";
+  @override
+  void initState() {
+    super.initState();
+    _fromController.addListener(() {
+      if (_isUpdating) return;
+      final amount = double.tryParse(_fromController.text) ?? 0;
+      context.read<MarketsCubit>().updateConvertAmounts(
+        isFromUpdate: true,
+        amount: amount,
+      );
+    });
 
-  void _onSwap() {
-    setState(() {
-      final tempCur = _fromCurrency;
-      _fromCurrency = _toCurrency;
-      _toCurrency = tempCur;
-
-      final tempIcon = _fromIcon;
-      _fromIcon = _toIcon;
-      _toIcon = tempIcon;
-
-      final tempVal = _fromController.text;
-      _fromController.text = _toController.text;
-      _toController.text = tempVal;
+    _toController.addListener(() {
+      if (_isUpdating) return;
+      final amount = double.tryParse(_toController.text) ?? 0;
+      context.read<MarketsCubit>().updateConvertAmounts(
+        isFromUpdate: false,
+        amount: amount,
+      );
     });
   }
 
@@ -50,101 +50,114 @@ class _ConvertTabBodyState extends State<ConvertTabBody> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 16.h),
-      child: Column(
-        children: [
-          Stack(
-            alignment: Alignment.center,
-            children: [
-              Column(
-                children: [
-                  AssetExchangeCard(
-                    label: "From",
-                    currency: _fromCurrency,
-                    iconUrl: _fromIcon,
-                    controller: _fromController,
-                    balance: "0.450",
-                    onCurrencyTap: () => _showCoinPicker(isFrom: true),
-                  ),
-                  verticalSpace(12),
-                  AssetExchangeCard(
-                    label: "To",
-                    currency: _toCurrency,
-                    iconUrl: _toIcon,
-                    controller: _toController,
-                    onCurrencyTap: () => _showCoinPicker(isFrom: false),
-                  ),
-                ],
-              ),
-              ConvertSwapButton(onTap: _onSwap),
-            ],
-          ),
-          verticalSpace(24),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                'Rate',
-                style: AppStyle.font16_400Weight.copyWith(
-                  color: AppColors.grey,
+    return BlocListener<MarketsCubit, MarketsState>(
+      listenWhen: (p, c) =>
+          p.fromAmount != c.fromAmount || p.toAmount != c.toAmount,
+      listener: (context, state) {
+        _isUpdating = true;
+
+        if (_fromController.text != state.fromAmount.toString()) {
+          _fromController.text = state.fromAmount == 0
+              ? ""
+              : state.fromAmount.toStringAsFixed(6);
+        }
+        if (_toController.text != state.toAmount.toString()) {
+          _toController.text = state.toAmount == 0
+              ? ""
+              : state.toAmount.toStringAsFixed(6);
+        }
+
+        _isUpdating = false;
+      },
+      child: BlocBuilder<MarketsCubit, MarketsState>(
+        builder: (context, state) {
+          return Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 16.h),
+            child: Column(
+              children: [
+                Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    Column(
+                      children: [
+                        AssetExchangeCard(
+                          label: "From",
+                          currency:
+                              state.fromCoin?.symbol.toUpperCase() ?? "Select",
+                          iconUrl: state.fromCoin?.image ?? "",
+                          controller: _fromController,
+                          balance: "0.450",
+                          onCurrencyTap: () => _showCoinPicker(isFrom: true),
+                        ),
+                        verticalSpace(12),
+                        AssetExchangeCard(
+                          label: "To",
+                          currency:
+                              state.toCoin?.symbol.toUpperCase() ?? "Select",
+                          iconUrl: state.toCoin?.image ?? "",
+                          controller: _toController,
+                          onCurrencyTap: () => _showCoinPicker(isFrom: false),
+                        ),
+                      ],
+                    ),
+                    ConvertSwapButton(),
+                  ],
                 ),
-              ),
-              Text(
-                '1 $_fromCurrency ≈ 65,000 $_toCurrency',
-                style: AppStyle.font13_400Weight.copyWith(
-                  color: AppColors.white,
-                  fontWeight: FontWeight.w600,
+                verticalSpace(24),
+                _buildRateInfo(state),
+                const Spacer(),
+                CustomTextButton(
+                  onPressed: () {},
+                  text: 'Preview Conversion',
+                  disable: state.fromCoin == null || state.toCoin == null,
+                  customTextStyle: AppStyle.font16_400Weight.copyWith(
+                    color: state.fromCoin == null || state.toCoin == null
+                        ? AppColors.lightGrey
+                        : AppColors.white,
+                  ),
+                  disableColor: AppColors.grey,
+                  height: 54.h,
+                  customBorderRadius: BorderRadius.circular(16.r),
                 ),
-              ),
-            ],
-          ),
-          const Spacer(),
-          CustomTextButton(
-            onPressed: () {},
-            text: 'Preview Conversion',
-            isUpperCase: false,
-            height: 54.h,
-            customBorderRadius: BorderRadius.circular(16.r),
-            customTextStyle: AppStyle.font16_400Weight.copyWith(
-              color: AppColors.white,
+                verticalSpace(120),
+              ],
             ),
-          ),
-          verticalSpace(120),
-        ],
+          );
+        },
       ),
     );
   }
 
+  Widget _buildRateInfo(MarketsState state) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text(
+          'Rate',
+          style: AppStyle.font16_400Weight.copyWith(color: AppColors.grey),
+        ),
+        Text(
+          '1 ${state.fromCoin?.symbol.toUpperCase()} ≈ ${state.rate.toStringAsFixed(4)} ${state.toCoin?.symbol.toUpperCase()}',
+          style: AppStyle.font13_400Weight.copyWith(
+            color: AppColors.white,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ],
+    );
+  }
+
   void _showCoinPicker({required bool isFrom}) {
-    final marketsCubit = context.read<MarketsCubit>();
+    final cubit = context.read<MarketsCubit>();
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
       backgroundColor: Colors.transparent,
-      builder: (context) => BlocProvider.value(
-        value: marketsCubit,
+      builder: (_) => BlocProvider.value(
+        value: cubit,
         child: CoinPickerSheet(
           onCoinSelected: (coin) {
-            if (isFrom) {
-              if (coin.symbol.toUpperCase() == _toCurrency) {
-                ShowToast.showFailureToast("Cannot select the same currency");
-                return;
-              }
-              setState(() {
-                _fromCurrency = coin.symbol.toUpperCase();
-                _fromIcon = coin.image;
-              });
-            } else {
-              if (coin.symbol.toUpperCase() == _fromCurrency) {
-                ShowToast.showFailureToast("Cannot select the same currency");
-                return;
-              }
-              setState(() {
-                _toCurrency = coin.symbol.toUpperCase();
-                _toIcon = coin.image;
-              });
-            }
+            cubit.selectConvertCoin(isFrom: isFrom, coin: coin);
           },
         ),
       ),

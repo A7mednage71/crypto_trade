@@ -8,8 +8,14 @@ class MarketsState with _$MarketsState {
     @Default(MarketsStatus.initial) MarketsStatus status,
     @Default([]) List<CoinResponseModel> coins,
     @Default(1) int currentPage,
-    @Default(1) int totalPages,
     @Default(false) bool isLoadingMore,
     String? errorMessage,
+
+    // convert fields
+    CoinResponseModel? fromCoin,
+    CoinResponseModel? toCoin,
+    @Default(0.0) double fromAmount,
+    @Default(0.0) double toAmount,
+    @Default(0.0) double rate,
   }) = _MarketsState;
 }

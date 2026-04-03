@@ -66,12 +66,15 @@ class AssetExchangeCard extends StatelessWidget {
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      CustomNetworkImage(
-                        imageUrl: iconUrl,
-                        height: 24.h,
-                        width: 24.w,
-                        fit: BoxFit.cover,
-                        borderRadius: BorderRadius.circular(14.r),
+                      Visibility(
+                        visible: iconUrl != '',
+                        child: CustomNetworkImage(
+                          imageUrl: iconUrl,
+                          height: 24.h,
+                          width: 24.w,
+                          fit: BoxFit.cover,
+                          borderRadius: BorderRadius.circular(14.r),
+                        ),
                       ),
                       horizontalSpace(8),
                       Text(
