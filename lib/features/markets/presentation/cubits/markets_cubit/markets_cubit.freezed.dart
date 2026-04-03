@@ -27,7 +27,19 @@ mixin _$MarketsState {
   CoinResponseModel? get toCoin => throw _privateConstructorUsedError;
   double get fromAmount => throw _privateConstructorUsedError;
   double get toAmount => throw _privateConstructorUsedError;
-  double get rate => throw _privateConstructorUsedError;
+  double get rate => throw _privateConstructorUsedError; // margin fields
+  double get leverage => throw _privateConstructorUsedError;
+  CoinResponseModel? get selectedMarginCoin =>
+      throw _privateConstructorUsedError;
+  MarginMode get marginMode => throw _privateConstructorUsedError;
+  double get amountToTrade => throw _privateConstructorUsedError;
+  double get maxBuy => throw _privateConstructorUsedError;
+  double get liquidationPrice => throw _privateConstructorUsedError;
+  double get riskPercentage => throw _privateConstructorUsedError;
+  RiskLevel get riskLevel => throw _privateConstructorUsedError;
+  double get availableBalance => throw _privateConstructorUsedError;
+  double get actualOrderAmount => throw _privateConstructorUsedError;
+  double get totalOrderValueUSD => throw _privateConstructorUsedError;
 
   /// Create a copy of MarketsState
   /// with the given fields replaced by the non-null parameter values.
@@ -54,6 +66,17 @@ abstract class $MarketsStateCopyWith<$Res> {
     double fromAmount,
     double toAmount,
     double rate,
+    double leverage,
+    CoinResponseModel? selectedMarginCoin,
+    MarginMode marginMode,
+    double amountToTrade,
+    double maxBuy,
+    double liquidationPrice,
+    double riskPercentage,
+    RiskLevel riskLevel,
+    double availableBalance,
+    double actualOrderAmount,
+    double totalOrderValueUSD,
   });
 }
 
@@ -82,6 +105,17 @@ class _$MarketsStateCopyWithImpl<$Res, $Val extends MarketsState>
     Object? fromAmount = null,
     Object? toAmount = null,
     Object? rate = null,
+    Object? leverage = null,
+    Object? selectedMarginCoin = freezed,
+    Object? marginMode = null,
+    Object? amountToTrade = null,
+    Object? maxBuy = null,
+    Object? liquidationPrice = null,
+    Object? riskPercentage = null,
+    Object? riskLevel = null,
+    Object? availableBalance = null,
+    Object? actualOrderAmount = null,
+    Object? totalOrderValueUSD = null,
   }) {
     return _then(
       _value.copyWith(
@@ -125,6 +159,50 @@ class _$MarketsStateCopyWithImpl<$Res, $Val extends MarketsState>
                 ? _value.rate
                 : rate // ignore: cast_nullable_to_non_nullable
                       as double,
+            leverage: null == leverage
+                ? _value.leverage
+                : leverage // ignore: cast_nullable_to_non_nullable
+                      as double,
+            selectedMarginCoin: freezed == selectedMarginCoin
+                ? _value.selectedMarginCoin
+                : selectedMarginCoin // ignore: cast_nullable_to_non_nullable
+                      as CoinResponseModel?,
+            marginMode: null == marginMode
+                ? _value.marginMode
+                : marginMode // ignore: cast_nullable_to_non_nullable
+                      as MarginMode,
+            amountToTrade: null == amountToTrade
+                ? _value.amountToTrade
+                : amountToTrade // ignore: cast_nullable_to_non_nullable
+                      as double,
+            maxBuy: null == maxBuy
+                ? _value.maxBuy
+                : maxBuy // ignore: cast_nullable_to_non_nullable
+                      as double,
+            liquidationPrice: null == liquidationPrice
+                ? _value.liquidationPrice
+                : liquidationPrice // ignore: cast_nullable_to_non_nullable
+                      as double,
+            riskPercentage: null == riskPercentage
+                ? _value.riskPercentage
+                : riskPercentage // ignore: cast_nullable_to_non_nullable
+                      as double,
+            riskLevel: null == riskLevel
+                ? _value.riskLevel
+                : riskLevel // ignore: cast_nullable_to_non_nullable
+                      as RiskLevel,
+            availableBalance: null == availableBalance
+                ? _value.availableBalance
+                : availableBalance // ignore: cast_nullable_to_non_nullable
+                      as double,
+            actualOrderAmount: null == actualOrderAmount
+                ? _value.actualOrderAmount
+                : actualOrderAmount // ignore: cast_nullable_to_non_nullable
+                      as double,
+            totalOrderValueUSD: null == totalOrderValueUSD
+                ? _value.totalOrderValueUSD
+                : totalOrderValueUSD // ignore: cast_nullable_to_non_nullable
+                      as double,
           )
           as $Val,
     );
@@ -151,6 +229,17 @@ abstract class _$$MarketsStateImplCopyWith<$Res>
     double fromAmount,
     double toAmount,
     double rate,
+    double leverage,
+    CoinResponseModel? selectedMarginCoin,
+    MarginMode marginMode,
+    double amountToTrade,
+    double maxBuy,
+    double liquidationPrice,
+    double riskPercentage,
+    RiskLevel riskLevel,
+    double availableBalance,
+    double actualOrderAmount,
+    double totalOrderValueUSD,
   });
 }
 
@@ -178,6 +267,17 @@ class __$$MarketsStateImplCopyWithImpl<$Res>
     Object? fromAmount = null,
     Object? toAmount = null,
     Object? rate = null,
+    Object? leverage = null,
+    Object? selectedMarginCoin = freezed,
+    Object? marginMode = null,
+    Object? amountToTrade = null,
+    Object? maxBuy = null,
+    Object? liquidationPrice = null,
+    Object? riskPercentage = null,
+    Object? riskLevel = null,
+    Object? availableBalance = null,
+    Object? actualOrderAmount = null,
+    Object? totalOrderValueUSD = null,
   }) {
     return _then(
       _$MarketsStateImpl(
@@ -221,6 +321,50 @@ class __$$MarketsStateImplCopyWithImpl<$Res>
             ? _value.rate
             : rate // ignore: cast_nullable_to_non_nullable
                   as double,
+        leverage: null == leverage
+            ? _value.leverage
+            : leverage // ignore: cast_nullable_to_non_nullable
+                  as double,
+        selectedMarginCoin: freezed == selectedMarginCoin
+            ? _value.selectedMarginCoin
+            : selectedMarginCoin // ignore: cast_nullable_to_non_nullable
+                  as CoinResponseModel?,
+        marginMode: null == marginMode
+            ? _value.marginMode
+            : marginMode // ignore: cast_nullable_to_non_nullable
+                  as MarginMode,
+        amountToTrade: null == amountToTrade
+            ? _value.amountToTrade
+            : amountToTrade // ignore: cast_nullable_to_non_nullable
+                  as double,
+        maxBuy: null == maxBuy
+            ? _value.maxBuy
+            : maxBuy // ignore: cast_nullable_to_non_nullable
+                  as double,
+        liquidationPrice: null == liquidationPrice
+            ? _value.liquidationPrice
+            : liquidationPrice // ignore: cast_nullable_to_non_nullable
+                  as double,
+        riskPercentage: null == riskPercentage
+            ? _value.riskPercentage
+            : riskPercentage // ignore: cast_nullable_to_non_nullable
+                  as double,
+        riskLevel: null == riskLevel
+            ? _value.riskLevel
+            : riskLevel // ignore: cast_nullable_to_non_nullable
+                  as RiskLevel,
+        availableBalance: null == availableBalance
+            ? _value.availableBalance
+            : availableBalance // ignore: cast_nullable_to_non_nullable
+                  as double,
+        actualOrderAmount: null == actualOrderAmount
+            ? _value.actualOrderAmount
+            : actualOrderAmount // ignore: cast_nullable_to_non_nullable
+                  as double,
+        totalOrderValueUSD: null == totalOrderValueUSD
+            ? _value.totalOrderValueUSD
+            : totalOrderValueUSD // ignore: cast_nullable_to_non_nullable
+                  as double,
       ),
     );
   }
@@ -240,6 +384,17 @@ class _$MarketsStateImpl implements _MarketsState {
     this.fromAmount = 0.0,
     this.toAmount = 0.0,
     this.rate = 0.0,
+    this.leverage = 1.0,
+    this.selectedMarginCoin,
+    this.marginMode = MarginMode.cross,
+    this.amountToTrade = 0.0,
+    this.maxBuy = 0.0,
+    this.liquidationPrice = 0.0,
+    this.riskPercentage = 0.0,
+    this.riskLevel = RiskLevel.low,
+    this.availableBalance = 1234.56,
+    this.actualOrderAmount = 0.0,
+    this.totalOrderValueUSD = 0.0,
   }) : _coins = coins;
 
   @override
@@ -276,10 +431,43 @@ class _$MarketsStateImpl implements _MarketsState {
   @override
   @JsonKey()
   final double rate;
+  // margin fields
+  @override
+  @JsonKey()
+  final double leverage;
+  @override
+  final CoinResponseModel? selectedMarginCoin;
+  @override
+  @JsonKey()
+  final MarginMode marginMode;
+  @override
+  @JsonKey()
+  final double amountToTrade;
+  @override
+  @JsonKey()
+  final double maxBuy;
+  @override
+  @JsonKey()
+  final double liquidationPrice;
+  @override
+  @JsonKey()
+  final double riskPercentage;
+  @override
+  @JsonKey()
+  final RiskLevel riskLevel;
+  @override
+  @JsonKey()
+  final double availableBalance;
+  @override
+  @JsonKey()
+  final double actualOrderAmount;
+  @override
+  @JsonKey()
+  final double totalOrderValueUSD;
 
   @override
   String toString() {
-    return 'MarketsState(status: $status, coins: $coins, currentPage: $currentPage, isLoadingMore: $isLoadingMore, errorMessage: $errorMessage, fromCoin: $fromCoin, toCoin: $toCoin, fromAmount: $fromAmount, toAmount: $toAmount, rate: $rate)';
+    return 'MarketsState(status: $status, coins: $coins, currentPage: $currentPage, isLoadingMore: $isLoadingMore, errorMessage: $errorMessage, fromCoin: $fromCoin, toCoin: $toCoin, fromAmount: $fromAmount, toAmount: $toAmount, rate: $rate, leverage: $leverage, selectedMarginCoin: $selectedMarginCoin, marginMode: $marginMode, amountToTrade: $amountToTrade, maxBuy: $maxBuy, liquidationPrice: $liquidationPrice, riskPercentage: $riskPercentage, riskLevel: $riskLevel, availableBalance: $availableBalance, actualOrderAmount: $actualOrderAmount, totalOrderValueUSD: $totalOrderValueUSD)';
   }
 
   @override
@@ -302,11 +490,32 @@ class _$MarketsStateImpl implements _MarketsState {
                 other.fromAmount == fromAmount) &&
             (identical(other.toAmount, toAmount) ||
                 other.toAmount == toAmount) &&
-            (identical(other.rate, rate) || other.rate == rate));
+            (identical(other.rate, rate) || other.rate == rate) &&
+            (identical(other.leverage, leverage) ||
+                other.leverage == leverage) &&
+            (identical(other.selectedMarginCoin, selectedMarginCoin) ||
+                other.selectedMarginCoin == selectedMarginCoin) &&
+            (identical(other.marginMode, marginMode) ||
+                other.marginMode == marginMode) &&
+            (identical(other.amountToTrade, amountToTrade) ||
+                other.amountToTrade == amountToTrade) &&
+            (identical(other.maxBuy, maxBuy) || other.maxBuy == maxBuy) &&
+            (identical(other.liquidationPrice, liquidationPrice) ||
+                other.liquidationPrice == liquidationPrice) &&
+            (identical(other.riskPercentage, riskPercentage) ||
+                other.riskPercentage == riskPercentage) &&
+            (identical(other.riskLevel, riskLevel) ||
+                other.riskLevel == riskLevel) &&
+            (identical(other.availableBalance, availableBalance) ||
+                other.availableBalance == availableBalance) &&
+            (identical(other.actualOrderAmount, actualOrderAmount) ||
+                other.actualOrderAmount == actualOrderAmount) &&
+            (identical(other.totalOrderValueUSD, totalOrderValueUSD) ||
+                other.totalOrderValueUSD == totalOrderValueUSD));
   }
 
   @override
-  int get hashCode => Object.hash(
+  int get hashCode => Object.hashAll([
     runtimeType,
     status,
     const DeepCollectionEquality().hash(_coins),
@@ -318,7 +527,18 @@ class _$MarketsStateImpl implements _MarketsState {
     fromAmount,
     toAmount,
     rate,
-  );
+    leverage,
+    selectedMarginCoin,
+    marginMode,
+    amountToTrade,
+    maxBuy,
+    liquidationPrice,
+    riskPercentage,
+    riskLevel,
+    availableBalance,
+    actualOrderAmount,
+    totalOrderValueUSD,
+  ]);
 
   /// Create a copy of MarketsState
   /// with the given fields replaced by the non-null parameter values.
@@ -341,6 +561,17 @@ abstract class _MarketsState implements MarketsState {
     final double fromAmount,
     final double toAmount,
     final double rate,
+    final double leverage,
+    final CoinResponseModel? selectedMarginCoin,
+    final MarginMode marginMode,
+    final double amountToTrade,
+    final double maxBuy,
+    final double liquidationPrice,
+    final double riskPercentage,
+    final RiskLevel riskLevel,
+    final double availableBalance,
+    final double actualOrderAmount,
+    final double totalOrderValueUSD,
   }) = _$MarketsStateImpl;
 
   @override
@@ -362,7 +593,29 @@ abstract class _MarketsState implements MarketsState {
   @override
   double get toAmount;
   @override
-  double get rate;
+  double get rate; // margin fields
+  @override
+  double get leverage;
+  @override
+  CoinResponseModel? get selectedMarginCoin;
+  @override
+  MarginMode get marginMode;
+  @override
+  double get amountToTrade;
+  @override
+  double get maxBuy;
+  @override
+  double get liquidationPrice;
+  @override
+  double get riskPercentage;
+  @override
+  RiskLevel get riskLevel;
+  @override
+  double get availableBalance;
+  @override
+  double get actualOrderAmount;
+  @override
+  double get totalOrderValueUSD;
 
   /// Create a copy of MarketsState
   /// with the given fields replaced by the non-null parameter values.

@@ -17,5 +17,17 @@ class MarketsState with _$MarketsState {
     @Default(0.0) double fromAmount,
     @Default(0.0) double toAmount,
     @Default(0.0) double rate,
+    // margin fields
+    @Default(1.0) double leverage,
+    CoinResponseModel? selectedMarginCoin,
+    @Default(MarginMode.cross) MarginMode marginMode,
+    @Default(0.0) double amountToTrade,
+    @Default(0.0) double maxBuy,
+    @Default(0.0) double liquidationPrice,
+    @Default(0.0) double riskPercentage,
+    @Default(RiskLevel.low) RiskLevel riskLevel,
+    @Default(1234.56) double availableBalance,
+    @Default(0.0) double actualOrderAmount,
+    @Default(0.0) double totalOrderValueUSD,
   }) = _MarketsState;
 }

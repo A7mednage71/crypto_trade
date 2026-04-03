@@ -7,6 +7,7 @@ class AppColors {
   static const Color white = Color(0xFFFFFFFF);
   static const Color black = Color(0xFF000000);
   static const Color error = Color(0xFFDD4B4B);
+  static const Color danger = Color(0xFFDD4B4B);
 
   // --- Backgrounds & Surfaces ---
   static const Color darkBackground = Color(0xFF1B232A);

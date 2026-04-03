@@ -14,6 +14,7 @@ class AssetExchangeCard extends StatelessWidget {
     required this.controller,
     this.balance,
     this.onCurrencyTap,
+    this.borderColor,
   });
 
   final String label;
@@ -22,6 +23,7 @@ class AssetExchangeCard extends StatelessWidget {
   final TextEditingController controller;
   final String? balance;
   final VoidCallback? onCurrencyTap;
+  final Color? borderColor;
 
   @override
   Widget build(BuildContext context) {
@@ -30,6 +32,7 @@ class AssetExchangeCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: AppColors.lightGrey.withValues(alpha: 0.05),
         borderRadius: BorderRadius.circular(20.r),
+        border: borderColor != null ? Border.all(color: borderColor!) : null,
       ),
       child: Column(
         children: [
