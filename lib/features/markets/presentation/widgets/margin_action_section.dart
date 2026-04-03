@@ -1,7 +1,12 @@
 import 'package:crypto_trade/core/helpers/space_helper.dart';
 import 'package:crypto_trade/core/utils/constant/app_color.dart';
-import 'package:crypto_trade/core/utils/constant/app_style.dart';
+import 'package:crypto_trade/core/utils/enums/trade_side.dart';
+import 'package:crypto_trade/core/utils/widgets/app_status_dialog.dart';
+import 'package:crypto_trade/features/markets/presentation/cubits/markets_cubit/markets_cubit.dart';
+import 'package:crypto_trade/features/markets/presentation/widgets/margin_action_button.dart';
+import 'package:crypto_trade/features/markets/presentation/widgets/order_confirmation_sheet.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class MarginActionSection extends StatelessWidget {
@@ -9,62 +14,69 @@ class MarginActionSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: double.infinity,
-      height: 48.h,
+    return BlocListener<MarketsCubit, MarketsState>(
+      listenWhen: (p, c) => p.tradeStatus != c.tradeStatus,
+      listener: (context, state) {
+        _handleTradeStatus(context, state);
+      },
       child: Row(
         children: [
           Expanded(
             child: MarginActionButton(
               label: 'Buy / Long',
-              color: AppColors.secondary,
-              onPressed: () {
-                // Action logic here
-              },
+              color: AppColors.success,
+              onPressed: () => _openConfirmation(context, TradeSide.long),
             ),
           ),
           horizontalSpace(16),
           Expanded(
             child: MarginActionButton(
               label: 'Sell / Short',
-              color: AppColors.error,
-              onPressed: () {
-                // Action logic here
-              },
+              color: AppColors.danger,
+              onPressed: () => _openConfirmation(context, TradeSide.short),
             ),
           ),
         ],
       ),
     );
   }
-}
 
-class MarginActionButton extends StatelessWidget {
-  final String label;
-  final Color color;
-  final VoidCallback onPressed;
+  void _handleTradeStatus(BuildContext context, MarketsState state) {
+    if (state.tradeStatus == TradeStatus.success) {
+      Navigator.pop(context);
+      AppStatusDialog.show(
+        context,
+        isSuccess: true,
+        title: 'Order Placed!',
+        message: 'Your position is now active.',
+        onDone: () {
+          context.read<MarketsCubit>().resetForm();
+          Navigator.pop(context);
+        },
+      );
+    } else if (state.tradeStatus == TradeStatus.failure) {
+      Navigator.pop(context);
+      AppStatusDialog.show(
+        context,
+        isSuccess: false,
+        message: state.tradeErrorMessage ?? 'Failed to place order',
+      );
+    }
+  }
 
-  const MarginActionButton({
-    super.key,
-    required this.label,
-    required this.color,
-    required this.onPressed,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: onPressed,
-      style: ElevatedButton.styleFrom(
-        backgroundColor: color,
-        foregroundColor: AppColors.white,
-        padding: EdgeInsets.symmetric(vertical: 12.h),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(12.r),
-        ),
-        elevation: 0,
+  void _openConfirmation(BuildContext context, TradeSide side) {
+    final cubit = context.read<MarketsCubit>();
+    showModalBottomSheet(
+      context: context,
+      backgroundColor: AppColors.darkSurface,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(24.r)),
       ),
-      child: Text(label, style: AppStyle.font16_600Weight),
+      isScrollControlled: true,
+      builder: (_) => BlocProvider.value(
+        value: cubit,
+        child: OrderConfirmationSheet(side: side),
+      ),
     );
   }
 }

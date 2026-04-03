@@ -2,6 +2,8 @@ part of 'markets_cubit.dart';
 
 enum MarketsStatus { initial, loading, success, failure }
 
+enum TradeStatus { initial, loading, success, failure }
+
 @freezed
 class MarketsState with _$MarketsState {
   const factory MarketsState({
@@ -17,7 +19,10 @@ class MarketsState with _$MarketsState {
     @Default(0.0) double fromAmount,
     @Default(0.0) double toAmount,
     @Default(0.0) double rate,
-    // margin fields
+
+    // margin fields and trade status
+    @Default(TradeStatus.initial) TradeStatus tradeStatus,
+    String? tradeErrorMessage,
     @Default(1.0) double leverage,
     CoinResponseModel? selectedMarginCoin,
     @Default(MarginMode.cross) MarginMode marginMode,

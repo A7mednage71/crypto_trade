@@ -1,5 +1,6 @@
 import 'package:crypto_trade/core/utils/enums/margin_mode.dart';
 import 'package:crypto_trade/core/utils/enums/risk_level.dart';
+import 'package:crypto_trade/core/utils/enums/trade_side.dart';
 import 'package:crypto_trade/features/home/data/models/coin_markets_request_model.dart';
 import 'package:crypto_trade/features/home/data/models/coin_response_model.dart';
 import 'package:crypto_trade/features/markets/data/repos/markets_repo.dart';
@@ -197,6 +198,27 @@ class MarketsCubit extends Cubit<MarketsState> {
         riskLevel: riskLevel,
         totalOrderValueUSD: totalOrderValueUSD,
         actualOrderAmount: actualOrderAmount,
+      ),
+    );
+  }
+
+  void openMarginPosition(TradeSide side) async {
+    emit(state.copyWith(tradeStatus: TradeStatus.loading));
+
+    // Simulate network delay
+    await Future.delayed(const Duration(seconds: 2));
+
+    // For demonstration, always succeed
+    emit(state.copyWith(tradeStatus: TradeStatus.success));
+  }
+
+  void resetForm() {
+    emit(
+      state.copyWith(
+        amountToTrade: 0.0,
+        tradeStatus: TradeStatus.initial,
+        actualOrderAmount: 0.0,
+        totalOrderValueUSD: 0.0,
       ),
     );
   }

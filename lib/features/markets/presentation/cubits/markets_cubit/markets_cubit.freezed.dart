@@ -18,10 +18,12 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$MarketsState {
   MarketsStatus get status => throw _privateConstructorUsedError;
+  TradeStatus get tradeStatus => throw _privateConstructorUsedError;
   List<CoinResponseModel> get coins => throw _privateConstructorUsedError;
   int get currentPage => throw _privateConstructorUsedError;
   bool get isLoadingMore => throw _privateConstructorUsedError;
-  String? get errorMessage =>
+  String? get errorMessage => throw _privateConstructorUsedError;
+  String? get tradeErrorMessage =>
       throw _privateConstructorUsedError; // convert fields
   CoinResponseModel? get fromCoin => throw _privateConstructorUsedError;
   CoinResponseModel? get toCoin => throw _privateConstructorUsedError;
@@ -57,10 +59,12 @@ abstract class $MarketsStateCopyWith<$Res> {
   @useResult
   $Res call({
     MarketsStatus status,
+    TradeStatus tradeStatus,
     List<CoinResponseModel> coins,
     int currentPage,
     bool isLoadingMore,
     String? errorMessage,
+    String? tradeErrorMessage,
     CoinResponseModel? fromCoin,
     CoinResponseModel? toCoin,
     double fromAmount,
@@ -96,10 +100,12 @@ class _$MarketsStateCopyWithImpl<$Res, $Val extends MarketsState>
   @override
   $Res call({
     Object? status = null,
+    Object? tradeStatus = null,
     Object? coins = null,
     Object? currentPage = null,
     Object? isLoadingMore = null,
     Object? errorMessage = freezed,
+    Object? tradeErrorMessage = freezed,
     Object? fromCoin = freezed,
     Object? toCoin = freezed,
     Object? fromAmount = null,
@@ -123,6 +129,10 @@ class _$MarketsStateCopyWithImpl<$Res, $Val extends MarketsState>
                 ? _value.status
                 : status // ignore: cast_nullable_to_non_nullable
                       as MarketsStatus,
+            tradeStatus: null == tradeStatus
+                ? _value.tradeStatus
+                : tradeStatus // ignore: cast_nullable_to_non_nullable
+                      as TradeStatus,
             coins: null == coins
                 ? _value.coins
                 : coins // ignore: cast_nullable_to_non_nullable
@@ -138,6 +148,10 @@ class _$MarketsStateCopyWithImpl<$Res, $Val extends MarketsState>
             errorMessage: freezed == errorMessage
                 ? _value.errorMessage
                 : errorMessage // ignore: cast_nullable_to_non_nullable
+                      as String?,
+            tradeErrorMessage: freezed == tradeErrorMessage
+                ? _value.tradeErrorMessage
+                : tradeErrorMessage // ignore: cast_nullable_to_non_nullable
                       as String?,
             fromCoin: freezed == fromCoin
                 ? _value.fromCoin
@@ -220,10 +234,12 @@ abstract class _$$MarketsStateImplCopyWith<$Res>
   @useResult
   $Res call({
     MarketsStatus status,
+    TradeStatus tradeStatus,
     List<CoinResponseModel> coins,
     int currentPage,
     bool isLoadingMore,
     String? errorMessage,
+    String? tradeErrorMessage,
     CoinResponseModel? fromCoin,
     CoinResponseModel? toCoin,
     double fromAmount,
@@ -258,10 +274,12 @@ class __$$MarketsStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? status = null,
+    Object? tradeStatus = null,
     Object? coins = null,
     Object? currentPage = null,
     Object? isLoadingMore = null,
     Object? errorMessage = freezed,
+    Object? tradeErrorMessage = freezed,
     Object? fromCoin = freezed,
     Object? toCoin = freezed,
     Object? fromAmount = null,
@@ -285,6 +303,10 @@ class __$$MarketsStateImplCopyWithImpl<$Res>
             ? _value.status
             : status // ignore: cast_nullable_to_non_nullable
                   as MarketsStatus,
+        tradeStatus: null == tradeStatus
+            ? _value.tradeStatus
+            : tradeStatus // ignore: cast_nullable_to_non_nullable
+                  as TradeStatus,
         coins: null == coins
             ? _value._coins
             : coins // ignore: cast_nullable_to_non_nullable
@@ -300,6 +322,10 @@ class __$$MarketsStateImplCopyWithImpl<$Res>
         errorMessage: freezed == errorMessage
             ? _value.errorMessage
             : errorMessage // ignore: cast_nullable_to_non_nullable
+                  as String?,
+        tradeErrorMessage: freezed == tradeErrorMessage
+            ? _value.tradeErrorMessage
+            : tradeErrorMessage // ignore: cast_nullable_to_non_nullable
                   as String?,
         fromCoin: freezed == fromCoin
             ? _value.fromCoin
@@ -375,10 +401,12 @@ class __$$MarketsStateImplCopyWithImpl<$Res>
 class _$MarketsStateImpl implements _MarketsState {
   const _$MarketsStateImpl({
     this.status = MarketsStatus.initial,
+    this.tradeStatus = TradeStatus.initial,
     final List<CoinResponseModel> coins = const [],
     this.currentPage = 1,
     this.isLoadingMore = false,
     this.errorMessage,
+    this.tradeErrorMessage,
     this.fromCoin,
     this.toCoin,
     this.fromAmount = 0.0,
@@ -400,6 +428,9 @@ class _$MarketsStateImpl implements _MarketsState {
   @override
   @JsonKey()
   final MarketsStatus status;
+  @override
+  @JsonKey()
+  final TradeStatus tradeStatus;
   final List<CoinResponseModel> _coins;
   @override
   @JsonKey()
@@ -417,6 +448,8 @@ class _$MarketsStateImpl implements _MarketsState {
   final bool isLoadingMore;
   @override
   final String? errorMessage;
+  @override
+  final String? tradeErrorMessage;
   // convert fields
   @override
   final CoinResponseModel? fromCoin;
@@ -467,7 +500,7 @@ class _$MarketsStateImpl implements _MarketsState {
 
   @override
   String toString() {
-    return 'MarketsState(status: $status, coins: $coins, currentPage: $currentPage, isLoadingMore: $isLoadingMore, errorMessage: $errorMessage, fromCoin: $fromCoin, toCoin: $toCoin, fromAmount: $fromAmount, toAmount: $toAmount, rate: $rate, leverage: $leverage, selectedMarginCoin: $selectedMarginCoin, marginMode: $marginMode, amountToTrade: $amountToTrade, maxBuy: $maxBuy, liquidationPrice: $liquidationPrice, riskPercentage: $riskPercentage, riskLevel: $riskLevel, availableBalance: $availableBalance, actualOrderAmount: $actualOrderAmount, totalOrderValueUSD: $totalOrderValueUSD)';
+    return 'MarketsState(status: $status, tradeStatus: $tradeStatus, coins: $coins, currentPage: $currentPage, isLoadingMore: $isLoadingMore, errorMessage: $errorMessage, tradeErrorMessage: $tradeErrorMessage, fromCoin: $fromCoin, toCoin: $toCoin, fromAmount: $fromAmount, toAmount: $toAmount, rate: $rate, leverage: $leverage, selectedMarginCoin: $selectedMarginCoin, marginMode: $marginMode, amountToTrade: $amountToTrade, maxBuy: $maxBuy, liquidationPrice: $liquidationPrice, riskPercentage: $riskPercentage, riskLevel: $riskLevel, availableBalance: $availableBalance, actualOrderAmount: $actualOrderAmount, totalOrderValueUSD: $totalOrderValueUSD)';
   }
 
   @override
@@ -476,6 +509,8 @@ class _$MarketsStateImpl implements _MarketsState {
         (other.runtimeType == runtimeType &&
             other is _$MarketsStateImpl &&
             (identical(other.status, status) || other.status == status) &&
+            (identical(other.tradeStatus, tradeStatus) ||
+                other.tradeStatus == tradeStatus) &&
             const DeepCollectionEquality().equals(other._coins, _coins) &&
             (identical(other.currentPage, currentPage) ||
                 other.currentPage == currentPage) &&
@@ -483,6 +518,8 @@ class _$MarketsStateImpl implements _MarketsState {
                 other.isLoadingMore == isLoadingMore) &&
             (identical(other.errorMessage, errorMessage) ||
                 other.errorMessage == errorMessage) &&
+            (identical(other.tradeErrorMessage, tradeErrorMessage) ||
+                other.tradeErrorMessage == tradeErrorMessage) &&
             (identical(other.fromCoin, fromCoin) ||
                 other.fromCoin == fromCoin) &&
             (identical(other.toCoin, toCoin) || other.toCoin == toCoin) &&
@@ -518,10 +555,12 @@ class _$MarketsStateImpl implements _MarketsState {
   int get hashCode => Object.hashAll([
     runtimeType,
     status,
+    tradeStatus,
     const DeepCollectionEquality().hash(_coins),
     currentPage,
     isLoadingMore,
     errorMessage,
+    tradeErrorMessage,
     fromCoin,
     toCoin,
     fromAmount,
@@ -552,10 +591,12 @@ class _$MarketsStateImpl implements _MarketsState {
 abstract class _MarketsState implements MarketsState {
   const factory _MarketsState({
     final MarketsStatus status,
+    final TradeStatus tradeStatus,
     final List<CoinResponseModel> coins,
     final int currentPage,
     final bool isLoadingMore,
     final String? errorMessage,
+    final String? tradeErrorMessage,
     final CoinResponseModel? fromCoin,
     final CoinResponseModel? toCoin,
     final double fromAmount,
@@ -577,13 +618,17 @@ abstract class _MarketsState implements MarketsState {
   @override
   MarketsStatus get status;
   @override
+  TradeStatus get tradeStatus;
+  @override
   List<CoinResponseModel> get coins;
   @override
   int get currentPage;
   @override
   bool get isLoadingMore;
   @override
-  String? get errorMessage; // convert fields
+  String? get errorMessage;
+  @override
+  String? get tradeErrorMessage; // convert fields
   @override
   CoinResponseModel? get fromCoin;
   @override
