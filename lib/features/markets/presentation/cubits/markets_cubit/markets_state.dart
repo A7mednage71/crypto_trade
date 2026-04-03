@@ -34,5 +34,9 @@ class MarketsState with _$MarketsState {
     @Default(1234.56) double availableBalance,
     @Default(0.0) double actualOrderAmount,
     @Default(0.0) double totalOrderValueUSD,
+
+    // Fiat deposit fields
+    @Default(0.0) double fiatDepositAmount,
+    @Default(0) int selectedPaymentMethodIndex,
   }) = _MarketsState;
 }

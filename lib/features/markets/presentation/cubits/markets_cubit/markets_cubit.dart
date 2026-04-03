@@ -205,10 +205,8 @@ class MarketsCubit extends Cubit<MarketsState> {
   void openMarginPosition(TradeSide side) async {
     emit(state.copyWith(tradeStatus: TradeStatus.loading));
 
-    // Simulate network delay
     await Future.delayed(const Duration(seconds: 2));
 
-    // For demonstration, always succeed
     emit(state.copyWith(tradeStatus: TradeStatus.success));
   }
 
@@ -219,6 +217,30 @@ class MarketsCubit extends Cubit<MarketsState> {
         tradeStatus: TradeStatus.initial,
         actualOrderAmount: 0.0,
         totalOrderValueUSD: 0.0,
+      ),
+    );
+  }
+
+  // --- Fiat Deposit Logic ---
+
+  void updateFiatAmount(double amount) {
+    emit(state.copyWith(fiatDepositAmount: amount));
+  }
+
+  void selectPaymentMethod(int index) {
+    emit(state.copyWith(selectedPaymentMethodIndex: index));
+  }
+
+  Future<void> depositFiat(double amount) async {
+    if (amount <= 0) return;
+    emit(state.copyWith(tradeStatus: TradeStatus.loading));
+    await Future.delayed(const Duration(seconds: 2));
+    final newBalance = state.availableBalance + amount;
+    emit(
+      state.copyWith(
+        tradeStatus: TradeStatus.success,
+        availableBalance: newBalance,
+        fiatDepositAmount: 0.0,
       ),
     );
   }

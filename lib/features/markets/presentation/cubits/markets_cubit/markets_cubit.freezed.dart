@@ -18,18 +18,19 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$MarketsState {
   MarketsStatus get status => throw _privateConstructorUsedError;
-  TradeStatus get tradeStatus => throw _privateConstructorUsedError;
   List<CoinResponseModel> get coins => throw _privateConstructorUsedError;
   int get currentPage => throw _privateConstructorUsedError;
   bool get isLoadingMore => throw _privateConstructorUsedError;
-  String? get errorMessage => throw _privateConstructorUsedError;
-  String? get tradeErrorMessage =>
+  String? get errorMessage =>
       throw _privateConstructorUsedError; // convert fields
   CoinResponseModel? get fromCoin => throw _privateConstructorUsedError;
   CoinResponseModel? get toCoin => throw _privateConstructorUsedError;
   double get fromAmount => throw _privateConstructorUsedError;
   double get toAmount => throw _privateConstructorUsedError;
-  double get rate => throw _privateConstructorUsedError; // margin fields
+  double get rate =>
+      throw _privateConstructorUsedError; // margin fields and trade status
+  TradeStatus get tradeStatus => throw _privateConstructorUsedError;
+  String? get tradeErrorMessage => throw _privateConstructorUsedError;
   double get leverage => throw _privateConstructorUsedError;
   CoinResponseModel? get selectedMarginCoin =>
       throw _privateConstructorUsedError;
@@ -41,7 +42,10 @@ mixin _$MarketsState {
   RiskLevel get riskLevel => throw _privateConstructorUsedError;
   double get availableBalance => throw _privateConstructorUsedError;
   double get actualOrderAmount => throw _privateConstructorUsedError;
-  double get totalOrderValueUSD => throw _privateConstructorUsedError;
+  double get totalOrderValueUSD =>
+      throw _privateConstructorUsedError; // Fiat deposit fields
+  double get fiatDepositAmount => throw _privateConstructorUsedError;
+  int get selectedPaymentMethodIndex => throw _privateConstructorUsedError;
 
   /// Create a copy of MarketsState
   /// with the given fields replaced by the non-null parameter values.
@@ -59,17 +63,17 @@ abstract class $MarketsStateCopyWith<$Res> {
   @useResult
   $Res call({
     MarketsStatus status,
-    TradeStatus tradeStatus,
     List<CoinResponseModel> coins,
     int currentPage,
     bool isLoadingMore,
     String? errorMessage,
-    String? tradeErrorMessage,
     CoinResponseModel? fromCoin,
     CoinResponseModel? toCoin,
     double fromAmount,
     double toAmount,
     double rate,
+    TradeStatus tradeStatus,
+    String? tradeErrorMessage,
     double leverage,
     CoinResponseModel? selectedMarginCoin,
     MarginMode marginMode,
@@ -81,6 +85,8 @@ abstract class $MarketsStateCopyWith<$Res> {
     double availableBalance,
     double actualOrderAmount,
     double totalOrderValueUSD,
+    double fiatDepositAmount,
+    int selectedPaymentMethodIndex,
   });
 }
 
@@ -100,17 +106,17 @@ class _$MarketsStateCopyWithImpl<$Res, $Val extends MarketsState>
   @override
   $Res call({
     Object? status = null,
-    Object? tradeStatus = null,
     Object? coins = null,
     Object? currentPage = null,
     Object? isLoadingMore = null,
     Object? errorMessage = freezed,
-    Object? tradeErrorMessage = freezed,
     Object? fromCoin = freezed,
     Object? toCoin = freezed,
     Object? fromAmount = null,
     Object? toAmount = null,
     Object? rate = null,
+    Object? tradeStatus = null,
+    Object? tradeErrorMessage = freezed,
     Object? leverage = null,
     Object? selectedMarginCoin = freezed,
     Object? marginMode = null,
@@ -122,6 +128,8 @@ class _$MarketsStateCopyWithImpl<$Res, $Val extends MarketsState>
     Object? availableBalance = null,
     Object? actualOrderAmount = null,
     Object? totalOrderValueUSD = null,
+    Object? fiatDepositAmount = null,
+    Object? selectedPaymentMethodIndex = null,
   }) {
     return _then(
       _value.copyWith(
@@ -129,10 +137,6 @@ class _$MarketsStateCopyWithImpl<$Res, $Val extends MarketsState>
                 ? _value.status
                 : status // ignore: cast_nullable_to_non_nullable
                       as MarketsStatus,
-            tradeStatus: null == tradeStatus
-                ? _value.tradeStatus
-                : tradeStatus // ignore: cast_nullable_to_non_nullable
-                      as TradeStatus,
             coins: null == coins
                 ? _value.coins
                 : coins // ignore: cast_nullable_to_non_nullable
@@ -148,10 +152,6 @@ class _$MarketsStateCopyWithImpl<$Res, $Val extends MarketsState>
             errorMessage: freezed == errorMessage
                 ? _value.errorMessage
                 : errorMessage // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            tradeErrorMessage: freezed == tradeErrorMessage
-                ? _value.tradeErrorMessage
-                : tradeErrorMessage // ignore: cast_nullable_to_non_nullable
                       as String?,
             fromCoin: freezed == fromCoin
                 ? _value.fromCoin
@@ -173,6 +173,14 @@ class _$MarketsStateCopyWithImpl<$Res, $Val extends MarketsState>
                 ? _value.rate
                 : rate // ignore: cast_nullable_to_non_nullable
                       as double,
+            tradeStatus: null == tradeStatus
+                ? _value.tradeStatus
+                : tradeStatus // ignore: cast_nullable_to_non_nullable
+                      as TradeStatus,
+            tradeErrorMessage: freezed == tradeErrorMessage
+                ? _value.tradeErrorMessage
+                : tradeErrorMessage // ignore: cast_nullable_to_non_nullable
+                      as String?,
             leverage: null == leverage
                 ? _value.leverage
                 : leverage // ignore: cast_nullable_to_non_nullable
@@ -217,6 +225,14 @@ class _$MarketsStateCopyWithImpl<$Res, $Val extends MarketsState>
                 ? _value.totalOrderValueUSD
                 : totalOrderValueUSD // ignore: cast_nullable_to_non_nullable
                       as double,
+            fiatDepositAmount: null == fiatDepositAmount
+                ? _value.fiatDepositAmount
+                : fiatDepositAmount // ignore: cast_nullable_to_non_nullable
+                      as double,
+            selectedPaymentMethodIndex: null == selectedPaymentMethodIndex
+                ? _value.selectedPaymentMethodIndex
+                : selectedPaymentMethodIndex // ignore: cast_nullable_to_non_nullable
+                      as int,
           )
           as $Val,
     );
@@ -234,17 +250,17 @@ abstract class _$$MarketsStateImplCopyWith<$Res>
   @useResult
   $Res call({
     MarketsStatus status,
-    TradeStatus tradeStatus,
     List<CoinResponseModel> coins,
     int currentPage,
     bool isLoadingMore,
     String? errorMessage,
-    String? tradeErrorMessage,
     CoinResponseModel? fromCoin,
     CoinResponseModel? toCoin,
     double fromAmount,
     double toAmount,
     double rate,
+    TradeStatus tradeStatus,
+    String? tradeErrorMessage,
     double leverage,
     CoinResponseModel? selectedMarginCoin,
     MarginMode marginMode,
@@ -256,6 +272,8 @@ abstract class _$$MarketsStateImplCopyWith<$Res>
     double availableBalance,
     double actualOrderAmount,
     double totalOrderValueUSD,
+    double fiatDepositAmount,
+    int selectedPaymentMethodIndex,
   });
 }
 
@@ -274,17 +292,17 @@ class __$$MarketsStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? status = null,
-    Object? tradeStatus = null,
     Object? coins = null,
     Object? currentPage = null,
     Object? isLoadingMore = null,
     Object? errorMessage = freezed,
-    Object? tradeErrorMessage = freezed,
     Object? fromCoin = freezed,
     Object? toCoin = freezed,
     Object? fromAmount = null,
     Object? toAmount = null,
     Object? rate = null,
+    Object? tradeStatus = null,
+    Object? tradeErrorMessage = freezed,
     Object? leverage = null,
     Object? selectedMarginCoin = freezed,
     Object? marginMode = null,
@@ -296,6 +314,8 @@ class __$$MarketsStateImplCopyWithImpl<$Res>
     Object? availableBalance = null,
     Object? actualOrderAmount = null,
     Object? totalOrderValueUSD = null,
+    Object? fiatDepositAmount = null,
+    Object? selectedPaymentMethodIndex = null,
   }) {
     return _then(
       _$MarketsStateImpl(
@@ -303,10 +323,6 @@ class __$$MarketsStateImplCopyWithImpl<$Res>
             ? _value.status
             : status // ignore: cast_nullable_to_non_nullable
                   as MarketsStatus,
-        tradeStatus: null == tradeStatus
-            ? _value.tradeStatus
-            : tradeStatus // ignore: cast_nullable_to_non_nullable
-                  as TradeStatus,
         coins: null == coins
             ? _value._coins
             : coins // ignore: cast_nullable_to_non_nullable
@@ -322,10 +338,6 @@ class __$$MarketsStateImplCopyWithImpl<$Res>
         errorMessage: freezed == errorMessage
             ? _value.errorMessage
             : errorMessage // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        tradeErrorMessage: freezed == tradeErrorMessage
-            ? _value.tradeErrorMessage
-            : tradeErrorMessage // ignore: cast_nullable_to_non_nullable
                   as String?,
         fromCoin: freezed == fromCoin
             ? _value.fromCoin
@@ -347,6 +359,14 @@ class __$$MarketsStateImplCopyWithImpl<$Res>
             ? _value.rate
             : rate // ignore: cast_nullable_to_non_nullable
                   as double,
+        tradeStatus: null == tradeStatus
+            ? _value.tradeStatus
+            : tradeStatus // ignore: cast_nullable_to_non_nullable
+                  as TradeStatus,
+        tradeErrorMessage: freezed == tradeErrorMessage
+            ? _value.tradeErrorMessage
+            : tradeErrorMessage // ignore: cast_nullable_to_non_nullable
+                  as String?,
         leverage: null == leverage
             ? _value.leverage
             : leverage // ignore: cast_nullable_to_non_nullable
@@ -391,6 +411,14 @@ class __$$MarketsStateImplCopyWithImpl<$Res>
             ? _value.totalOrderValueUSD
             : totalOrderValueUSD // ignore: cast_nullable_to_non_nullable
                   as double,
+        fiatDepositAmount: null == fiatDepositAmount
+            ? _value.fiatDepositAmount
+            : fiatDepositAmount // ignore: cast_nullable_to_non_nullable
+                  as double,
+        selectedPaymentMethodIndex: null == selectedPaymentMethodIndex
+            ? _value.selectedPaymentMethodIndex
+            : selectedPaymentMethodIndex // ignore: cast_nullable_to_non_nullable
+                  as int,
       ),
     );
   }
@@ -401,17 +429,17 @@ class __$$MarketsStateImplCopyWithImpl<$Res>
 class _$MarketsStateImpl implements _MarketsState {
   const _$MarketsStateImpl({
     this.status = MarketsStatus.initial,
-    this.tradeStatus = TradeStatus.initial,
     final List<CoinResponseModel> coins = const [],
     this.currentPage = 1,
     this.isLoadingMore = false,
     this.errorMessage,
-    this.tradeErrorMessage,
     this.fromCoin,
     this.toCoin,
     this.fromAmount = 0.0,
     this.toAmount = 0.0,
     this.rate = 0.0,
+    this.tradeStatus = TradeStatus.initial,
+    this.tradeErrorMessage,
     this.leverage = 1.0,
     this.selectedMarginCoin,
     this.marginMode = MarginMode.cross,
@@ -423,14 +451,13 @@ class _$MarketsStateImpl implements _MarketsState {
     this.availableBalance = 1234.56,
     this.actualOrderAmount = 0.0,
     this.totalOrderValueUSD = 0.0,
+    this.fiatDepositAmount = 0.0,
+    this.selectedPaymentMethodIndex = 0,
   }) : _coins = coins;
 
   @override
   @JsonKey()
   final MarketsStatus status;
-  @override
-  @JsonKey()
-  final TradeStatus tradeStatus;
   final List<CoinResponseModel> _coins;
   @override
   @JsonKey()
@@ -448,8 +475,6 @@ class _$MarketsStateImpl implements _MarketsState {
   final bool isLoadingMore;
   @override
   final String? errorMessage;
-  @override
-  final String? tradeErrorMessage;
   // convert fields
   @override
   final CoinResponseModel? fromCoin;
@@ -464,7 +489,12 @@ class _$MarketsStateImpl implements _MarketsState {
   @override
   @JsonKey()
   final double rate;
-  // margin fields
+  // margin fields and trade status
+  @override
+  @JsonKey()
+  final TradeStatus tradeStatus;
+  @override
+  final String? tradeErrorMessage;
   @override
   @JsonKey()
   final double leverage;
@@ -497,10 +527,17 @@ class _$MarketsStateImpl implements _MarketsState {
   @override
   @JsonKey()
   final double totalOrderValueUSD;
+  // Fiat deposit fields
+  @override
+  @JsonKey()
+  final double fiatDepositAmount;
+  @override
+  @JsonKey()
+  final int selectedPaymentMethodIndex;
 
   @override
   String toString() {
-    return 'MarketsState(status: $status, tradeStatus: $tradeStatus, coins: $coins, currentPage: $currentPage, isLoadingMore: $isLoadingMore, errorMessage: $errorMessage, tradeErrorMessage: $tradeErrorMessage, fromCoin: $fromCoin, toCoin: $toCoin, fromAmount: $fromAmount, toAmount: $toAmount, rate: $rate, leverage: $leverage, selectedMarginCoin: $selectedMarginCoin, marginMode: $marginMode, amountToTrade: $amountToTrade, maxBuy: $maxBuy, liquidationPrice: $liquidationPrice, riskPercentage: $riskPercentage, riskLevel: $riskLevel, availableBalance: $availableBalance, actualOrderAmount: $actualOrderAmount, totalOrderValueUSD: $totalOrderValueUSD)';
+    return 'MarketsState(status: $status, coins: $coins, currentPage: $currentPage, isLoadingMore: $isLoadingMore, errorMessage: $errorMessage, fromCoin: $fromCoin, toCoin: $toCoin, fromAmount: $fromAmount, toAmount: $toAmount, rate: $rate, tradeStatus: $tradeStatus, tradeErrorMessage: $tradeErrorMessage, leverage: $leverage, selectedMarginCoin: $selectedMarginCoin, marginMode: $marginMode, amountToTrade: $amountToTrade, maxBuy: $maxBuy, liquidationPrice: $liquidationPrice, riskPercentage: $riskPercentage, riskLevel: $riskLevel, availableBalance: $availableBalance, actualOrderAmount: $actualOrderAmount, totalOrderValueUSD: $totalOrderValueUSD, fiatDepositAmount: $fiatDepositAmount, selectedPaymentMethodIndex: $selectedPaymentMethodIndex)';
   }
 
   @override
@@ -509,8 +546,6 @@ class _$MarketsStateImpl implements _MarketsState {
         (other.runtimeType == runtimeType &&
             other is _$MarketsStateImpl &&
             (identical(other.status, status) || other.status == status) &&
-            (identical(other.tradeStatus, tradeStatus) ||
-                other.tradeStatus == tradeStatus) &&
             const DeepCollectionEquality().equals(other._coins, _coins) &&
             (identical(other.currentPage, currentPage) ||
                 other.currentPage == currentPage) &&
@@ -518,8 +553,6 @@ class _$MarketsStateImpl implements _MarketsState {
                 other.isLoadingMore == isLoadingMore) &&
             (identical(other.errorMessage, errorMessage) ||
                 other.errorMessage == errorMessage) &&
-            (identical(other.tradeErrorMessage, tradeErrorMessage) ||
-                other.tradeErrorMessage == tradeErrorMessage) &&
             (identical(other.fromCoin, fromCoin) ||
                 other.fromCoin == fromCoin) &&
             (identical(other.toCoin, toCoin) || other.toCoin == toCoin) &&
@@ -528,6 +561,10 @@ class _$MarketsStateImpl implements _MarketsState {
             (identical(other.toAmount, toAmount) ||
                 other.toAmount == toAmount) &&
             (identical(other.rate, rate) || other.rate == rate) &&
+            (identical(other.tradeStatus, tradeStatus) ||
+                other.tradeStatus == tradeStatus) &&
+            (identical(other.tradeErrorMessage, tradeErrorMessage) ||
+                other.tradeErrorMessage == tradeErrorMessage) &&
             (identical(other.leverage, leverage) ||
                 other.leverage == leverage) &&
             (identical(other.selectedMarginCoin, selectedMarginCoin) ||
@@ -548,24 +585,32 @@ class _$MarketsStateImpl implements _MarketsState {
             (identical(other.actualOrderAmount, actualOrderAmount) ||
                 other.actualOrderAmount == actualOrderAmount) &&
             (identical(other.totalOrderValueUSD, totalOrderValueUSD) ||
-                other.totalOrderValueUSD == totalOrderValueUSD));
+                other.totalOrderValueUSD == totalOrderValueUSD) &&
+            (identical(other.fiatDepositAmount, fiatDepositAmount) ||
+                other.fiatDepositAmount == fiatDepositAmount) &&
+            (identical(
+                  other.selectedPaymentMethodIndex,
+                  selectedPaymentMethodIndex,
+                ) ||
+                other.selectedPaymentMethodIndex ==
+                    selectedPaymentMethodIndex));
   }
 
   @override
   int get hashCode => Object.hashAll([
     runtimeType,
     status,
-    tradeStatus,
     const DeepCollectionEquality().hash(_coins),
     currentPage,
     isLoadingMore,
     errorMessage,
-    tradeErrorMessage,
     fromCoin,
     toCoin,
     fromAmount,
     toAmount,
     rate,
+    tradeStatus,
+    tradeErrorMessage,
     leverage,
     selectedMarginCoin,
     marginMode,
@@ -577,6 +622,8 @@ class _$MarketsStateImpl implements _MarketsState {
     availableBalance,
     actualOrderAmount,
     totalOrderValueUSD,
+    fiatDepositAmount,
+    selectedPaymentMethodIndex,
   ]);
 
   /// Create a copy of MarketsState
@@ -591,17 +638,17 @@ class _$MarketsStateImpl implements _MarketsState {
 abstract class _MarketsState implements MarketsState {
   const factory _MarketsState({
     final MarketsStatus status,
-    final TradeStatus tradeStatus,
     final List<CoinResponseModel> coins,
     final int currentPage,
     final bool isLoadingMore,
     final String? errorMessage,
-    final String? tradeErrorMessage,
     final CoinResponseModel? fromCoin,
     final CoinResponseModel? toCoin,
     final double fromAmount,
     final double toAmount,
     final double rate,
+    final TradeStatus tradeStatus,
+    final String? tradeErrorMessage,
     final double leverage,
     final CoinResponseModel? selectedMarginCoin,
     final MarginMode marginMode,
@@ -613,12 +660,12 @@ abstract class _MarketsState implements MarketsState {
     final double availableBalance,
     final double actualOrderAmount,
     final double totalOrderValueUSD,
+    final double fiatDepositAmount,
+    final int selectedPaymentMethodIndex,
   }) = _$MarketsStateImpl;
 
   @override
   MarketsStatus get status;
-  @override
-  TradeStatus get tradeStatus;
   @override
   List<CoinResponseModel> get coins;
   @override
@@ -626,9 +673,7 @@ abstract class _MarketsState implements MarketsState {
   @override
   bool get isLoadingMore;
   @override
-  String? get errorMessage;
-  @override
-  String? get tradeErrorMessage; // convert fields
+  String? get errorMessage; // convert fields
   @override
   CoinResponseModel? get fromCoin;
   @override
@@ -638,7 +683,11 @@ abstract class _MarketsState implements MarketsState {
   @override
   double get toAmount;
   @override
-  double get rate; // margin fields
+  double get rate; // margin fields and trade status
+  @override
+  TradeStatus get tradeStatus;
+  @override
+  String? get tradeErrorMessage;
   @override
   double get leverage;
   @override
@@ -660,7 +709,11 @@ abstract class _MarketsState implements MarketsState {
   @override
   double get actualOrderAmount;
   @override
-  double get totalOrderValueUSD;
+  double get totalOrderValueUSD; // Fiat deposit fields
+  @override
+  double get fiatDepositAmount;
+  @override
+  int get selectedPaymentMethodIndex;
 
   /// Create a copy of MarketsState
   /// with the given fields replaced by the non-null parameter values.
