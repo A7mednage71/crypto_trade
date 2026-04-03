@@ -1,14 +1,15 @@
 import 'package:crypto_trade/core/export.dart';
 import 'package:crypto_trade/features/home/data/models/coin_response_model.dart';
+import 'package:crypto_trade/features/markets/presentation/widgets/coin_quick_actions_sheet.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class MarketCoinTile extends StatelessWidget {
   final CoinResponseModel coin;
-  final VoidCallback? onTap;
 
-  const MarketCoinTile({super.key, required this.coin, this.onTap});
+  const MarketCoinTile({super.key, required this.coin});
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +18,18 @@ class MarketCoinTile extends StatelessWidget {
         : AppColors.error;
 
     return InkWell(
-      onTap: onTap,
+      onTap: () {
+        HapticFeedback.mediumImpact();
+        showModalBottomSheet(
+          context: context,
+          backgroundColor: Colors.transparent,
+          barrierColor: Colors.black.withValues(alpha: 0.5),
+          isScrollControlled: true,
+          builder: (context) => CoinQuickActionsSheet(coin: coin),
+        );
+      },
+      borderRadius: BorderRadius.circular(12.r),
+
       child: Padding(
         padding: EdgeInsets.symmetric(vertical: 12.h, horizontal: 20.w),
         child: Row(
