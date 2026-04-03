@@ -7,6 +7,7 @@ class EmptyState extends StatelessWidget {
   const EmptyState({
     super.key,
     required this.message,
+    this.messageColor,
     this.description,
     this.animationSize,
     this.withContainer = false,
@@ -15,6 +16,7 @@ class EmptyState extends StatelessWidget {
   });
 
   final String message;
+  final Color? messageColor;
   final String? description;
   final double? animationSize;
   final bool withContainer;
@@ -38,7 +40,7 @@ class EmptyState extends StatelessWidget {
           message,
           textAlign: TextAlign.center,
           style: AppStyle.font16_400Weight.copyWith(
-            color: AppColors.darkBackground,
+            color: messageColor ?? AppColors.darkBackground,
           ),
         ),
         if (description != null)

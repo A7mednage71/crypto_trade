@@ -32,7 +32,7 @@ class CustomNetworkImage extends StatelessWidget {
         fit: fit,
         imageUrl: imageUrl != ''
             ? imageUrl
-            : 'https://as1.ftcdn.net/v2/jpg/05/16/27/58/1000_F_516275801_f3Fsp17x6HQK0xQgDQEELoTuERO4SsWV.jpg',
+            : 'https://cdn.vectorstock.com/i/500p/39/46/no-image-symbol-shadow-missing-available-icon-vector-46693946.jpg',
         width: width,
         height: height,
         placeholder: (context, message) {

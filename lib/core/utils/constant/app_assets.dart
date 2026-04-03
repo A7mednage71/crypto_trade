@@ -18,6 +18,10 @@ class Assets {
   /// assets/animations/loading.json
   static const String animationsLoading = "assets/animations/loading.json";
 
+  /// Assets for animationsSuccessState
+  /// assets/animations/success_state.json
+  static const String animationsSuccessState = "assets/animations/success_state.json";
+
   /// Assets for animationsWorning
   /// assets/animations/worning.json
   static const String animationsWorning = "assets/animations/worning.json";
