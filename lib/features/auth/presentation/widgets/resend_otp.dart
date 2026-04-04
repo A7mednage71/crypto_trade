@@ -3,10 +3,14 @@ import 'dart:async';
 import 'package:crypto_trade/core/helpers/space_helper.dart';
 import 'package:crypto_trade/core/utils/constant/app_color.dart';
 import 'package:crypto_trade/core/utils/constant/app_style.dart';
+import 'package:crypto_trade/features/auth/presentation/cubits/otp_cubit/otp_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ResendOtp extends StatefulWidget {
-  const ResendOtp({super.key});
+  final String phoneNumber;
+
+  const ResendOtp({super.key, required this.phoneNumber});
 
   @override
   State<ResendOtp> createState() => _ResendOtpState();
@@ -52,7 +56,10 @@ class _ResendOtpState extends State<ResendOtp> {
           if (_timerSeconds == 0) ...[
             verticalSpace(12),
             TextButton(
-              onPressed: _startTimer,
+              onPressed: () {
+                _startTimer();
+                context.read<OtpCubit>().sendOtp(widget.phoneNumber);
+              },
               child: Text(
                 "Resend Link",
                 style: AppStyle.font14_700Weight.copyWith(

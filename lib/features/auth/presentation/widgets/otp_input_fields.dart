@@ -5,7 +5,16 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:pinput/pinput.dart';
 
 class OtpInputFields extends StatelessWidget {
-  const OtpInputFields({super.key});
+  final void Function(String)? onCompleted;
+  final TextEditingController controller;
+  final String? Function(String?)? validator;
+
+  const OtpInputFields({
+    super.key,
+    this.onCompleted,
+    required this.controller,
+    this.validator,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -33,13 +42,14 @@ class OtpInputFields extends StatelessWidget {
     );
 
     return Pinput(
-      length: 4,
-      controller: TextEditingController(),
+      length: 6,
+      controller: controller,
       defaultPinTheme: defaultPinTheme,
       focusedPinTheme: focusedPinTheme,
       submittedPinTheme: submittedPinTheme,
       showCursor: true,
-      onCompleted: (value) {},
+      onCompleted: onCompleted,
+      validator: validator,
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       pinAnimationType: PinAnimationType.fade,
       cursor: Column(

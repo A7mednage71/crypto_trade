@@ -47,7 +47,7 @@ class CustomTextButton extends StatelessWidget {
     this.iconColor,
     this.iconSize,
     this.isIconLeft = true,
-    this.disableColor = AppColors.white,
+    this.disableColor = AppColors.primaryDisabled,
   });
 
   @override
