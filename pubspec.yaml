@@ -66,6 +66,7 @@ dependencies:
   firebase_crashlytics: ^5.0.1
   firebase_messaging: ^16.0.1
   flutter_local_notifications: ^19.4.2
+  google_sign_in: ^6.2.2
   
 
   # ---------- Local Storage ----------

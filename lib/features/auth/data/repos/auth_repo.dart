@@ -13,5 +13,6 @@ abstract class AuthRepository {
     required void Function(String error) onError,
   });
   Future<ApiResult<UserCredential>> verifyOtp(VerifyOtpModel model);
+  Future<ApiResult<UserCredential>> authenticateWithGoogle();
   Future<void> signOut();
 }

@@ -5,9 +5,11 @@ import 'package:crypto_trade/features/auth/data/models/otp_models.dart';
 import 'package:crypto_trade/features/auth/data/models/register_model.dart';
 import 'package:crypto_trade/features/auth/data/repos/auth_repo.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthRepositoryImpl implements AuthRepository {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+  final GoogleSignIn _googleSignIn = GoogleSignIn();
 
   @override
   Future<ApiResult<UserCredential>> signInWithEmail(LoginModel model) async {
@@ -67,6 +69,33 @@ class AuthRepositoryImpl implements AuthRepository {
         verificationId: model.verificationId,
         smsCode: model.smsCode,
       );
+      final userCredential = await _firebaseAuth.signInWithCredential(
+        credential,
+      );
+      return ApiResult.success(userCredential);
+    } on FirebaseAuthException catch (e) {
+      return ApiResult.failure(ServerFailure.fromFirebaseError(e));
+    } catch (e) {
+      return ApiResult.failure(ServerFailure(e.toString()));
+    }
+  }
+
+  @override
+  Future<ApiResult<UserCredential>> authenticateWithGoogle() async {
+    try {
+      final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
+      if (googleUser == null) {
+        return ApiResult.failure(ServerFailure("Sign in cancelled"));
+      }
+
+      final GoogleSignInAuthentication googleAuth =
+          await googleUser.authentication;
+
+      final OAuthCredential credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth.accessToken,
+        idToken: googleAuth.idToken,
+      );
+
       final userCredential = await _firebaseAuth.signInWithCredential(
         credential,
       );

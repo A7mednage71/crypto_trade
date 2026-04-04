@@ -19,6 +19,8 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$AuthState {
   LoginStatus get loginStatus => throw _privateConstructorUsedError;
   RegisterStatus get registerStatus => throw _privateConstructorUsedError;
+  GoogleSignInStatus get googleSignInStatus =>
+      throw _privateConstructorUsedError;
   String? get error => throw _privateConstructorUsedError;
 
   /// Create a copy of AuthState
@@ -36,6 +38,7 @@ abstract class $AuthStateCopyWith<$Res> {
   $Res call({
     LoginStatus loginStatus,
     RegisterStatus registerStatus,
+    GoogleSignInStatus googleSignInStatus,
     String? error,
   });
 }
@@ -57,6 +60,7 @@ class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
   $Res call({
     Object? loginStatus = null,
     Object? registerStatus = null,
+    Object? googleSignInStatus = null,
     Object? error = freezed,
   }) {
     return _then(
@@ -69,6 +73,10 @@ class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
                 ? _value.registerStatus
                 : registerStatus // ignore: cast_nullable_to_non_nullable
                       as RegisterStatus,
+            googleSignInStatus: null == googleSignInStatus
+                ? _value.googleSignInStatus
+                : googleSignInStatus // ignore: cast_nullable_to_non_nullable
+                      as GoogleSignInStatus,
             error: freezed == error
                 ? _value.error
                 : error // ignore: cast_nullable_to_non_nullable
@@ -91,6 +99,7 @@ abstract class _$$AuthStateImplCopyWith<$Res>
   $Res call({
     LoginStatus loginStatus,
     RegisterStatus registerStatus,
+    GoogleSignInStatus googleSignInStatus,
     String? error,
   });
 }
@@ -111,6 +120,7 @@ class __$$AuthStateImplCopyWithImpl<$Res>
   $Res call({
     Object? loginStatus = null,
     Object? registerStatus = null,
+    Object? googleSignInStatus = null,
     Object? error = freezed,
   }) {
     return _then(
@@ -123,6 +133,10 @@ class __$$AuthStateImplCopyWithImpl<$Res>
             ? _value.registerStatus
             : registerStatus // ignore: cast_nullable_to_non_nullable
                   as RegisterStatus,
+        googleSignInStatus: null == googleSignInStatus
+            ? _value.googleSignInStatus
+            : googleSignInStatus // ignore: cast_nullable_to_non_nullable
+                  as GoogleSignInStatus,
         error: freezed == error
             ? _value.error
             : error // ignore: cast_nullable_to_non_nullable
@@ -138,6 +152,7 @@ class _$AuthStateImpl implements _AuthState {
   const _$AuthStateImpl({
     this.loginStatus = LoginStatus.initial,
     this.registerStatus = RegisterStatus.initial,
+    this.googleSignInStatus = GoogleSignInStatus.initial,
     this.error,
   });
 
@@ -148,11 +163,14 @@ class _$AuthStateImpl implements _AuthState {
   @JsonKey()
   final RegisterStatus registerStatus;
   @override
+  @JsonKey()
+  final GoogleSignInStatus googleSignInStatus;
+  @override
   final String? error;
 
   @override
   String toString() {
-    return 'AuthState(loginStatus: $loginStatus, registerStatus: $registerStatus, error: $error)';
+    return 'AuthState(loginStatus: $loginStatus, registerStatus: $registerStatus, googleSignInStatus: $googleSignInStatus, error: $error)';
   }
 
   @override
@@ -164,12 +182,19 @@ class _$AuthStateImpl implements _AuthState {
                 other.loginStatus == loginStatus) &&
             (identical(other.registerStatus, registerStatus) ||
                 other.registerStatus == registerStatus) &&
+            (identical(other.googleSignInStatus, googleSignInStatus) ||
+                other.googleSignInStatus == googleSignInStatus) &&
             (identical(other.error, error) || other.error == error));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, loginStatus, registerStatus, error);
+  int get hashCode => Object.hash(
+    runtimeType,
+    loginStatus,
+    registerStatus,
+    googleSignInStatus,
+    error,
+  );
 
   /// Create a copy of AuthState
   /// with the given fields replaced by the non-null parameter values.
@@ -184,6 +209,7 @@ abstract class _AuthState implements AuthState {
   const factory _AuthState({
     final LoginStatus loginStatus,
     final RegisterStatus registerStatus,
+    final GoogleSignInStatus googleSignInStatus,
     final String? error,
   }) = _$AuthStateImpl;
 
@@ -191,6 +217,8 @@ abstract class _AuthState implements AuthState {
   LoginStatus get loginStatus;
   @override
   RegisterStatus get registerStatus;
+  @override
+  GoogleSignInStatus get googleSignInStatus;
   @override
   String? get error;
 

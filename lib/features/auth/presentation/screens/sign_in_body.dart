@@ -6,7 +6,7 @@ import 'package:crypto_trade/core/utils/widgets/app_status_dialog.dart';
 import 'package:crypto_trade/features/auth/presentation/cubits/auth_cubit/auth_cubit.dart';
 import 'package:crypto_trade/features/auth/presentation/cubits/auth_cubit/auth_state.dart';
 import 'package:crypto_trade/features/auth/presentation/widgets/auth_social_button.dart';
-import 'package:crypto_trade/features/auth/presentation/widgets/fingerprint_section.dart';
+import 'package:crypto_trade/features/auth/presentation/widgets/authanticate_with_google.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -164,23 +164,12 @@ class _SignInBodyState extends State<SignInBody> {
                 AuthSocialButton(
                   label: 'Facebook',
                   svgAsset: Assets.imagesSvgFacebook,
-                  onTap: () {
-                    context.pushNamed(Routes.settingsScreen);
-                  },
+                  onTap: () {},
                 ),
                 horizontalSpace(20),
-                AuthSocialButton(
-                  label: 'Google',
-                  svgAsset: Assets.imagesSvgGoogle,
-                  onTap: () {
-                    context.pushNamed(Routes.profileScreen);
-                  },
-                ),
+                AuthanticateWithGoogle(),
               ],
             ),
-            verticalSpace(50),
-            Center(child: FingerprintSection()),
-            verticalSpace(20),
           ],
         ),
       ),
