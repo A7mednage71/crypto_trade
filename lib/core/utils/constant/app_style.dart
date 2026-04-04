@@ -15,6 +15,12 @@ class AppStyle {
     color: AppColors.white,
   );
 
+  static TextStyle font32_500Weight = TextStyle(
+    fontSize: 32.sp,
+    fontWeight: FontWeight.w500,
+    color: AppColors.white,
+  );
+
   static TextStyle font32_400Weight = TextStyle(
     fontSize: 32.sp,
     fontWeight: FontWeight.w400,

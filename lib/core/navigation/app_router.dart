@@ -1,5 +1,7 @@
 import 'package:crypto_trade/core/navigation/routes.dart';
 import 'package:crypto_trade/features/auth/presentation/screens/auth_screen.dart';
+import 'package:crypto_trade/features/auth/presentation/screens/register_with_mobile.dart';
+import 'package:crypto_trade/features/auth/presentation/screens/verification_screen.dart';
 import 'package:crypto_trade/features/home/presentation/screens/home_screen.dart';
 import 'package:crypto_trade/features/main_layout/presentation/screens/main_layout_screen.dart';
 import 'package:crypto_trade/features/notifications/presentation/screens/notifications_screen.dart';
@@ -25,6 +27,13 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => const OnboardingScreen());
       case Routes.authScreen:
         return MaterialPageRoute(builder: (_) => const AuthScreen());
+      case Routes.registerWithMobile:
+        return MaterialPageRoute(builder: (_) => const RegisterWithMobile());
+      case Routes.verificationScreen:
+        final phone = arguments as String;
+        return MaterialPageRoute(
+          builder: (_) => VerificationScreen(phoneNumber: phone),
+        );
       case Routes.settingsScreen:
         return MaterialPageRoute(builder: (_) => const SettingsScreen());
       case Routes.profileScreen:

@@ -1,8 +1,9 @@
 import 'package:crypto_trade/core/export.dart';
+import 'package:crypto_trade/core/navigation/routes.dart';
+import 'package:crypto_trade/core/utils/constant/app_assets.dart';
 import 'package:crypto_trade/features/auth/presentation/widgets/auth_social_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:crypto_trade/core/utils/constant/app_assets.dart';
 
 class SignUpBody extends StatefulWidget {
   const SignUpBody({super.key});
@@ -13,15 +14,11 @@ class SignUpBody extends StatefulWidget {
 
 class _SignUpBodyState extends State<SignUpBody> {
   final _emailController = TextEditingController();
-  final _phoneController = TextEditingController();
   final _passwordController = TextEditingController();
-
-  bool _isMobileMode = false;
 
   @override
   void dispose() {
     _emailController.dispose();
-    _phoneController.dispose();
     _passwordController.dispose();
     super.dispose();
   }
@@ -43,17 +40,15 @@ class _SignUpBodyState extends State<SignUpBody> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                _isMobileMode ? 'Mobile Number' : 'Email',
+                'Email',
                 style: AppStyle.font13_400Weight.copyWith(
                   color: AppColors.lightGrey,
                 ),
               ),
-              GestureDetector(
-                onTap: () => setState(() => _isMobileMode = !_isMobileMode),
+              TextButton(
+                onPressed: () => context.pushNamed(Routes.registerWithMobile),
                 child: Text(
-                  _isMobileMode
-                      ? 'Register with email'
-                      : 'Register with mobile',
+                  'Register with mobile',
                   style: AppStyle.font13_400Weight.copyWith(
                     color: AppColors.primary,
                   ),
@@ -63,11 +58,9 @@ class _SignUpBodyState extends State<SignUpBody> {
           ),
           verticalSpace(8),
           CustomTextFormField(
-            controller: _isMobileMode ? _phoneController : _emailController,
-            textInputType: _isMobileMode
-                ? TextInputType.phone
-                : TextInputType.emailAddress,
-            hint: _isMobileMode ? 'Enter your mobile' : 'Please enter email',
+            controller: _emailController,
+            textInputType: TextInputType.emailAddress,
+            hint: 'Please enter email',
             contentPadding: EdgeInsets.symmetric(
               horizontal: 16.w,
               vertical: 16.h,
