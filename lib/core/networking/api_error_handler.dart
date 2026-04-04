@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 abstract class ApiError {
   final String errMessages;
@@ -8,6 +9,25 @@ abstract class ApiError {
 
 class ServerFailure extends ApiError {
   ServerFailure(super.errMessages);
+
+  factory ServerFailure.fromFirebaseError(FirebaseAuthException e) {
+    switch (e.code) {
+      case 'weak-password':
+        return ServerFailure('The password provided is too weak.');
+      case 'email-already-in-use':
+        return ServerFailure('The account already exists for that email.');
+      case 'wrong-password':
+      case 'user-not-found':
+      case 'invalid-credential':
+        return ServerFailure('Invalid email or password.');
+      case 'invalid-verification-code':
+        return ServerFailure('The verification code is invalid.');
+      case 'invalid-email':
+        return ServerFailure('The email address is not valid.');
+      default:
+        return ServerFailure(e.message ?? 'An unknown error occurred.');
+    }
+  }
 
   factory ServerFailure.fromDioError(DioException e) {
     switch (e.type) {
