@@ -1,3 +1,4 @@
+import 'package:crypto_trade/core/helpers/secure_storage_helper.dart';
 import 'package:crypto_trade/core/networking/api_error_handler.dart';
 import 'package:crypto_trade/core/networking/api_result.dart';
 import 'package:crypto_trade/features/auth/data/models/login_model.dart';
@@ -18,6 +19,9 @@ class AuthRepositoryImpl implements AuthRepository {
         email: model.email,
         password: model.password,
       );
+      if (credential.user != null) {
+        await EncryptedStorage.saveUserId(credential.user!.uid);
+      }
       return ApiResult.success(credential);
     } on FirebaseAuthException catch (e) {
       return ApiResult.failure(ServerFailure.fromFirebaseError(e));
@@ -72,6 +76,9 @@ class AuthRepositoryImpl implements AuthRepository {
       final userCredential = await _firebaseAuth.signInWithCredential(
         credential,
       );
+      if (userCredential.user != null) {
+        await EncryptedStorage.saveUserId(userCredential.user!.uid);
+      }
       return ApiResult.success(userCredential);
     } on FirebaseAuthException catch (e) {
       return ApiResult.failure(ServerFailure.fromFirebaseError(e));
@@ -99,6 +106,9 @@ class AuthRepositoryImpl implements AuthRepository {
       final userCredential = await _firebaseAuth.signInWithCredential(
         credential,
       );
+      if (userCredential.user != null) {
+        await EncryptedStorage.saveUserId(userCredential.user!.uid);
+      }
       return ApiResult.success(userCredential);
     } on FirebaseAuthException catch (e) {
       return ApiResult.failure(ServerFailure.fromFirebaseError(e));
@@ -108,7 +118,8 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<void> signOut() {
+  Future<void> signOut() async {
+    await EncryptedStorage.clearAll();
     return _firebaseAuth.signOut();
   }
 }
