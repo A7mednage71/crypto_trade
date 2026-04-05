@@ -6,6 +6,7 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:intl/intl.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 class CoinChartWidget extends StatefulWidget {
@@ -43,12 +44,54 @@ class _CoinChartWidgetState extends State<CoinChartWidget> {
                 gridData: const FlGridData(show: false),
                 titlesData: const FlTitlesData(show: false),
                 borderData: FlBorderData(show: false),
+                lineTouchData: LineTouchData(
+                  touchTooltipData: LineTouchTooltipData(
+                    getTooltipColor: (_) =>
+                        AppColors.darkSurface.withValues(alpha: 0.8),
+                    tooltipRoundedRadius: 8.r,
+                    getTooltipItems: (touchedSpots) {
+                      return touchedSpots.map((spot) {
+                        return LineTooltipItem(
+                          'Price: \$${spot.y.toStringAsFixed(2)}\nTime: ${DateFormat('HH:mm').format(DateTime.fromMillisecondsSinceEpoch(spot.x.toInt()))}',
+                          AppStyle.font12_400Weight.copyWith(
+                            color: Colors.white,
+                          ),
+                        );
+                      }).toList();
+                    },
+                  ),
+                  getTouchedSpotIndicator:
+                      (LineChartBarData barData, List<int> indicators) {
+                        return indicators.map((int index) {
+                          return TouchedSpotIndicatorData(
+                            FlLine(
+                              color: AppColors.primaryGreen.withValues(
+                                alpha: 0.2,
+                              ),
+                              strokeWidth: 1.5,
+                              dashArray: [5, 5],
+                            ),
+                            FlDotData(
+                              show: true,
+                              getDotPainter: (spot, percent, barData, index) =>
+                                  FlDotCirclePainter(
+                                    radius: 5,
+                                    color: AppColors.primaryGreen,
+                                    strokeWidth: 1.5,
+                                    strokeColor: Colors.white,
+                                  ),
+                            ),
+                          );
+                        }).toList();
+                      },
+                ),
                 lineBarsData: [
                   LineChartBarData(
                     spots: spots,
                     isCurved: true,
+                    curveSmoothness: 0.35,
                     color: AppColors.primaryGreen,
-                    barWidth: 2,
+                    barWidth: 2.5.w,
                     isStrokeCapRound: true,
                     dotData: const FlDotData(show: false),
                     belowBarData: BarAreaData(
@@ -57,7 +100,8 @@ class _CoinChartWidgetState extends State<CoinChartWidget> {
                         begin: Alignment.topCenter,
                         end: Alignment.bottomCenter,
                         colors: [
-                          AppColors.primaryGreen.withValues(alpha: 0.3),
+                          AppColors.primaryGreen.withValues(alpha: 0.2),
+                          AppColors.primaryGreen.withValues(alpha: 0.02),
                           AppColors.primaryGreen.withValues(alpha: 0.0),
                         ],
                       ),
@@ -68,41 +112,62 @@ class _CoinChartWidgetState extends State<CoinChartWidget> {
             ),
           ),
         ),
-        verticalSpace(16),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: CoinTimeframe.values.map((tf) {
-            final bool isSelected = selectedTimeframe == tf;
-            return GestureDetector(
-              onTap: () {
-                setState(() {
-                  selectedTimeframe = tf;
-                });
-                context.read<CoinDetailsCubit>().changeTimeframe(
-                  widget.coinId,
-                  tf.days,
-                );
-              },
-              child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
-                decoration: BoxDecoration(
-                  color: isSelected
-                      ? AppColors.primaryGreen
-                      : Colors.transparent,
-                  borderRadius: BorderRadius.circular(20.r),
-                ),
-                child: Text(
-                  tf.label,
-                  style: AppStyle.font12_400Weight.copyWith(
+        verticalSpace(24),
+        Container(
+          padding: EdgeInsets.symmetric(vertical: 6.h),
+          margin: EdgeInsets.symmetric(horizontal: 16.w),
+          decoration: BoxDecoration(
+            color: AppColors.darkSurface.withValues(alpha: 0.5),
+            borderRadius: BorderRadius.circular(24.r),
+            border: Border.all(color: AppColors.glassBorder, width: 1),
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: CoinTimeframe.values.map((tf) {
+              final bool isSelected = selectedTimeframe == tf;
+              return GestureDetector(
+                onTap: () {
+                  setState(() {
+                    selectedTimeframe = tf;
+                  });
+                  context.read<CoinDetailsCubit>().changeTimeframe(
+                    widget.coinId,
+                    tf.days,
+                  );
+                },
+                child: AnimatedContainer(
+                  duration: const Duration(milliseconds: 300),
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 16.w,
+                    vertical: 8.h,
+                  ),
+                  decoration: BoxDecoration(
                     color: isSelected
-                        ? AppColors.black
-                        : AppColors.white.withValues(alpha: 0.6),
-                    fontWeight: FontWeight.bold,
+                        ? AppColors.primaryGreen
+                        : Colors.transparent,
+                    borderRadius: BorderRadius.circular(16.r),
+                    boxShadow: [
+                      if (isSelected)
+                        BoxShadow(
+                          color: AppColors.primaryGreen.withValues(alpha: 0.2),
+                          blurRadius: 8,
+                          spreadRadius: 1,
+                        ),
+                    ],
+                  ),
+                  child: Text(
+                    tf.label,
+                    style: AppStyle.font12_400Weight.copyWith(
+                      color: isSelected
+                          ? AppColors.black
+                          : AppColors.white.withValues(alpha: 0.5),
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
-              ),
-            );
-          }).toList(),
+              );
+            }).toList(),
+          ),
         ),
       ],
     );

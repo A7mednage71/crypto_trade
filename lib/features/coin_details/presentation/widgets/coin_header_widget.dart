@@ -23,11 +23,23 @@ class _CoinHeaderWidgetState extends State<CoinHeaderWidget> {
           onPressed: () => Navigator.pop(context),
           icon: const Icon(Icons.arrow_back_ios, color: Colors.white),
         ),
-        CustomNetworkImage(
-          imageUrl: widget.coinDetails.image.small,
-          width: 32.w,
-          height: 32.h,
-          borderRadius: BorderRadius.circular(16.r),
+        Container(
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            boxShadow: [
+              BoxShadow(
+                color: AppColors.primaryGreen.withValues(alpha: 0.1),
+                blurRadius: 8,
+                spreadRadius: 1,
+              ),
+            ],
+          ),
+          child: CustomNetworkImage(
+            imageUrl: widget.coinDetails.image.small,
+            width: 32.w,
+            height: 32.h,
+            borderRadius: BorderRadius.circular(16.r),
+          ),
         ),
         horizontalSpace(12),
         Column(
@@ -52,8 +64,22 @@ class _CoinHeaderWidgetState extends State<CoinHeaderWidget> {
           child: Container(
             padding: EdgeInsets.all(8.w),
             decoration: BoxDecoration(
-              color: AppColors.darkSurface,
+              color: AppColors.darkSurface.withValues(alpha: 0.6),
               shape: BoxShape.circle,
+              boxShadow: [
+                if (isFavorite)
+                  BoxShadow(
+                    color: Colors.amber.withValues(alpha: 0.15),
+                    blurRadius: 10,
+                    spreadRadius: 1,
+                  ),
+              ],
+              border: Border.all(
+                color: isFavorite
+                    ? Colors.amber.withValues(alpha: 0.3)
+                    : AppColors.glassBorder,
+                width: 1,
+              ),
             ),
             child: Icon(
               isFavorite ? Icons.star_rounded : Icons.star_border_rounded,

@@ -26,45 +26,46 @@ class CoinDetailsScreen extends StatelessWidget {
       create: (context) =>
           ServicesLocator.locator<CoinDetailsCubit>()..fetchCoinDetails(coinId),
       child: Scaffold(
-        backgroundColor: AppColors.coinDetailsBackground,
-        body: SafeArea(
-          child: BlocBuilder<CoinDetailsCubit, CoinDetailsState>(
-            builder: (context, state) {
-              switch (state.status) {
-                case CoinDetailsStatus.initial:
-                case CoinDetailsStatus.loading:
-                  return Skeletonizer(
-                    enabled: true,
-                    ignoreContainers: true,
-                    effect: const ShimmerEffect(
-                      baseColor: AppColors.skeletonBase,
-                      highlightColor: AppColors.skeletonHighlight,
-                    ),
-                    child: _buildContent(
+        body: Container(
+          decoration: const BoxDecoration(gradient: AppColors.premiumGradient),
+          child: SafeArea(
+            child: BlocBuilder<CoinDetailsCubit, CoinDetailsState>(
+              builder: (context, state) {
+                switch (state.status) {
+                  case CoinDetailsStatus.initial:
+                  case CoinDetailsStatus.loading:
+                    return Skeletonizer(
+                      enabled: true,
+                      effect: const ShimmerEffect(
+                        baseColor: AppColors.skeletonBase,
+                        highlightColor: AppColors.skeletonHighlight,
+                      ),
+                      child: _buildContent(
+                        context,
+                        CoinDetailsDummyData.dummyDetails,
+                        CoinDetailsDummyData.dummyChart,
+                      ),
+                    );
+                  case CoinDetailsStatus.failure:
+                    return FailureState(
+                      size: 150.h,
+                      title: "Failed to load coin details",
+                      message: state.errorMessage,
+                      titleColor: Colors.white,
+                      onPressed: () => context
+                          .read<CoinDetailsCubit>()
+                          .fetchCoinDetails(coinId),
+                    );
+                  case CoinDetailsStatus.success:
+                  case CoinDetailsStatus.chartLoading:
+                    return _buildContent(
                       context,
-                      CoinDetailsDummyData.dummyDetails,
-                      CoinDetailsDummyData.dummyChart,
-                    ),
-                  );
-                case CoinDetailsStatus.failure:
-                  return FailureState(
-                    size: 150.h,
-                    title: "Failed to load coin details",
-                    message: state.errorMessage,
-                    titleColor: Colors.white,
-                    onPressed: () => context
-                        .read<CoinDetailsCubit>()
-                        .fetchCoinDetails(coinId),
-                  );
-                case CoinDetailsStatus.success:
-                case CoinDetailsStatus.chartLoading:
-                  return _buildContent(
-                    context,
-                    state.coinDetails!,
-                    state.chartData!,
-                  );
-              }
-            },
+                      state.coinDetails!,
+                      state.chartData!,
+                    );
+                }
+              },
+            ),
           ),
         ),
       ),
