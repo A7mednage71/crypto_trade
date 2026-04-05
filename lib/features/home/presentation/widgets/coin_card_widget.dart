@@ -14,7 +14,7 @@ class CoinCardWidget extends StatelessWidget {
     final Color stateColor = coin.isPositive
         ? AppColors.primary
         : AppColors.error;
-    return GestureDetector(
+    return InkWell(
       onTap: () {
         context.pushNamed(Routes.coinDetailsScreen, arguments: coin.id);
       },

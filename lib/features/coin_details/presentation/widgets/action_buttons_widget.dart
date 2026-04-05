@@ -7,38 +7,22 @@ class ActionButtonsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.all(20.w),
-      height: 100.h,
-      decoration: BoxDecoration(
-        color: AppColors.darkBackground.withValues(alpha: 0.95),
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(30.r),
-          topRight: Radius.circular(30.r),
-        ),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withValues(alpha: 0.2),
-            blurRadius: 15,
-            offset: const Offset(0, -6),
-          ),
-        ],
-        border: Border(top: BorderSide(color: AppColors.glassBorder, width: 1)),
-      ),
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
       child: Row(
         children: [
           Expanded(
             child: _buildActionButton(
               label: 'SELL',
-              gradientColors: [const Color(0xFFF44336), AppColors.neonRed],
+              color: AppColors.errorRed,
               onPressed: () {},
             ),
           ),
-          horizontalSpace(16),
+          horizontalSpace(12),
           Expanded(
             child: _buildActionButton(
               label: 'BUY',
-              gradientColors: [const Color(0xFF4CAF50), AppColors.neonGreen],
+              color: AppColors.primaryGreen,
               textColor: AppColors.black,
               onPressed: () {},
             ),
@@ -50,43 +34,26 @@ class ActionButtonsWidget extends StatelessWidget {
 
   Widget _buildActionButton({
     required String label,
-    required List<Color> gradientColors,
+    required Color color,
     required VoidCallback onPressed,
     Color textColor = Colors.white,
   }) {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(16.r),
-        gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: gradientColors,
+    return ElevatedButton(
+      onPressed: onPressed,
+      style: ElevatedButton.styleFrom(
+        backgroundColor: color,
+        foregroundColor: textColor,
+        elevation: 0,
+        padding: EdgeInsets.symmetric(vertical: 16.h),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(16.r),
         ),
-        boxShadow: [
-          BoxShadow(
-            color: gradientColors.last.withValues(alpha: 0.25),
-            blurRadius: 10,
-            spreadRadius: 0,
-            offset: const Offset(0, 3),
-          ),
-        ],
       ),
-      child: ElevatedButton(
-        onPressed: onPressed,
-        style: ElevatedButton.styleFrom(
-          backgroundColor: Colors.transparent,
-          shadowColor: Colors.transparent,
-          padding: EdgeInsets.symmetric(vertical: 16.h),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(16.r),
-          ),
-        ),
-        child: Text(
-          label,
-          style: AppStyle.font16_600Weight.copyWith(
-            color: textColor,
-            letterSpacing: 1.1,
-          ),
+      child: Text(
+        label,
+        style: AppStyle.font16_600Weight.copyWith(
+          color: textColor,
+          letterSpacing: 1,
         ),
       ),
     );

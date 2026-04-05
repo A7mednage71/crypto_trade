@@ -23,16 +23,16 @@ class _AboutCoinWidgetState extends State<AboutCoinWidget> {
         verticalSpace(16),
         Container(
           width: double.infinity,
-          padding: EdgeInsets.all(20.w),
+          padding: EdgeInsets.all(16.w),
           decoration: BoxDecoration(
             color: AppColors.darkSurface.withValues(alpha: 0.5),
-            borderRadius: BorderRadius.circular(24.r),
+            borderRadius: BorderRadius.circular(12.r),
             border: Border.all(color: AppColors.glassBorder, width: 1),
             boxShadow: [
               BoxShadow(
-                color: Colors.black.withValues(alpha: 0.08),
-                blurRadius: 15,
-                offset: const Offset(0, 6),
+                color: Colors.black.withValues(alpha: 0.1),
+                blurRadius: 8,
+                offset: const Offset(0, 2),
               ),
             ],
           ),
@@ -46,7 +46,7 @@ class _AboutCoinWidgetState extends State<AboutCoinWidget> {
                     ? TextOverflow.visible
                     : TextOverflow.ellipsis,
                 style: AppStyle.font14_400Weight.copyWith(
-                  color: AppColors.white.withValues(alpha: 0.6),
+                  color: AppColors.white.withValues(alpha: 0.5),
                   height: 1.6,
                   letterSpacing: 0.2,
                 ),
@@ -64,7 +64,7 @@ class _AboutCoinWidgetState extends State<AboutCoinWidget> {
                     Text(
                       isExpanded ? 'Read Less' : 'Read More',
                       style: AppStyle.font14_700Weight.copyWith(
-                        color: AppColors.primaryGreen,
+                        color: AppColors.primaryGreen.withValues(alpha: 0.8),
                       ),
                     ),
                     horizontalSpace(4),
@@ -72,7 +72,7 @@ class _AboutCoinWidgetState extends State<AboutCoinWidget> {
                       isExpanded
                           ? Icons.keyboard_arrow_up_rounded
                           : Icons.keyboard_arrow_down_rounded,
-                      color: AppColors.primaryGreen,
+                      color: AppColors.primaryGreen.withValues(alpha: 0.8),
                       size: 20.w,
                     ),
                   ],

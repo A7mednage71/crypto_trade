@@ -99,6 +99,14 @@ class CoinQuickActionsSheet extends StatelessWidget {
               Navigator.pop(context);
             },
           ),
+          _ActionTile(
+            icon: Icons.insights,
+            label: 'Go to Coin Details',
+            onTap: () {
+              HapticFeedback.lightImpact();
+              context.pushNamed(Routes.coinDetailsScreen, arguments: coin.id);
+            },
+          ),
           verticalSpace(20),
         ],
       ),

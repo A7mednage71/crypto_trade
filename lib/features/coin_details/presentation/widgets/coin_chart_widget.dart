@@ -119,7 +119,7 @@ class _CoinChartWidgetState extends State<CoinChartWidget> {
           decoration: BoxDecoration(
             color: AppColors.darkSurface.withValues(alpha: 0.5),
             borderRadius: BorderRadius.circular(24.r),
-            border: Border.all(color: AppColors.glassBorder, width: 1),
+            border: Border.all(color: AppColors.glassBorder, width: 0.8),
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -146,14 +146,6 @@ class _CoinChartWidgetState extends State<CoinChartWidget> {
                         ? AppColors.primaryGreen
                         : Colors.transparent,
                     borderRadius: BorderRadius.circular(16.r),
-                    boxShadow: [
-                      if (isSelected)
-                        BoxShadow(
-                          color: AppColors.primaryGreen.withValues(alpha: 0.2),
-                          blurRadius: 8,
-                          spreadRadius: 1,
-                        ),
-                    ],
                   ),
                   child: Text(
                     tf.label,

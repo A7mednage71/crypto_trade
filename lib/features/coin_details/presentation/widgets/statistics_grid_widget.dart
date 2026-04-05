@@ -25,7 +25,7 @@ class StatisticsGridWidget extends StatelessWidget {
           physics: const NeverScrollableScrollPhysics(),
           mainAxisSpacing: 16.h,
           crossAxisSpacing: 16.w,
-          childAspectRatio: 1.4,
+          childAspectRatio: 1.5,
           children: [
             StatisticsGridItem(
               label: 'Market Cap',
@@ -80,38 +80,24 @@ class StatisticsGridItem extends StatelessWidget {
       padding: EdgeInsets.all(16.w),
       decoration: BoxDecoration(
         color: AppColors.darkSurface.withValues(alpha: 0.5),
-        borderRadius: BorderRadius.circular(20.r),
+        borderRadius: BorderRadius.circular(12.r),
         border: Border.all(color: AppColors.glassBorder, width: 1),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withValues(alpha: 0.1),
-            blurRadius: 8,
-            offset: const Offset(0, 2),
-          ),
-        ],
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            padding: EdgeInsets.all(8.w),
+            padding: EdgeInsets.all(6.w),
             decoration: BoxDecoration(
-              color: glowColor.withValues(alpha: 0.08),
+              color: glowColor.withValues(alpha: 0.05),
               shape: BoxShape.circle,
-              boxShadow: [
-                BoxShadow(
-                  color: glowColor.withValues(alpha: 0.1),
-                  blurRadius: 6,
-                  spreadRadius: 0,
-                ),
-              ],
             ),
-            child: Icon(icon, color: glowColor, size: 18.w),
+            child: Icon(icon, color: glowColor, size: 16.w),
           ),
           const Spacer(),
           Text(
             label,
-            style: AppStyle.font12_400Weight.copyWith(
+            style: AppStyle.font13_400Weight.copyWith(
               color: AppColors.white.withValues(alpha: 0.4),
             ),
           ),

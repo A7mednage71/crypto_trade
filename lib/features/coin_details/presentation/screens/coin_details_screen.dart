@@ -26,46 +26,45 @@ class CoinDetailsScreen extends StatelessWidget {
       create: (context) =>
           ServicesLocator.locator<CoinDetailsCubit>()..fetchCoinDetails(coinId),
       child: Scaffold(
-        body: Container(
-          decoration: const BoxDecoration(gradient: AppColors.premiumGradient),
-          child: SafeArea(
-            child: BlocBuilder<CoinDetailsCubit, CoinDetailsState>(
-              builder: (context, state) {
-                switch (state.status) {
-                  case CoinDetailsStatus.initial:
-                  case CoinDetailsStatus.loading:
-                    return Skeletonizer(
-                      enabled: true,
-                      effect: const ShimmerEffect(
-                        baseColor: AppColors.skeletonBase,
-                        highlightColor: AppColors.skeletonHighlight,
-                      ),
-                      child: _buildContent(
-                        context,
-                        CoinDetailsDummyData.dummyDetails,
-                        CoinDetailsDummyData.dummyChart,
-                      ),
-                    );
-                  case CoinDetailsStatus.failure:
-                    return FailureState(
-                      size: 150.h,
-                      title: "Failed to load coin details",
-                      message: state.errorMessage,
-                      titleColor: Colors.white,
-                      onPressed: () => context
-                          .read<CoinDetailsCubit>()
-                          .fetchCoinDetails(coinId),
-                    );
-                  case CoinDetailsStatus.success:
-                  case CoinDetailsStatus.chartLoading:
-                    return _buildContent(
+        body: SafeArea(
+          child: BlocBuilder<CoinDetailsCubit, CoinDetailsState>(
+            builder: (context, state) {
+              switch (state.status) {
+                case CoinDetailsStatus.initial:
+                case CoinDetailsStatus.loading:
+                  return Skeletonizer(
+                    enabled: true,
+                    ignoreContainers: true,
+                    containersColor: AppColors.grey,
+                    effect: const ShimmerEffect(
+                      baseColor: AppColors.skeletonBase,
+                      highlightColor: AppColors.skeletonHighlight,
+                    ),
+                    child: _buildContent(
                       context,
-                      state.coinDetails!,
-                      state.chartData!,
-                    );
-                }
-              },
-            ),
+                      CoinDetailsDummyData.dummyDetails,
+                      CoinDetailsDummyData.dummyChart,
+                    ),
+                  );
+                case CoinDetailsStatus.failure:
+                  return FailureState(
+                    size: 150.h,
+                    title: "Failed to load coin details",
+                    message: state.errorMessage,
+                    titleColor: Colors.white,
+                    onPressed: () => context
+                        .read<CoinDetailsCubit>()
+                        .fetchCoinDetails(coinId),
+                  );
+                case CoinDetailsStatus.success:
+                case CoinDetailsStatus.chartLoading:
+                  return _buildContent(
+                    context,
+                    state.coinDetails!,
+                    state.chartData!,
+                  );
+              }
+            },
           ),
         ),
       ),
@@ -90,11 +89,11 @@ class CoinDetailsScreen extends StatelessWidget {
               CoinChartWidget(coinId: details.id, chartData: chart),
               verticalSpace(24),
               StatisticsGridWidget(marketData: details.marketData),
-              verticalSpace(24),
+              verticalSpace(20),
               AboutCoinWidget(description: details.description.en),
               verticalSpace(24),
               ActionButtonsWidget(),
-              verticalSpace(24),
+              verticalSpace(32),
             ]),
           ),
         ),
