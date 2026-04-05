@@ -1,7 +1,8 @@
 import 'package:crypto_trade/core/export.dart';
+import 'package:crypto_trade/core/helpers/secure_storage_helper.dart';
 import 'package:crypto_trade/core/navigation/routes.dart';
-import 'package:flutter/material.dart';
 import 'package:crypto_trade/core/utils/constant/app_assets.dart';
+import 'package:flutter/material.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -14,11 +15,21 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(const Duration(seconds: 3), () {
-      if (mounted) {
-        Navigator.pushReplacementNamed(context, Routes.onBoardingScreen);
+    _checkLoginStatus();
+  }
+
+  Future<void> _checkLoginStatus() async {
+    final uId = await EncryptedStorage.getUserId();
+
+    await Future.delayed(const Duration(seconds: 3));
+
+    if (mounted) {
+      if (uId != null && uId.isNotEmpty) {
+        context.pushReplacementNamed(Routes.mainLayoutScreen);
+      } else {
+        context.pushReplacementNamed(Routes.onBoardingScreen);
       }
-    });
+    }
   }
 
   @override

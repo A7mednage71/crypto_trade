@@ -155,8 +155,8 @@ class _DefaultTextFormFieldState extends State<CustomTextFormField> {
                 : '',
             fillColor: widget.bgColor,
             hintText: widget.hint,
-            hintStyle: AppStyle.font18_400Weight.copyWith(
-              color: widget.hintColor ?? AppColors.lightGrey,
+            hintStyle: AppStyle.font14_400Weight.copyWith(
+              color: widget.hintColor ?? AppColors.grey,
               fontWeight: FontWeight.w400,
             ),
             suffixIcon: widget.isPassword

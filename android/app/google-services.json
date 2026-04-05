@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "492939923637",
+    "project_id": "crypto-trade-e4f5e",
+    "storage_bucket": "crypto-trade-e4f5e.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:492939923637:android:b3441b0ecfec426893eefc",
+        "android_client_info": {
+          "package_name": "com.example.crypto_trade"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "492939923637-o9agt40sm2iku7m800pgcdpe54tffvrn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.crypto_trade",
+            "certificate_hash": "27b548f26f0f260cbb0405e82db15021d334ab18"
+          }
+        },
+        {
+          "client_id": "492939923637-47m3q54fvd4nd4flhfsu382f5j86h4a1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC71G9uQQMLGI-t5830xgPWVuO-JKxkqFM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "492939923637-47m3q54fvd4nd4flhfsu382f5j86h4a1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

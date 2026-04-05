@@ -1,0 +1,21 @@
+{
+    "flutter": {
+        "platforms": {
+            "android": {
+                "default": {
+                    "projectId": "crypto-trade-e4f5e",
+                    "appId": "1:492939923637:android:b3441b0ecfec426893eefc",
+                    "fileOutput": "android/app/google-services.json"
+                }
+            },
+            "dart": {
+                "lib/firebase_options.dart": {
+                    "projectId": "crypto-trade-e4f5e",
+                    "configurations": {
+                        "android": "1:492939923637:android:b3441b0ecfec426893eefc"
+                    }
+                }
+            }
+        }
+    }
+}

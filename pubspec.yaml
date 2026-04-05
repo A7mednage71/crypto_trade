@@ -60,11 +60,13 @@ dependencies:
   flutter_svg: ^2.2.1
 
   # ------------ Firebase ----------
-  firebase_core: ^4.1.0
+  firebase_core: ^4.6.0
+  firebase_auth: ^6.3.0
   firebase_remote_config: ^6.0.1
   firebase_crashlytics: ^5.0.1
   firebase_messaging: ^16.0.1
   flutter_local_notifications: ^19.4.2
+  google_sign_in: ^6.2.2
   
 
   # ---------- Local Storage ----------
