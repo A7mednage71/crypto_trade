@@ -23,6 +23,7 @@ class RouteLogger extends RouteObserver {
   void didReplace({Route? newRoute, Route? oldRoute}) {
     super.didReplace(newRoute: newRoute, oldRoute: oldRoute);
     debugPrint(
-        'Route replaced: ${oldRoute?.settings.name} with ${newRoute?.settings.name}');
+      'Route replaced: ${oldRoute?.settings.name} with ${newRoute?.settings.name}',
+    );
   }
 }

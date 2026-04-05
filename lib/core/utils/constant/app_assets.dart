@@ -1,18 +1,20 @@
 // ignore_for_file: prefer_single_quotes
 class Assets {
   Assets._();
-  
+
   /// Assets for animationsEmptyBox
   /// assets/animations/empty_box.json
   static const String animationsEmptyBox = "assets/animations/empty_box.json";
 
   /// Assets for animationsEmptyState
   /// assets/animations/empty_state.json
-  static const String animationsEmptyState = "assets/animations/empty_state.json";
+  static const String animationsEmptyState =
+      "assets/animations/empty_state.json";
 
   /// Assets for animationsFailureState
   /// assets/animations/failure_state.json
-  static const String animationsFailureState = "assets/animations/failure_state.json";
+  static const String animationsFailureState =
+      "assets/animations/failure_state.json";
 
   /// Assets for animationsLoading
   /// assets/animations/loading.json
@@ -20,7 +22,8 @@ class Assets {
 
   /// Assets for animationsSuccessState
   /// assets/animations/success_state.json
-  static const String animationsSuccessState = "assets/animations/success_state.json";
+  static const String animationsSuccessState =
+      "assets/animations/success_state.json";
 
   /// Assets for animationsWorning
   /// assets/animations/worning.json
@@ -28,23 +31,28 @@ class Assets {
 
   /// Assets for fontsNeueMontrealBold
   /// assets/fonts/neue_montreal_bold.otf
-  static const String fontsNeueMontrealBold = "assets/fonts/neue_montreal_bold.otf";
+  static const String fontsNeueMontrealBold =
+      "assets/fonts/neue_montreal_bold.otf";
 
   /// Assets for fontsNeueMontrealLight
   /// assets/fonts/neue_montreal_light.otf
-  static const String fontsNeueMontrealLight = "assets/fonts/neue_montreal_light.otf";
+  static const String fontsNeueMontrealLight =
+      "assets/fonts/neue_montreal_light.otf";
 
   /// Assets for fontsNeueMontrealMedium
   /// assets/fonts/neue_montreal_medium.otf
-  static const String fontsNeueMontrealMedium = "assets/fonts/neue_montreal_medium.otf";
+  static const String fontsNeueMontrealMedium =
+      "assets/fonts/neue_montreal_medium.otf";
 
   /// Assets for fontsNeueMontrealRegular
   /// assets/fonts/neue_montreal_regular.otf
-  static const String fontsNeueMontrealRegular = "assets/fonts/neue_montreal_regular.otf";
+  static const String fontsNeueMontrealRegular =
+      "assets/fonts/neue_montreal_regular.otf";
 
   /// Assets for imagesPngAccountCreatedSuccess
   /// assets/images/png/account_created_success.png
-  static const String imagesPngAccountCreatedSuccess = "assets/images/png/account_created_success.png";
+  static const String imagesPngAccountCreatedSuccess =
+      "assets/images/png/account_created_success.png";
 
   /// Assets for imagesPngAppLogo
   /// assets/images/png/app_logo.png
@@ -64,19 +72,23 @@ class Assets {
 
   /// Assets for imagesPngNoNotifications
   /// assets/images/png/no_notifications.png
-  static const String imagesPngNoNotifications = "assets/images/png/no_notifications.png";
+  static const String imagesPngNoNotifications =
+      "assets/images/png/no_notifications.png";
 
   /// Assets for imagesPngOnboardingOne
   /// assets/images/png/onboarding_one.png
-  static const String imagesPngOnboardingOne = "assets/images/png/onboarding_one.png";
+  static const String imagesPngOnboardingOne =
+      "assets/images/png/onboarding_one.png";
 
   /// Assets for imagesPngOnboardingThree
   /// assets/images/png/onboarding_three.png
-  static const String imagesPngOnboardingThree = "assets/images/png/onboarding_three.png";
+  static const String imagesPngOnboardingThree =
+      "assets/images/png/onboarding_three.png";
 
   /// Assets for imagesPngOnboardingTwo
   /// assets/images/png/onboarding_two.png
-  static const String imagesPngOnboardingTwo = "assets/images/png/onboarding_two.png";
+  static const String imagesPngOnboardingTwo =
+      "assets/images/png/onboarding_two.png";
 
   /// Assets for imagesPngQR
   /// assets/images/png/QR.png
@@ -92,7 +104,8 @@ class Assets {
 
   /// Assets for imagesPngSplashScreen
   /// assets/images/png/splash_screen.png
-  static const String imagesPngSplashScreen = "assets/images/png/splash_screen.png";
+  static const String imagesPngSplashScreen =
+      "assets/images/png/splash_screen.png";
 
   /// Assets for imagesPngUser
   /// assets/images/png/user.png
@@ -156,7 +169,8 @@ class Assets {
 
   /// Assets for imagesSvgConvertDark
   /// assets/images/svg/convert_dark.svg
-  static const String imagesSvgConvertDark = "assets/images/svg/convert_dark.svg";
+  static const String imagesSvgConvertDark =
+      "assets/images/svg/convert_dark.svg";
 
   /// Assets for imagesSvgCopy
   /// assets/images/svg/copy.svg
@@ -164,11 +178,13 @@ class Assets {
 
   /// Assets for imagesSvgCryptoLoans
   /// assets/images/svg/crypto_loans.svg
-  static const String imagesSvgCryptoLoans = "assets/images/svg/crypto_loans.svg";
+  static const String imagesSvgCryptoLoans =
+      "assets/images/svg/crypto_loans.svg";
 
   /// Assets for imagesSvgCryptoLoansDarrk
   /// assets/images/svg/crypto_loans_darrk.svg
-  static const String imagesSvgCryptoLoansDarrk = "assets/images/svg/crypto_loans_darrk.svg";
+  static const String imagesSvgCryptoLoansDarrk =
+      "assets/images/svg/crypto_loans_darrk.svg";
 
   /// Assets for imagesSvgDeposit
   /// assets/images/svg/deposit.svg
@@ -176,7 +192,8 @@ class Assets {
 
   /// Assets for imagesSvgDepositDark
   /// assets/images/svg/deposit_dark.svg
-  static const String imagesSvgDepositDark = "assets/images/svg/deposit_dark.svg";
+  static const String imagesSvgDepositDark =
+      "assets/images/svg/deposit_dark.svg";
 
   /// Assets for imagesSvgDollar
   /// assets/images/svg/dollar.svg
@@ -188,7 +205,8 @@ class Assets {
 
   /// Assets for imagesSvgEthernumDark
   /// assets/images/svg/ethernum_dark.svg
-  static const String imagesSvgEthernumDark = "assets/images/svg/ethernum_dark.svg";
+  static const String imagesSvgEthernumDark =
+      "assets/images/svg/ethernum_dark.svg";
 
   /// Assets for imagesSvgFacebook
   /// assets/images/svg/facebook.svg
@@ -200,7 +218,8 @@ class Assets {
 
   /// Assets for imagesSvgFilterSettings
   /// assets/images/svg/filter_settings.svg
-  static const String imagesSvgFilterSettings = "assets/images/svg/filter_settings.svg";
+  static const String imagesSvgFilterSettings =
+      "assets/images/svg/filter_settings.svg";
 
   /// Assets for imagesSvgGoogle
   /// assets/images/svg/google.svg
@@ -216,11 +235,13 @@ class Assets {
 
   /// Assets for imagesSvgGridTrading
   /// assets/images/svg/grid_trading.svg
-  static const String imagesSvgGridTrading = "assets/images/svg/grid_trading.svg";
+  static const String imagesSvgGridTrading =
+      "assets/images/svg/grid_trading.svg";
 
   /// Assets for imagesSvgGridTradingDark
   /// assets/images/svg/grid_trading_dark.svg
-  static const String imagesSvgGridTradingDark = "assets/images/svg/grid_trading_dark.svg";
+  static const String imagesSvgGridTradingDark =
+      "assets/images/svg/grid_trading_dark.svg";
 
   /// Assets for imagesSvgGroup
   /// assets/images/svg/group.svg
@@ -228,7 +249,8 @@ class Assets {
 
   /// Assets for imagesSvgHifiFinance
   /// assets/images/svg/hifi_finance.svg
-  static const String imagesSvgHifiFinance = "assets/images/svg/hifi_finance.svg";
+  static const String imagesSvgHifiFinance =
+      "assets/images/svg/hifi_finance.svg";
 
   /// Assets for imagesSvgHome
   /// assets/images/svg/home.svg
@@ -252,7 +274,8 @@ class Assets {
 
   /// Assets for imagesSvgLiquidSwapDark
   /// assets/images/svg/liquid_swap_dark.svg
-  static const String imagesSvgLiquidSwapDark = "assets/images/svg/liquid_swap_dark.svg";
+  static const String imagesSvgLiquidSwapDark =
+      "assets/images/svg/liquid_swap_dark.svg";
 
   /// Assets for imagesSvgLogout
   /// assets/images/svg/logout.svg
@@ -264,7 +287,8 @@ class Assets {
 
   /// Assets for imagesSvgLunchpadonsDark
   /// assets/images/svg/lunchpadons_dark.svg
-  static const String imagesSvgLunchpadonsDark = "assets/images/svg/lunchpadons_dark.svg";
+  static const String imagesSvgLunchpadonsDark =
+      "assets/images/svg/lunchpadons_dark.svg";
 
   /// Assets for imagesSvgMargin
   /// assets/images/svg/margin.svg
@@ -288,7 +312,8 @@ class Assets {
 
   /// Assets for imagesSvgNoNotification
   /// assets/images/svg/no_notification.svg
-  static const String imagesSvgNoNotification = "assets/images/svg/no_notification.svg";
+  static const String imagesSvgNoNotification =
+      "assets/images/svg/no_notification.svg";
 
   /// Assets for imagesSvgNotif
   /// assets/images/svg/notif.svg
@@ -324,7 +349,8 @@ class Assets {
 
   /// Assets for imagesSvgReferralDark
   /// assets/images/svg/referral_dark.svg
-  static const String imagesSvgReferralDark = "assets/images/svg/referral_dark.svg";
+  static const String imagesSvgReferralDark =
+      "assets/images/svg/referral_dark.svg";
 
   /// Assets for imagesSvgRen
   /// assets/images/svg/ren.svg
@@ -360,7 +386,8 @@ class Assets {
 
   /// Assets for imagesSvgShoppingCart
   /// assets/images/svg/shopping_cart.svg
-  static const String imagesSvgShoppingCart = "assets/images/svg/shopping_cart.svg";
+  static const String imagesSvgShoppingCart =
+      "assets/images/svg/shopping_cart.svg";
 
   /// Assets for imagesSvgSpot
   /// assets/images/svg/spot.svg
@@ -376,7 +403,8 @@ class Assets {
 
   /// Assets for imagesSvgStakingDark
   /// assets/images/svg/staking_dark.svg
-  static const String imagesSvgStakingDark = "assets/images/svg/staking_dark.svg";
+  static const String imagesSvgStakingDark =
+      "assets/images/svg/staking_dark.svg";
 
   /// Assets for imagesSvgStar
   /// assets/images/svg/star.svg
@@ -396,7 +424,8 @@ class Assets {
 
   /// Assets for imagesSvgTransferDark
   /// assets/images/svg/transfer_dark.svg
-  static const String imagesSvgTransferDark = "assets/images/svg/transfer_dark.svg";
+  static const String imagesSvgTransferDark =
+      "assets/images/svg/transfer_dark.svg";
 
   /// Assets for imagesSvgWallet
   /// assets/images/svg/wallet.svg
@@ -418,4 +447,3 @@ class Assets {
   /// assets/translations/en.json
   static const String translationsEn = "assets/translations/en.json";
 }
-

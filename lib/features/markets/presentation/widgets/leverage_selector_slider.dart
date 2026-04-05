@@ -22,11 +22,15 @@ class LeverageSelectorSlider extends StatelessWidget {
               children: [
                 Text(
                   'Leverage',
-                  style: AppStyle.font14_400Weight.copyWith(color: AppColors.grey),
+                  style: AppStyle.font14_400Weight.copyWith(
+                    color: AppColors.grey,
+                  ),
                 ),
                 Text(
                   '${state.leverage.toInt()}x',
-                  style: AppStyle.font14_700Weight.copyWith(color: AppColors.primary),
+                  style: AppStyle.font14_700Weight.copyWith(
+                    color: AppColors.primary,
+                  ),
                 ),
               ],
             ),

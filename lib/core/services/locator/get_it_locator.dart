@@ -3,6 +3,9 @@ import 'package:crypto_trade/features/auth/data/repos/auth_repo.dart';
 import 'package:crypto_trade/features/auth/data/repos/auth_repo_impl.dart';
 import 'package:crypto_trade/features/auth/presentation/cubits/auth_cubit/auth_cubit.dart';
 import 'package:crypto_trade/features/auth/presentation/cubits/otp_cubit/otp_cubit.dart';
+import 'package:crypto_trade/features/coin_details/data/repos/coin_details_repo.dart';
+import 'package:crypto_trade/features/coin_details/data/repos/coin_details_repo_impl.dart';
+import 'package:crypto_trade/features/coin_details/presentation/cubits/coin_details_cubit/coin_details_cubit.dart';
 import 'package:crypto_trade/features/home/data/repos/home_repo.dart';
 import 'package:crypto_trade/features/home/data/repos/home_repo_impl.dart';
 import 'package:crypto_trade/features/home/presentation/cubits/home_cubit/home_cubit.dart';
@@ -33,6 +36,14 @@ class ServicesLocator {
       () => MarketsCubit(locator<MarketsRepo>()),
     );
 
+    locator.registerLazySingleton<CoinDetailsRepo>(
+      () => CoinDetailsRepoImpl(locator<ApiService>()),
+    );
+
+    locator.registerFactory<CoinDetailsCubit>(
+      () => CoinDetailsCubit(locator<CoinDetailsRepo>()),
+    );
+
     locator.registerLazySingleton<AuthRepository>(() => AuthRepositoryImpl());
     locator.registerFactory<AuthCubit>(
       () => AuthCubit(locator<AuthRepository>()),
@@ -49,4 +60,5 @@ class ServicesLocator {
   static IntroAppCubit get introAppCubit => locator<IntroAppCubit>();
   static OtpCubit get otpCubit => locator<OtpCubit>();
   static AuthCubit get authCubit => locator<AuthCubit>();
+  static CoinDetailsCubit get coinDetailsCubit => locator<CoinDetailsCubit>();
 }

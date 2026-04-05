@@ -4,6 +4,7 @@ export '/core/cubit/intro_app/intro_app_cubit.dart';
 export '/core/helpers/extensions.dart';
 export '/core/helpers/space_helper.dart';
 export '/core/navigation/app_router.dart';
+export '/core/navigation/routes.dart';
 export '/core/networking/api_constants.dart';
 export '/core/networking/api_error_handler.dart';
 export '/core/networking/api_result.dart';

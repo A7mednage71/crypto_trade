@@ -55,7 +55,8 @@ class FRConfig {
         ? _remoteConfig.getInt('build_number_ios')
         : _remoteConfig.getInt('build_number');
     debugPrint(
-        'build number: $buildNumber, config build number: $configBuildNumber');
+      'build number: $buildNumber, config build number: $configBuildNumber',
+    );
     return configBuildNumber > buildNumber! ? true : false;
   }
 

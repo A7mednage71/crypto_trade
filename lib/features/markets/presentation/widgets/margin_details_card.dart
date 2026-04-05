@@ -35,10 +35,7 @@ class MarginDetailsCard extends StatelessWidget {
           ),
           child: Column(
             children: [
-              MarginDetailRow(
-                label: 'Available Balance',
-                value: balanceText,
-              ),
+              MarginDetailRow(label: 'Available Balance', value: balanceText),
               verticalSpace(12),
               MarginDetailRow(label: 'Max Buy', value: maxBuyText),
               verticalSpace(12),
