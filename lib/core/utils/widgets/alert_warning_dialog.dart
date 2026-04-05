@@ -11,37 +11,46 @@ class AlertWarningDialog extends StatelessWidget {
     required this.subtitle,
     required this.buttonTitle,
   });
+
   final String title;
   final String subtitle;
   final String buttonTitle;
-  final void Function() onConfirmPressed;
+  final VoidCallback onConfirmPressed;
+
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+      backgroundColor: AppColors.darkSurface,
+      surfaceTintColor: Colors.transparent,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(20.r),
-        side: BorderSide(color: AppColors.lightGrey, width: 1),
+        // ignore: deprecated_member_use
+        side: BorderSide(color: AppColors.grey.withAlpha(100), width: 1.w),
       ),
-      title: Text(title, style: AppStyle.font22_600Weight),
+      title: Text(
+        title,
+        style: AppStyle.font22_600Weight.copyWith(color: Colors.white),
+      ),
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Lottie.asset('assets/animations/worning.json', height: 100.h),
-          Text(subtitle, style: AppStyle.font18_400Weight),
+          Lottie.asset('assets/animations/worning.json', height: 120.h),
+          verticalSpace(10),
+          Text(
+            subtitle,
+            textAlign: TextAlign.center,
+            style: AppStyle.font18_400Weight.copyWith(color: AppColors.grey),
+          ),
         ],
       ),
+      actionsPadding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
       actions: [
         TextButton(
+          onPressed: () => Navigator.of(context).pop(),
           child: Text(
-            "cancel",
-            style: AppStyle.font16_600Weight.copyWith(
-              color: AppColors.lightGrey,
-            ),
+            "Cancel",
+            style: AppStyle.font16_600Weight.copyWith(color: AppColors.grey),
           ),
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
         ),
         TextButton(
           onPressed: onConfirmPressed,

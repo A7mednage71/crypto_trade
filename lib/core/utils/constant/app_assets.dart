@@ -254,6 +254,10 @@ class Assets {
   /// assets/images/svg/liquid_swap_dark.svg
   static const String imagesSvgLiquidSwapDark = "assets/images/svg/liquid_swap_dark.svg";
 
+  /// Assets for imagesSvgLogout
+  /// assets/images/svg/logout.svg
+  static const String imagesSvgLogout = "assets/images/svg/logout.svg";
+
   /// Assets for imagesSvgLunchpad
   /// assets/images/svg/lunchpad.svg
   static const String imagesSvgLunchpad = "assets/images/svg/lunchpad.svg";
@@ -345,6 +349,10 @@ class Assets {
   /// Assets for imagesSvgSearch
   /// assets/images/svg/search.svg
   static const String imagesSvgSearch = "assets/images/svg/search.svg";
+
+  /// Assets for imagesSvgSettings
+  /// assets/images/svg/settings.svg
+  static const String imagesSvgSettings = "assets/images/svg/settings.svg";
 
   /// Assets for imagesSvgShipaInu
   /// assets/images/svg/shipa_inu.svg

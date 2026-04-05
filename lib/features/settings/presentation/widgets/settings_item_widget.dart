@@ -1,11 +1,11 @@
 import 'package:crypto_trade/core/export.dart';
-import 'package:crypto_trade/features/settings/data/models/settings_item_model.dart';
+import 'package:crypto_trade/core/utils/enums/settings_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 
 class SettingsItemWidget extends StatelessWidget {
-  final SettingsItemModel item;
+  final SettingsItem item;
   final VoidCallback? onTap;
 
   const SettingsItemWidget({super.key, required this.item, this.onTap});
@@ -26,7 +26,7 @@ class SettingsItemWidget extends StatelessWidget {
                 SvgPicture.asset(
                   item.icon,
                   colorFilter: ColorFilter.mode(
-                    item.iconColor,
+                    AppColors.primary,
                     BlendMode.srcIn,
                   ),
                   width: 22.w,

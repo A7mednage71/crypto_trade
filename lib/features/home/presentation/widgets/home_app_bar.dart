@@ -44,9 +44,16 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
           Row(
             children: [
               _buildActionIcon(Assets.imagesSvgSearch),
-              horizontalSpace(8),
-              _buildActionIcon(Assets.imagesSvgScanner),
-              horizontalSpace(8),
+              horizontalSpace(24),
+              InkWell(
+                highlightColor: Colors.transparent,
+                splashColor: Colors.transparent,
+                onTap: () {
+                  context.pushNamed(Routes.settingsScreen);
+                },
+                child: _buildActionIcon(Assets.imagesSvgSettings),
+              ),
+              horizontalSpace(24),
               InkWell(
                 highlightColor: Colors.transparent,
                 splashColor: Colors.transparent,
@@ -65,8 +72,8 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget _buildActionIcon(String iconPath) {
     return SvgPicture.asset(
       iconPath,
-      width: 44.w,
-      height: 44.w,
+      width: 24.w,
+      height: 24.w,
       colorFilter: const ColorFilter.mode(AppColors.primary, BlendMode.srcIn),
     );
   }
