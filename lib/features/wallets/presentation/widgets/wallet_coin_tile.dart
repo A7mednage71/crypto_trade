@@ -24,10 +24,7 @@ class WalletCoinTile extends StatelessWidget {
               width: 40.w,
               height: 40.w,
               decoration: const BoxDecoration(shape: BoxShape.circle),
-              child: SvgPicture.asset(
-                coin.iconPath,
-                fit: BoxFit.contain,
-              ),
+              child: SvgPicture.asset(coin.iconPath, fit: BoxFit.contain),
             ),
             horizontalSpace(12),
             // Left: Name & Symbol

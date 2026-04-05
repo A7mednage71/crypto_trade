@@ -7,4 +7,8 @@ class ApiConstants {
 
   // home screen
   static const String coinsMarkets = 'coins/markets';
+
+  // coin details screen
+  static const String coinDetails = 'coins/';
+  static const String marketChart = 'coins/{id}/market_chart';
 }
