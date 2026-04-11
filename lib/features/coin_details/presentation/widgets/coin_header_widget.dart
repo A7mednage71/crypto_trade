@@ -17,21 +17,22 @@ class CoinHeaderWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        IconButton(
-          onPressed: () => Navigator.pop(context),
-          icon: const Icon(Icons.arrow_back_ios, color: Colors.white),
-        ),
         CustomNetworkImage(
-          imageUrl: coinDetails.image.small,
-          width: 32.w,
-          height: 32.h,
-          borderRadius: BorderRadius.circular(16.r),
+          imageUrl: coinDetails.image.large,
+          width: 44.w,
+          height: 44.h,
+          borderRadius: BorderRadius.circular(22.r),
         ),
         horizontalSpace(12),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(coinDetails.name, style: AppStyle.font18_500Weight),
+            Text(
+              coinDetails.name,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: AppStyle.font18_500Weight,
+            ),
             Text(
               coinDetails.symbol.toUpperCase(),
               style: AppStyle.font14_400Weight.copyWith(

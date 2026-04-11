@@ -2,6 +2,7 @@ import 'package:crypto_trade/core/networking/api_constants.dart';
 import 'package:crypto_trade/features/coin_details/data/models/coin_detail_response_model.dart';
 import 'package:crypto_trade/features/coin_details/data/models/market_chart_response_model.dart';
 import 'package:crypto_trade/features/home/data/models/coin_response_model.dart';
+import 'package:crypto_trade/features/search/data/models/search_result_model.dart';
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
 
@@ -24,4 +25,7 @@ abstract class ApiService {
     @Path("id") String id,
     @Queries() Map<String, dynamic> queries,
   );
+
+  @GET(ApiConstants.searchCoins)
+  Future<SearchResponseModel> searchCoins(@Query('query') String query);
 }

@@ -13,8 +13,8 @@ CoinResponseModel _$CoinResponseModelFromJson(Map<String, dynamic> json) =>
       name: json['name'] as String,
       image: json['image'] as String,
       currentPrice: (json['current_price'] as num).toDouble(),
-      priceChangePercentage24h: (json['price_change_percentage_24h'] as num)
-          .toDouble(),
+      priceChangePercentage24h:
+          (json['price_change_percentage_24h'] as num).toDouble(),
       marketCap: (json['market_cap'] as num?)?.toDouble(),
       marketCapRank: (json['market_cap_rank'] as num?)?.toInt(),
       priceChange24h: (json['price_change_24h'] as num?)?.toDouble(),
@@ -26,8 +26,7 @@ CoinResponseModel _$CoinResponseModelFromJson(Map<String, dynamic> json) =>
       sparkline: json['sparkline_in_7d'] == null
           ? null
           : SparklineModel.fromJson(
-              json['sparkline_in_7d'] as Map<String, dynamic>,
-            ),
+              json['sparkline_in_7d'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$CoinResponseModelToJson(CoinResponseModel instance) =>
@@ -57,4 +56,6 @@ SparklineModel _$SparklineModelFromJson(Map<String, dynamic> json) =>
     );
 
 Map<String, dynamic> _$SparklineModelToJson(SparklineModel instance) =>
-    <String, dynamic>{'price': instance.prices};
+    <String, dynamic>{
+      'price': instance.prices,
+    };

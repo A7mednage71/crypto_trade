@@ -13,4 +13,7 @@ RegisterModel _$RegisterModelFromJson(Map<String, dynamic> json) =>
     );
 
 Map<String, dynamic> _$RegisterModelToJson(RegisterModel instance) =>
-    <String, dynamic>{'email': instance.email, 'password': instance.password};
+    <String, dynamic>{
+      'email': instance.email,
+      'password': instance.password,
+    };

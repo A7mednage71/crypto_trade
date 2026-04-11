@@ -12,8 +12,7 @@ part of 'otp_state.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
-);
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$OtpState {
@@ -35,13 +34,12 @@ abstract class $OtpStateCopyWith<$Res> {
   factory $OtpStateCopyWith(OtpState value, $Res Function(OtpState) then) =
       _$OtpStateCopyWithImpl<$Res, OtpState>;
   @useResult
-  $Res call({
-    SendOtpStatus sendStatus,
-    VerifOtpStatus verifStatus,
-    String? verificationId,
-    String? sendError,
-    String? verifyError,
-  });
+  $Res call(
+      {SendOtpStatus sendStatus,
+      VerifOtpStatus verifStatus,
+      String? verificationId,
+      String? sendError,
+      String? verifyError});
 }
 
 /// @nodoc
@@ -65,31 +63,28 @@ class _$OtpStateCopyWithImpl<$Res, $Val extends OtpState>
     Object? sendError = freezed,
     Object? verifyError = freezed,
   }) {
-    return _then(
-      _value.copyWith(
-            sendStatus: null == sendStatus
-                ? _value.sendStatus
-                : sendStatus // ignore: cast_nullable_to_non_nullable
-                      as SendOtpStatus,
-            verifStatus: null == verifStatus
-                ? _value.verifStatus
-                : verifStatus // ignore: cast_nullable_to_non_nullable
-                      as VerifOtpStatus,
-            verificationId: freezed == verificationId
-                ? _value.verificationId
-                : verificationId // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            sendError: freezed == sendError
-                ? _value.sendError
-                : sendError // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            verifyError: freezed == verifyError
-                ? _value.verifyError
-                : verifyError // ignore: cast_nullable_to_non_nullable
-                      as String?,
-          )
-          as $Val,
-    );
+    return _then(_value.copyWith(
+      sendStatus: null == sendStatus
+          ? _value.sendStatus
+          : sendStatus // ignore: cast_nullable_to_non_nullable
+              as SendOtpStatus,
+      verifStatus: null == verifStatus
+          ? _value.verifStatus
+          : verifStatus // ignore: cast_nullable_to_non_nullable
+              as VerifOtpStatus,
+      verificationId: freezed == verificationId
+          ? _value.verificationId
+          : verificationId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      sendError: freezed == sendError
+          ? _value.sendError
+          : sendError // ignore: cast_nullable_to_non_nullable
+              as String?,
+      verifyError: freezed == verifyError
+          ? _value.verifyError
+          : verifyError // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ) as $Val);
   }
 }
 
@@ -97,18 +92,16 @@ class _$OtpStateCopyWithImpl<$Res, $Val extends OtpState>
 abstract class _$$OtpStateImplCopyWith<$Res>
     implements $OtpStateCopyWith<$Res> {
   factory _$$OtpStateImplCopyWith(
-    _$OtpStateImpl value,
-    $Res Function(_$OtpStateImpl) then,
-  ) = __$$OtpStateImplCopyWithImpl<$Res>;
+          _$OtpStateImpl value, $Res Function(_$OtpStateImpl) then) =
+      __$$OtpStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({
-    SendOtpStatus sendStatus,
-    VerifOtpStatus verifStatus,
-    String? verificationId,
-    String? sendError,
-    String? verifyError,
-  });
+  $Res call(
+      {SendOtpStatus sendStatus,
+      VerifOtpStatus verifStatus,
+      String? verificationId,
+      String? sendError,
+      String? verifyError});
 }
 
 /// @nodoc
@@ -116,9 +109,8 @@ class __$$OtpStateImplCopyWithImpl<$Res>
     extends _$OtpStateCopyWithImpl<$Res, _$OtpStateImpl>
     implements _$$OtpStateImplCopyWith<$Res> {
   __$$OtpStateImplCopyWithImpl(
-    _$OtpStateImpl _value,
-    $Res Function(_$OtpStateImpl) _then,
-  ) : super(_value, _then);
+      _$OtpStateImpl _value, $Res Function(_$OtpStateImpl) _then)
+      : super(_value, _then);
 
   /// Create a copy of OtpState
   /// with the given fields replaced by the non-null parameter values.
@@ -131,43 +123,40 @@ class __$$OtpStateImplCopyWithImpl<$Res>
     Object? sendError = freezed,
     Object? verifyError = freezed,
   }) {
-    return _then(
-      _$OtpStateImpl(
-        sendStatus: null == sendStatus
-            ? _value.sendStatus
-            : sendStatus // ignore: cast_nullable_to_non_nullable
-                  as SendOtpStatus,
-        verifStatus: null == verifStatus
-            ? _value.verifStatus
-            : verifStatus // ignore: cast_nullable_to_non_nullable
-                  as VerifOtpStatus,
-        verificationId: freezed == verificationId
-            ? _value.verificationId
-            : verificationId // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        sendError: freezed == sendError
-            ? _value.sendError
-            : sendError // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        verifyError: freezed == verifyError
-            ? _value.verifyError
-            : verifyError // ignore: cast_nullable_to_non_nullable
-                  as String?,
-      ),
-    );
+    return _then(_$OtpStateImpl(
+      sendStatus: null == sendStatus
+          ? _value.sendStatus
+          : sendStatus // ignore: cast_nullable_to_non_nullable
+              as SendOtpStatus,
+      verifStatus: null == verifStatus
+          ? _value.verifStatus
+          : verifStatus // ignore: cast_nullable_to_non_nullable
+              as VerifOtpStatus,
+      verificationId: freezed == verificationId
+          ? _value.verificationId
+          : verificationId // ignore: cast_nullable_to_non_nullable
+              as String?,
+      sendError: freezed == sendError
+          ? _value.sendError
+          : sendError // ignore: cast_nullable_to_non_nullable
+              as String?,
+      verifyError: freezed == verifyError
+          ? _value.verifyError
+          : verifyError // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
   }
 }
 
 /// @nodoc
 
 class _$OtpStateImpl implements _OtpState {
-  const _$OtpStateImpl({
-    this.sendStatus = SendOtpStatus.initial,
-    this.verifStatus = VerifOtpStatus.initial,
-    this.verificationId,
-    this.sendError,
-    this.verifyError,
-  });
+  const _$OtpStateImpl(
+      {this.sendStatus = SendOtpStatus.initial,
+      this.verifStatus = VerifOtpStatus.initial,
+      this.verificationId,
+      this.sendError,
+      this.verifyError});
 
   @override
   @JsonKey()
@@ -205,14 +194,8 @@ class _$OtpStateImpl implements _OtpState {
   }
 
   @override
-  int get hashCode => Object.hash(
-    runtimeType,
-    sendStatus,
-    verifStatus,
-    verificationId,
-    sendError,
-    verifyError,
-  );
+  int get hashCode => Object.hash(runtimeType, sendStatus, verifStatus,
+      verificationId, sendError, verifyError);
 
   /// Create a copy of OtpState
   /// with the given fields replaced by the non-null parameter values.
@@ -224,13 +207,12 @@ class _$OtpStateImpl implements _OtpState {
 }
 
 abstract class _OtpState implements OtpState {
-  const factory _OtpState({
-    final SendOtpStatus sendStatus,
-    final VerifOtpStatus verifStatus,
-    final String? verificationId,
-    final String? sendError,
-    final String? verifyError,
-  }) = _$OtpStateImpl;
+  const factory _OtpState(
+      {final SendOtpStatus sendStatus,
+      final VerifOtpStatus verifStatus,
+      final String? verificationId,
+      final String? sendError,
+      final String? verifyError}) = _$OtpStateImpl;
 
   @override
   SendOtpStatus get sendStatus;

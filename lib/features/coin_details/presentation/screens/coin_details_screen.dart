@@ -1,5 +1,6 @@
 import 'package:crypto_trade/core/export.dart';
 import 'package:crypto_trade/features/coin_details/data/models/coin_detail_response_model.dart';
+import 'package:crypto_trade/features/coin_details/data/models/coin_details_args.dart';
 import 'package:crypto_trade/features/coin_details/data/models/coin_details_dummy_data.dart';
 import 'package:crypto_trade/features/coin_details/data/models/market_chart_response_model.dart';
 import 'package:crypto_trade/features/coin_details/presentation/cubits/coin_details_cubit/coin_details_cubit.dart';
@@ -16,16 +17,18 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 class CoinDetailsScreen extends StatelessWidget {
-  final String coinId;
+  final CoinDetailsArgs args;
 
-  const CoinDetailsScreen({super.key, required this.coinId});
+  const CoinDetailsScreen({super.key, required this.args});
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) =>
-          ServicesLocator.locator<CoinDetailsCubit>()..fetchCoinDetails(coinId),
+          ServicesLocator.locator<CoinDetailsCubit>()
+            ..fetchCoinDetails(args.coinId),
       child: Scaffold(
+        appBar: CustomAppBar(title: args.coinName),
         body: SafeArea(
           child: BlocBuilder<CoinDetailsCubit, CoinDetailsState>(
             builder: (context, state) {
@@ -54,7 +57,7 @@ class CoinDetailsScreen extends StatelessWidget {
                     titleColor: Colors.white,
                     onPressed: () => context
                         .read<CoinDetailsCubit>()
-                        .fetchCoinDetails(coinId),
+                        .fetchCoinDetails(args.coinId),
                   );
                 case CoinDetailsStatus.success:
                 case CoinDetailsStatus.chartLoading:
@@ -82,6 +85,7 @@ class CoinDetailsScreen extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h),
           sliver: SliverList(
             delegate: SliverChildListDelegate([
+              verticalSpace(10),
               CoinHeaderWidget(coinDetails: details),
               verticalSpace(24),
               PriceSectionWidget(marketData: details.marketData),

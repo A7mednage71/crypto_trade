@@ -6,6 +6,7 @@ import 'package:crypto_trade/features/auth/presentation/screens/auth_screen.dart
 import 'package:crypto_trade/features/auth/presentation/screens/auth_with_mobile_screen.dart';
 import 'package:crypto_trade/features/auth/presentation/screens/registration_success_screen.dart';
 import 'package:crypto_trade/features/auth/presentation/screens/verification_screen.dart';
+import 'package:crypto_trade/features/coin_details/data/models/coin_details_args.dart';
 import 'package:crypto_trade/features/coin_details/presentation/screens/coin_details_screen.dart';
 import 'package:crypto_trade/features/favorites/presentation/screens/favorites_screen.dart';
 import 'package:crypto_trade/features/home/presentation/screens/home_screen.dart';
@@ -14,6 +15,7 @@ import 'package:crypto_trade/features/notifications/presentation/screens/notific
 import 'package:crypto_trade/features/onBoarding/presentation/screens/onboarding_screen.dart';
 import 'package:crypto_trade/features/profile/presentation/screens/edit_profile_screen.dart';
 import 'package:crypto_trade/features/profile/presentation/screens/view_profile_screen.dart';
+import 'package:crypto_trade/features/search/presentation/screens/search_screen.dart';
 import 'package:crypto_trade/features/settings/presentation/screens/settings_screen.dart';
 import 'package:crypto_trade/features/splash/splash_screen.dart';
 import 'package:flutter/material.dart';
@@ -61,12 +63,17 @@ class AppRouter {
       case Routes.notificationScreen:
         return MaterialPageRoute(builder: (_) => const NotificationsScreen());
       case Routes.coinDetailsScreen:
-        final coinId = arguments as String;
-        return MaterialPageRoute(
-          builder: (_) => CoinDetailsScreen(coinId: coinId),
-        );
+        final args = arguments as CoinDetailsArgs;
+        return MaterialPageRoute(builder: (_) => CoinDetailsScreen(args: args));
       case Routes.favoritesScreen:
         return MaterialPageRoute(builder: (_) => const FavoritesScreen());
+      case Routes.searchScreen:
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (_) => ServicesLocator.searchCubit,
+            child: const SearchScreen(),
+          ),
+        );
     }
     return null;
   }

@@ -7,15 +7,15 @@ part of 'coin_markets_request_model.dart';
 // **************************************************************************
 
 Map<String, dynamic> _$CoinMarketsRequestModelToJson(
-  CoinMarketsRequestModel instance,
-) => <String, dynamic>{
-  'vs_currency': instance.vsCurrency,
-  'order': _$CoinOrderEnumMap[instance.order]!,
-  'per_page': instance.perPage,
-  'page': instance.page,
-  'sparkline': instance.sparkline,
-  'price_change_percentage': instance.priceChangePercentage,
-};
+        CoinMarketsRequestModel instance) =>
+    <String, dynamic>{
+      'vs_currency': instance.vsCurrency,
+      'order': _$CoinOrderEnumMap[instance.order]!,
+      'per_page': instance.perPage,
+      'page': instance.page,
+      'sparkline': instance.sparkline,
+      'price_change_percentage': instance.priceChangePercentage,
+    };
 
 const _$CoinOrderEnumMap = {
   CoinOrder.marketCapDesc: 'market_cap_desc',

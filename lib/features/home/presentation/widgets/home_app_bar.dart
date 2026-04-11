@@ -42,7 +42,12 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
           ),
           Row(
             children: [
-              _buildActionIcon(Assets.imagesSvgSearch),
+              InkWell(
+                highlightColor: Colors.transparent,
+                splashColor: Colors.transparent,
+                onTap: () => context.pushNamed(Routes.searchScreen),
+                child: _buildActionIcon(Assets.imagesSvgSearch),
+              ),
               horizontalSpace(24),
               InkWell(
                 highlightColor: Colors.transparent,

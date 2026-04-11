@@ -11,4 +11,7 @@ class ApiConstants {
   // coin details screen
   static const String coinDetails = 'coins/';
   static const String marketChart = 'coins/{id}/market_chart';
+
+  // search screen
+  static const String searchCoins = 'search';
 }
