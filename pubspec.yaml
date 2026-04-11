@@ -109,6 +109,7 @@ dependencies:
   k_chart: ^0.7.1
   sliding_up_panel: ^2.0.0+1
   intl: ^0.20.2
+  uuid: ^4.5.3
 
 dev_dependencies:
   flutter_test:

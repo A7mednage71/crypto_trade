@@ -11,6 +11,7 @@ Widget buildAppWithProviders({required Widget child}) {
       BlocProvider(create: (_) => ServicesLocator.introAppCubit),
       BlocProvider(create: (_) => ServicesLocator.locator<AuthCubit>()),
       BlocProvider(create: (_) => ServicesLocator.favoriteCubit),
+      BlocProvider(create: (_) => ServicesLocator.activityCubit),
     ],
     child: child,
   );
