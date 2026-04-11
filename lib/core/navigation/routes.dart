@@ -16,6 +16,7 @@ class Routes {
   static const String mainLayoutScreen = '/mainLayout';
   static const String homeScreen = '/home';
   static const String notificationScreen = '/notifications';
+  static const String favoritesScreen = '/favorites';
 
   // --- Trading & Market Screens ---
   static const String marketScreen = '/market';

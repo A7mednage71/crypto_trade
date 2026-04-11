@@ -1,9 +1,9 @@
 import 'package:crypto_trade/core/export.dart';
+import 'package:crypto_trade/features/home/presentation/widgets/home_app_bar.dart';
 import 'package:crypto_trade/features/trades/presentation/widgets/order_book_section.dart';
 import 'package:crypto_trade/features/trades/presentation/widgets/trade_action_buttons.dart';
 import 'package:crypto_trade/features/trades/presentation/widgets/trade_action_sheet.dart';
 import 'package:crypto_trade/features/trades/presentation/widgets/trades_filter_tabs.dart';
-import 'package:crypto_trade/features/trades/presentation/widgets/trades_screen_header.dart';
 import 'package:crypto_trade/features/trades/presentation/widgets/trading_chart_section.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -15,14 +15,13 @@ class TradesScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.darkBackground,
+      appBar: HomeAppBar(),
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
           child: Column(
             children: [
-              verticalSpace(24),
-              TradesScreenHeader(),
-              verticalSpace(24),
+              verticalSpace(8),
               TradesFilterTabs(),
               verticalSpace(24),
               TradingChartSection(),

@@ -10,6 +10,7 @@ Widget buildAppWithProviders({required Widget child}) {
       BlocProvider(create: (_) => InternetCubit()..checkStreamConnection()),
       BlocProvider(create: (_) => ServicesLocator.introAppCubit),
       BlocProvider(create: (_) => ServicesLocator.locator<AuthCubit>()),
+      BlocProvider(create: (_) => ServicesLocator.favoriteCubit),
     ],
     child: child,
   );

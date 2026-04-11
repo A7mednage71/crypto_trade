@@ -1,115 +1,127 @@
 import 'package:crypto_trade/core/export.dart';
+import 'package:crypto_trade/core/mappers/favorite_mapper.dart';
+import 'package:crypto_trade/features/favorites/presentation/cubits/favorite_cubit/favorite_cubit.dart';
+import 'package:crypto_trade/features/favorites/presentation/cubits/favorite_cubit/favorite_state.dart';
 import 'package:crypto_trade/features/home/data/models/coin_response_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CoinQuickActionsSheet extends StatelessWidget {
   final CoinResponseModel coin;
-  final bool isFavorite;
 
-  const CoinQuickActionsSheet({
-    super.key,
-    required this.coin,
-    this.isFavorite = false,
-  });
+  const CoinQuickActionsSheet({super.key, required this.coin});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.symmetric(vertical: 16.h),
-      decoration: BoxDecoration(
-        color: AppColors.darkSurface,
-        borderRadius: BorderRadius.vertical(top: Radius.circular(24.r)),
-      ),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Container(
-            width: 40.w,
-            height: 4.h,
-            decoration: BoxDecoration(
-              color: AppColors.lightGrey.withValues(alpha: 0.2),
-              borderRadius: BorderRadius.circular(10.r),
-            ),
+    return BlocBuilder<FavoriteCubit, FavoriteState>(
+      builder: (context, state) {
+        final isFavorite = context.read<FavoriteCubit>().isFavorite(coin.id);
+        return Container(
+          padding: EdgeInsets.symmetric(vertical: 16.h),
+          decoration: BoxDecoration(
+            color: AppColors.darkSurface,
+            borderRadius: BorderRadius.vertical(top: Radius.circular(24.r)),
           ),
-          verticalSpace(20),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20.w),
-            child: Row(
-              children: [
-                CustomNetworkImage(
-                  imageUrl: coin.image,
-                  height: 44.h,
-                  width: 44.h,
-                  borderRadius: BorderRadius.circular(44.r),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Container(
+                width: 40.w,
+                height: 4.h,
+                decoration: BoxDecoration(
+                  color: AppColors.lightGrey.withValues(alpha: 0.2),
+                  borderRadius: BorderRadius.circular(10.r),
                 ),
-                horizontalSpace(12),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+              ),
+              verticalSpace(20),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 20.w),
+                child: Row(
                   children: [
-                    Text(
-                      coin.name,
-                      style: AppStyle.font18_600Weight.copyWith(
-                        color: AppColors.white,
-                      ),
+                    CustomNetworkImage(
+                      imageUrl: coin.image,
+                      height: 44.h,
+                      width: 44.h,
+                      borderRadius: BorderRadius.circular(44.r),
                     ),
-                    verticalSpace(2),
+                    horizontalSpace(12),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          coin.name,
+                          style: AppStyle.font18_600Weight.copyWith(
+                            color: AppColors.white,
+                          ),
+                        ),
+                        verticalSpace(2),
+                        Text(
+                          coin.symbol.toUpperCase(),
+                          style: AppStyle.font14_400Weight.copyWith(
+                            color: AppColors.grey,
+                          ),
+                        ),
+                      ],
+                    ),
+                    const Spacer(),
                     Text(
-                      coin.symbol.toUpperCase(),
-                      style: AppStyle.font14_400Weight.copyWith(
-                        color: AppColors.grey,
+                      '\$${coin.currentPrice}',
+                      style: AppStyle.font16_600Weight.copyWith(
+                        color: AppColors.white,
                       ),
                     ),
                   ],
                 ),
-                const Spacer(),
-                Text(
-                  '\$${coin.currentPrice}',
-                  style: AppStyle.font16_600Weight.copyWith(
-                    color: AppColors.white,
-                  ),
-                ),
-              ],
-            ),
+              ),
+              verticalSpace(16),
+              Divider(
+                color: AppColors.lightGrey.withValues(alpha: 0.2),
+                thickness: 1,
+                height: 1,
+              ),
+              verticalSpace(8),
+              _ActionTile(
+                icon: isFavorite
+                    ? Icons.favorite_rounded
+                    : Icons.favorite_border_rounded,
+                iconColor: isFavorite ? AppColors.secondary : AppColors.grey,
+                label: isFavorite
+                    ? 'Remove from Favorites'
+                    : 'Add to Favorites',
+                onTap: () {
+                  HapticFeedback.mediumImpact();
+                  context.read<FavoriteCubit>().toggleFavorite(
+                    coin.toFavoriteCoinModel(),
+                  );
+                },
+              ),
+              _ActionTile(
+                icon: Icons.notifications_active_outlined,
+                label: 'Set Price Alert',
+                onTap: () {
+                  HapticFeedback.lightImpact();
+                  context.pop();
+                },
+              ),
+              _ActionTile(
+                icon: Icons.insights,
+                label: 'Go to Coin Details',
+                onTap: () {
+                  HapticFeedback.lightImpact();
+                  context.pop();
+                  context.pushNamed(
+                    Routes.coinDetailsScreen,
+                    arguments: coin.id,
+                  );
+                },
+              ),
+              verticalSpace(20),
+            ],
           ),
-          verticalSpace(16),
-          Divider(
-            color: AppColors.lightGrey.withValues(alpha: 0.2),
-            thickness: 1,
-            height: 1,
-          ),
-          verticalSpace(8),
-          _ActionTile(
-            icon: isFavorite
-                ? Icons.favorite_rounded
-                : Icons.favorite_border_rounded,
-            iconColor: isFavorite ? AppColors.secondary : AppColors.grey,
-            label: isFavorite ? 'Remove from Favorites' : 'Add to Favorites',
-            onTap: () {
-              HapticFeedback.mediumImpact();
-              Navigator.pop(context);
-            },
-          ),
-          _ActionTile(
-            icon: Icons.notifications_active_outlined,
-            label: 'Set Price Alert',
-            onTap: () {
-              HapticFeedback.lightImpact();
-              Navigator.pop(context);
-            },
-          ),
-          _ActionTile(
-            icon: Icons.insights,
-            label: 'Go to Coin Details',
-            onTap: () {
-              HapticFeedback.lightImpact();
-              context.pushNamed(Routes.coinDetailsScreen, arguments: coin.id);
-            },
-          ),
-          verticalSpace(20),
-        ],
-      ),
+        );
+      },
     );
   }
 }

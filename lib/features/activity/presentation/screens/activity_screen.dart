@@ -18,7 +18,7 @@ class ActivityScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            verticalSpace(16),
+            verticalSpace(24),
             const QuickActionCard(),
             verticalSpace(24),
             Padding(
