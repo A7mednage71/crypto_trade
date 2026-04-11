@@ -7,6 +7,7 @@ import 'package:crypto_trade/features/auth/presentation/screens/auth_with_mobile
 import 'package:crypto_trade/features/auth/presentation/screens/registration_success_screen.dart';
 import 'package:crypto_trade/features/auth/presentation/screens/verification_screen.dart';
 import 'package:crypto_trade/features/coin_details/presentation/screens/coin_details_screen.dart';
+import 'package:crypto_trade/features/favorites/presentation/screens/favorites_screen.dart';
 import 'package:crypto_trade/features/home/presentation/screens/home_screen.dart';
 import 'package:crypto_trade/features/main_layout/presentation/screens/main_layout_screen.dart';
 import 'package:crypto_trade/features/notifications/presentation/screens/notifications_screen.dart';
@@ -64,6 +65,8 @@ class AppRouter {
         return MaterialPageRoute(
           builder: (_) => CoinDetailsScreen(coinId: coinId),
         );
+      case Routes.favoritesScreen:
+        return MaterialPageRoute(builder: (_) => const FavoritesScreen());
     }
     return null;
   }

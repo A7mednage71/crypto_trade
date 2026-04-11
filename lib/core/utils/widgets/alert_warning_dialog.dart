@@ -10,12 +10,14 @@ class AlertWarningDialog extends StatelessWidget {
     required this.title,
     required this.subtitle,
     required this.buttonTitle,
+    this.onCancelPressed,
   });
 
   final String title;
   final String subtitle;
   final String buttonTitle;
   final VoidCallback onConfirmPressed;
+  final VoidCallback? onCancelPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +48,7 @@ class AlertWarningDialog extends StatelessWidget {
       actionsPadding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
       actions: [
         TextButton(
-          onPressed: () => Navigator.of(context).pop(),
+          onPressed: onCancelPressed ?? () => Navigator.of(context).pop(),
           child: Text(
             "Cancel",
             style: AppStyle.font16_600Weight.copyWith(color: AppColors.grey),

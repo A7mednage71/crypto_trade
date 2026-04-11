@@ -47,26 +47,24 @@ class NotificationsScreen extends StatelessWidget {
           ),
         ],
       ),
-      body: Expanded(
-        child: isEmpty
-            ? const NotificationEmptyState()
-            : ListView.separated(
-                padding: EdgeInsets.only(top: 8.h, bottom: 24.h),
-                itemCount: NotificationModel.notifications.length,
-                separatorBuilder: (context, index) => Divider(
-                  color: AppColors.lightGrey.withValues(alpha: 0.5),
-                  height: 1.h,
-                  thickness: 0.5.h,
-                  indent: 24.w,
-                  endIndent: 24.w,
-                ),
-                itemBuilder: (context, index) {
-                  return NotificationItem(
-                    notification: NotificationModel.notifications[index],
-                  );
-                },
+      body: isEmpty
+          ? const NotificationEmptyState()
+          : ListView.separated(
+              padding: EdgeInsets.only(top: 8.h, bottom: 24.h),
+              itemCount: NotificationModel.notifications.length,
+              separatorBuilder: (context, index) => Divider(
+                color: AppColors.lightGrey.withValues(alpha: 0.5),
+                height: 1.h,
+                thickness: 0.5.h,
+                indent: 24.w,
+                endIndent: 24.w,
               ),
-      ),
+              itemBuilder: (context, index) {
+                return NotificationItem(
+                  notification: NotificationModel.notifications[index],
+                );
+              },
+            ),
     );
   }
 }

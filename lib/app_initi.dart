@@ -1,4 +1,5 @@
 import 'package:crypto_trade/core/export.dart';
+import 'package:crypto_trade/core/helpers/hive_helper.dart';
 import 'package:crypto_trade/core/utils/bloc_observer.dart';
 import 'package:crypto_trade/firebase_options.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -17,6 +18,7 @@ Future<void> initializeApp() async {
     DeviceOrientation.portraitDown,
   ]);
 
+  await HiveHelper().init();
   await CacheHelper.init();
 
   ServicesLocator.setup();

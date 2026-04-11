@@ -1,5 +1,4 @@
 import 'package:crypto_trade/core/export.dart';
-import 'package:crypto_trade/core/navigation/routes.dart';
 import 'package:crypto_trade/core/utils/constant/app_assets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -44,6 +43,15 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
           Row(
             children: [
               _buildActionIcon(Assets.imagesSvgSearch),
+              horizontalSpace(24),
+              InkWell(
+                highlightColor: Colors.transparent,
+                splashColor: Colors.transparent,
+                onTap: () {
+                  context.pushNamed(Routes.favoritesScreen);
+                },
+                child: _buildActionIcon(Assets.imagesSvgStar),
+              ),
               horizontalSpace(24),
               InkWell(
                 highlightColor: Colors.transparent,
