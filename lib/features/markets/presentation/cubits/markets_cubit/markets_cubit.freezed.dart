@@ -12,8 +12,7 @@ part of 'markets_cubit.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
-);
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$MarketsState {
@@ -57,37 +56,35 @@ mixin _$MarketsState {
 /// @nodoc
 abstract class $MarketsStateCopyWith<$Res> {
   factory $MarketsStateCopyWith(
-    MarketsState value,
-    $Res Function(MarketsState) then,
-  ) = _$MarketsStateCopyWithImpl<$Res, MarketsState>;
+          MarketsState value, $Res Function(MarketsState) then) =
+      _$MarketsStateCopyWithImpl<$Res, MarketsState>;
   @useResult
-  $Res call({
-    MarketsStatus status,
-    List<CoinResponseModel> coins,
-    int currentPage,
-    bool isLoadingMore,
-    String? errorMessage,
-    CoinResponseModel? fromCoin,
-    CoinResponseModel? toCoin,
-    double fromAmount,
-    double toAmount,
-    double rate,
-    TradeStatus tradeStatus,
-    String? tradeErrorMessage,
-    double leverage,
-    CoinResponseModel? selectedMarginCoin,
-    MarginMode marginMode,
-    double amountToTrade,
-    double maxBuy,
-    double liquidationPrice,
-    double riskPercentage,
-    RiskLevel riskLevel,
-    double availableBalance,
-    double actualOrderAmount,
-    double totalOrderValueUSD,
-    double fiatDepositAmount,
-    int selectedPaymentMethodIndex,
-  });
+  $Res call(
+      {MarketsStatus status,
+      List<CoinResponseModel> coins,
+      int currentPage,
+      bool isLoadingMore,
+      String? errorMessage,
+      CoinResponseModel? fromCoin,
+      CoinResponseModel? toCoin,
+      double fromAmount,
+      double toAmount,
+      double rate,
+      TradeStatus tradeStatus,
+      String? tradeErrorMessage,
+      double leverage,
+      CoinResponseModel? selectedMarginCoin,
+      MarginMode marginMode,
+      double amountToTrade,
+      double maxBuy,
+      double liquidationPrice,
+      double riskPercentage,
+      RiskLevel riskLevel,
+      double availableBalance,
+      double actualOrderAmount,
+      double totalOrderValueUSD,
+      double fiatDepositAmount,
+      int selectedPaymentMethodIndex});
 }
 
 /// @nodoc
@@ -131,111 +128,108 @@ class _$MarketsStateCopyWithImpl<$Res, $Val extends MarketsState>
     Object? fiatDepositAmount = null,
     Object? selectedPaymentMethodIndex = null,
   }) {
-    return _then(
-      _value.copyWith(
-            status: null == status
-                ? _value.status
-                : status // ignore: cast_nullable_to_non_nullable
-                      as MarketsStatus,
-            coins: null == coins
-                ? _value.coins
-                : coins // ignore: cast_nullable_to_non_nullable
-                      as List<CoinResponseModel>,
-            currentPage: null == currentPage
-                ? _value.currentPage
-                : currentPage // ignore: cast_nullable_to_non_nullable
-                      as int,
-            isLoadingMore: null == isLoadingMore
-                ? _value.isLoadingMore
-                : isLoadingMore // ignore: cast_nullable_to_non_nullable
-                      as bool,
-            errorMessage: freezed == errorMessage
-                ? _value.errorMessage
-                : errorMessage // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            fromCoin: freezed == fromCoin
-                ? _value.fromCoin
-                : fromCoin // ignore: cast_nullable_to_non_nullable
-                      as CoinResponseModel?,
-            toCoin: freezed == toCoin
-                ? _value.toCoin
-                : toCoin // ignore: cast_nullable_to_non_nullable
-                      as CoinResponseModel?,
-            fromAmount: null == fromAmount
-                ? _value.fromAmount
-                : fromAmount // ignore: cast_nullable_to_non_nullable
-                      as double,
-            toAmount: null == toAmount
-                ? _value.toAmount
-                : toAmount // ignore: cast_nullable_to_non_nullable
-                      as double,
-            rate: null == rate
-                ? _value.rate
-                : rate // ignore: cast_nullable_to_non_nullable
-                      as double,
-            tradeStatus: null == tradeStatus
-                ? _value.tradeStatus
-                : tradeStatus // ignore: cast_nullable_to_non_nullable
-                      as TradeStatus,
-            tradeErrorMessage: freezed == tradeErrorMessage
-                ? _value.tradeErrorMessage
-                : tradeErrorMessage // ignore: cast_nullable_to_non_nullable
-                      as String?,
-            leverage: null == leverage
-                ? _value.leverage
-                : leverage // ignore: cast_nullable_to_non_nullable
-                      as double,
-            selectedMarginCoin: freezed == selectedMarginCoin
-                ? _value.selectedMarginCoin
-                : selectedMarginCoin // ignore: cast_nullable_to_non_nullable
-                      as CoinResponseModel?,
-            marginMode: null == marginMode
-                ? _value.marginMode
-                : marginMode // ignore: cast_nullable_to_non_nullable
-                      as MarginMode,
-            amountToTrade: null == amountToTrade
-                ? _value.amountToTrade
-                : amountToTrade // ignore: cast_nullable_to_non_nullable
-                      as double,
-            maxBuy: null == maxBuy
-                ? _value.maxBuy
-                : maxBuy // ignore: cast_nullable_to_non_nullable
-                      as double,
-            liquidationPrice: null == liquidationPrice
-                ? _value.liquidationPrice
-                : liquidationPrice // ignore: cast_nullable_to_non_nullable
-                      as double,
-            riskPercentage: null == riskPercentage
-                ? _value.riskPercentage
-                : riskPercentage // ignore: cast_nullable_to_non_nullable
-                      as double,
-            riskLevel: null == riskLevel
-                ? _value.riskLevel
-                : riskLevel // ignore: cast_nullable_to_non_nullable
-                      as RiskLevel,
-            availableBalance: null == availableBalance
-                ? _value.availableBalance
-                : availableBalance // ignore: cast_nullable_to_non_nullable
-                      as double,
-            actualOrderAmount: null == actualOrderAmount
-                ? _value.actualOrderAmount
-                : actualOrderAmount // ignore: cast_nullable_to_non_nullable
-                      as double,
-            totalOrderValueUSD: null == totalOrderValueUSD
-                ? _value.totalOrderValueUSD
-                : totalOrderValueUSD // ignore: cast_nullable_to_non_nullable
-                      as double,
-            fiatDepositAmount: null == fiatDepositAmount
-                ? _value.fiatDepositAmount
-                : fiatDepositAmount // ignore: cast_nullable_to_non_nullable
-                      as double,
-            selectedPaymentMethodIndex: null == selectedPaymentMethodIndex
-                ? _value.selectedPaymentMethodIndex
-                : selectedPaymentMethodIndex // ignore: cast_nullable_to_non_nullable
-                      as int,
-          )
-          as $Val,
-    );
+    return _then(_value.copyWith(
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as MarketsStatus,
+      coins: null == coins
+          ? _value.coins
+          : coins // ignore: cast_nullable_to_non_nullable
+              as List<CoinResponseModel>,
+      currentPage: null == currentPage
+          ? _value.currentPage
+          : currentPage // ignore: cast_nullable_to_non_nullable
+              as int,
+      isLoadingMore: null == isLoadingMore
+          ? _value.isLoadingMore
+          : isLoadingMore // ignore: cast_nullable_to_non_nullable
+              as bool,
+      errorMessage: freezed == errorMessage
+          ? _value.errorMessage
+          : errorMessage // ignore: cast_nullable_to_non_nullable
+              as String?,
+      fromCoin: freezed == fromCoin
+          ? _value.fromCoin
+          : fromCoin // ignore: cast_nullable_to_non_nullable
+              as CoinResponseModel?,
+      toCoin: freezed == toCoin
+          ? _value.toCoin
+          : toCoin // ignore: cast_nullable_to_non_nullable
+              as CoinResponseModel?,
+      fromAmount: null == fromAmount
+          ? _value.fromAmount
+          : fromAmount // ignore: cast_nullable_to_non_nullable
+              as double,
+      toAmount: null == toAmount
+          ? _value.toAmount
+          : toAmount // ignore: cast_nullable_to_non_nullable
+              as double,
+      rate: null == rate
+          ? _value.rate
+          : rate // ignore: cast_nullable_to_non_nullable
+              as double,
+      tradeStatus: null == tradeStatus
+          ? _value.tradeStatus
+          : tradeStatus // ignore: cast_nullable_to_non_nullable
+              as TradeStatus,
+      tradeErrorMessage: freezed == tradeErrorMessage
+          ? _value.tradeErrorMessage
+          : tradeErrorMessage // ignore: cast_nullable_to_non_nullable
+              as String?,
+      leverage: null == leverage
+          ? _value.leverage
+          : leverage // ignore: cast_nullable_to_non_nullable
+              as double,
+      selectedMarginCoin: freezed == selectedMarginCoin
+          ? _value.selectedMarginCoin
+          : selectedMarginCoin // ignore: cast_nullable_to_non_nullable
+              as CoinResponseModel?,
+      marginMode: null == marginMode
+          ? _value.marginMode
+          : marginMode // ignore: cast_nullable_to_non_nullable
+              as MarginMode,
+      amountToTrade: null == amountToTrade
+          ? _value.amountToTrade
+          : amountToTrade // ignore: cast_nullable_to_non_nullable
+              as double,
+      maxBuy: null == maxBuy
+          ? _value.maxBuy
+          : maxBuy // ignore: cast_nullable_to_non_nullable
+              as double,
+      liquidationPrice: null == liquidationPrice
+          ? _value.liquidationPrice
+          : liquidationPrice // ignore: cast_nullable_to_non_nullable
+              as double,
+      riskPercentage: null == riskPercentage
+          ? _value.riskPercentage
+          : riskPercentage // ignore: cast_nullable_to_non_nullable
+              as double,
+      riskLevel: null == riskLevel
+          ? _value.riskLevel
+          : riskLevel // ignore: cast_nullable_to_non_nullable
+              as RiskLevel,
+      availableBalance: null == availableBalance
+          ? _value.availableBalance
+          : availableBalance // ignore: cast_nullable_to_non_nullable
+              as double,
+      actualOrderAmount: null == actualOrderAmount
+          ? _value.actualOrderAmount
+          : actualOrderAmount // ignore: cast_nullable_to_non_nullable
+              as double,
+      totalOrderValueUSD: null == totalOrderValueUSD
+          ? _value.totalOrderValueUSD
+          : totalOrderValueUSD // ignore: cast_nullable_to_non_nullable
+              as double,
+      fiatDepositAmount: null == fiatDepositAmount
+          ? _value.fiatDepositAmount
+          : fiatDepositAmount // ignore: cast_nullable_to_non_nullable
+              as double,
+      selectedPaymentMethodIndex: null == selectedPaymentMethodIndex
+          ? _value.selectedPaymentMethodIndex
+          : selectedPaymentMethodIndex // ignore: cast_nullable_to_non_nullable
+              as int,
+    ) as $Val);
   }
 }
 
@@ -243,38 +237,36 @@ class _$MarketsStateCopyWithImpl<$Res, $Val extends MarketsState>
 abstract class _$$MarketsStateImplCopyWith<$Res>
     implements $MarketsStateCopyWith<$Res> {
   factory _$$MarketsStateImplCopyWith(
-    _$MarketsStateImpl value,
-    $Res Function(_$MarketsStateImpl) then,
-  ) = __$$MarketsStateImplCopyWithImpl<$Res>;
+          _$MarketsStateImpl value, $Res Function(_$MarketsStateImpl) then) =
+      __$$MarketsStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({
-    MarketsStatus status,
-    List<CoinResponseModel> coins,
-    int currentPage,
-    bool isLoadingMore,
-    String? errorMessage,
-    CoinResponseModel? fromCoin,
-    CoinResponseModel? toCoin,
-    double fromAmount,
-    double toAmount,
-    double rate,
-    TradeStatus tradeStatus,
-    String? tradeErrorMessage,
-    double leverage,
-    CoinResponseModel? selectedMarginCoin,
-    MarginMode marginMode,
-    double amountToTrade,
-    double maxBuy,
-    double liquidationPrice,
-    double riskPercentage,
-    RiskLevel riskLevel,
-    double availableBalance,
-    double actualOrderAmount,
-    double totalOrderValueUSD,
-    double fiatDepositAmount,
-    int selectedPaymentMethodIndex,
-  });
+  $Res call(
+      {MarketsStatus status,
+      List<CoinResponseModel> coins,
+      int currentPage,
+      bool isLoadingMore,
+      String? errorMessage,
+      CoinResponseModel? fromCoin,
+      CoinResponseModel? toCoin,
+      double fromAmount,
+      double toAmount,
+      double rate,
+      TradeStatus tradeStatus,
+      String? tradeErrorMessage,
+      double leverage,
+      CoinResponseModel? selectedMarginCoin,
+      MarginMode marginMode,
+      double amountToTrade,
+      double maxBuy,
+      double liquidationPrice,
+      double riskPercentage,
+      RiskLevel riskLevel,
+      double availableBalance,
+      double actualOrderAmount,
+      double totalOrderValueUSD,
+      double fiatDepositAmount,
+      int selectedPaymentMethodIndex});
 }
 
 /// @nodoc
@@ -282,9 +274,8 @@ class __$$MarketsStateImplCopyWithImpl<$Res>
     extends _$MarketsStateCopyWithImpl<$Res, _$MarketsStateImpl>
     implements _$$MarketsStateImplCopyWith<$Res> {
   __$$MarketsStateImplCopyWithImpl(
-    _$MarketsStateImpl _value,
-    $Res Function(_$MarketsStateImpl) _then,
-  ) : super(_value, _then);
+      _$MarketsStateImpl _value, $Res Function(_$MarketsStateImpl) _then)
+      : super(_value, _then);
 
   /// Create a copy of MarketsState
   /// with the given fields replaced by the non-null parameter values.
@@ -317,143 +308,141 @@ class __$$MarketsStateImplCopyWithImpl<$Res>
     Object? fiatDepositAmount = null,
     Object? selectedPaymentMethodIndex = null,
   }) {
-    return _then(
-      _$MarketsStateImpl(
-        status: null == status
-            ? _value.status
-            : status // ignore: cast_nullable_to_non_nullable
-                  as MarketsStatus,
-        coins: null == coins
-            ? _value._coins
-            : coins // ignore: cast_nullable_to_non_nullable
-                  as List<CoinResponseModel>,
-        currentPage: null == currentPage
-            ? _value.currentPage
-            : currentPage // ignore: cast_nullable_to_non_nullable
-                  as int,
-        isLoadingMore: null == isLoadingMore
-            ? _value.isLoadingMore
-            : isLoadingMore // ignore: cast_nullable_to_non_nullable
-                  as bool,
-        errorMessage: freezed == errorMessage
-            ? _value.errorMessage
-            : errorMessage // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        fromCoin: freezed == fromCoin
-            ? _value.fromCoin
-            : fromCoin // ignore: cast_nullable_to_non_nullable
-                  as CoinResponseModel?,
-        toCoin: freezed == toCoin
-            ? _value.toCoin
-            : toCoin // ignore: cast_nullable_to_non_nullable
-                  as CoinResponseModel?,
-        fromAmount: null == fromAmount
-            ? _value.fromAmount
-            : fromAmount // ignore: cast_nullable_to_non_nullable
-                  as double,
-        toAmount: null == toAmount
-            ? _value.toAmount
-            : toAmount // ignore: cast_nullable_to_non_nullable
-                  as double,
-        rate: null == rate
-            ? _value.rate
-            : rate // ignore: cast_nullable_to_non_nullable
-                  as double,
-        tradeStatus: null == tradeStatus
-            ? _value.tradeStatus
-            : tradeStatus // ignore: cast_nullable_to_non_nullable
-                  as TradeStatus,
-        tradeErrorMessage: freezed == tradeErrorMessage
-            ? _value.tradeErrorMessage
-            : tradeErrorMessage // ignore: cast_nullable_to_non_nullable
-                  as String?,
-        leverage: null == leverage
-            ? _value.leverage
-            : leverage // ignore: cast_nullable_to_non_nullable
-                  as double,
-        selectedMarginCoin: freezed == selectedMarginCoin
-            ? _value.selectedMarginCoin
-            : selectedMarginCoin // ignore: cast_nullable_to_non_nullable
-                  as CoinResponseModel?,
-        marginMode: null == marginMode
-            ? _value.marginMode
-            : marginMode // ignore: cast_nullable_to_non_nullable
-                  as MarginMode,
-        amountToTrade: null == amountToTrade
-            ? _value.amountToTrade
-            : amountToTrade // ignore: cast_nullable_to_non_nullable
-                  as double,
-        maxBuy: null == maxBuy
-            ? _value.maxBuy
-            : maxBuy // ignore: cast_nullable_to_non_nullable
-                  as double,
-        liquidationPrice: null == liquidationPrice
-            ? _value.liquidationPrice
-            : liquidationPrice // ignore: cast_nullable_to_non_nullable
-                  as double,
-        riskPercentage: null == riskPercentage
-            ? _value.riskPercentage
-            : riskPercentage // ignore: cast_nullable_to_non_nullable
-                  as double,
-        riskLevel: null == riskLevel
-            ? _value.riskLevel
-            : riskLevel // ignore: cast_nullable_to_non_nullable
-                  as RiskLevel,
-        availableBalance: null == availableBalance
-            ? _value.availableBalance
-            : availableBalance // ignore: cast_nullable_to_non_nullable
-                  as double,
-        actualOrderAmount: null == actualOrderAmount
-            ? _value.actualOrderAmount
-            : actualOrderAmount // ignore: cast_nullable_to_non_nullable
-                  as double,
-        totalOrderValueUSD: null == totalOrderValueUSD
-            ? _value.totalOrderValueUSD
-            : totalOrderValueUSD // ignore: cast_nullable_to_non_nullable
-                  as double,
-        fiatDepositAmount: null == fiatDepositAmount
-            ? _value.fiatDepositAmount
-            : fiatDepositAmount // ignore: cast_nullable_to_non_nullable
-                  as double,
-        selectedPaymentMethodIndex: null == selectedPaymentMethodIndex
-            ? _value.selectedPaymentMethodIndex
-            : selectedPaymentMethodIndex // ignore: cast_nullable_to_non_nullable
-                  as int,
-      ),
-    );
+    return _then(_$MarketsStateImpl(
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as MarketsStatus,
+      coins: null == coins
+          ? _value._coins
+          : coins // ignore: cast_nullable_to_non_nullable
+              as List<CoinResponseModel>,
+      currentPage: null == currentPage
+          ? _value.currentPage
+          : currentPage // ignore: cast_nullable_to_non_nullable
+              as int,
+      isLoadingMore: null == isLoadingMore
+          ? _value.isLoadingMore
+          : isLoadingMore // ignore: cast_nullable_to_non_nullable
+              as bool,
+      errorMessage: freezed == errorMessage
+          ? _value.errorMessage
+          : errorMessage // ignore: cast_nullable_to_non_nullable
+              as String?,
+      fromCoin: freezed == fromCoin
+          ? _value.fromCoin
+          : fromCoin // ignore: cast_nullable_to_non_nullable
+              as CoinResponseModel?,
+      toCoin: freezed == toCoin
+          ? _value.toCoin
+          : toCoin // ignore: cast_nullable_to_non_nullable
+              as CoinResponseModel?,
+      fromAmount: null == fromAmount
+          ? _value.fromAmount
+          : fromAmount // ignore: cast_nullable_to_non_nullable
+              as double,
+      toAmount: null == toAmount
+          ? _value.toAmount
+          : toAmount // ignore: cast_nullable_to_non_nullable
+              as double,
+      rate: null == rate
+          ? _value.rate
+          : rate // ignore: cast_nullable_to_non_nullable
+              as double,
+      tradeStatus: null == tradeStatus
+          ? _value.tradeStatus
+          : tradeStatus // ignore: cast_nullable_to_non_nullable
+              as TradeStatus,
+      tradeErrorMessage: freezed == tradeErrorMessage
+          ? _value.tradeErrorMessage
+          : tradeErrorMessage // ignore: cast_nullable_to_non_nullable
+              as String?,
+      leverage: null == leverage
+          ? _value.leverage
+          : leverage // ignore: cast_nullable_to_non_nullable
+              as double,
+      selectedMarginCoin: freezed == selectedMarginCoin
+          ? _value.selectedMarginCoin
+          : selectedMarginCoin // ignore: cast_nullable_to_non_nullable
+              as CoinResponseModel?,
+      marginMode: null == marginMode
+          ? _value.marginMode
+          : marginMode // ignore: cast_nullable_to_non_nullable
+              as MarginMode,
+      amountToTrade: null == amountToTrade
+          ? _value.amountToTrade
+          : amountToTrade // ignore: cast_nullable_to_non_nullable
+              as double,
+      maxBuy: null == maxBuy
+          ? _value.maxBuy
+          : maxBuy // ignore: cast_nullable_to_non_nullable
+              as double,
+      liquidationPrice: null == liquidationPrice
+          ? _value.liquidationPrice
+          : liquidationPrice // ignore: cast_nullable_to_non_nullable
+              as double,
+      riskPercentage: null == riskPercentage
+          ? _value.riskPercentage
+          : riskPercentage // ignore: cast_nullable_to_non_nullable
+              as double,
+      riskLevel: null == riskLevel
+          ? _value.riskLevel
+          : riskLevel // ignore: cast_nullable_to_non_nullable
+              as RiskLevel,
+      availableBalance: null == availableBalance
+          ? _value.availableBalance
+          : availableBalance // ignore: cast_nullable_to_non_nullable
+              as double,
+      actualOrderAmount: null == actualOrderAmount
+          ? _value.actualOrderAmount
+          : actualOrderAmount // ignore: cast_nullable_to_non_nullable
+              as double,
+      totalOrderValueUSD: null == totalOrderValueUSD
+          ? _value.totalOrderValueUSD
+          : totalOrderValueUSD // ignore: cast_nullable_to_non_nullable
+              as double,
+      fiatDepositAmount: null == fiatDepositAmount
+          ? _value.fiatDepositAmount
+          : fiatDepositAmount // ignore: cast_nullable_to_non_nullable
+              as double,
+      selectedPaymentMethodIndex: null == selectedPaymentMethodIndex
+          ? _value.selectedPaymentMethodIndex
+          : selectedPaymentMethodIndex // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
   }
 }
 
 /// @nodoc
 
 class _$MarketsStateImpl implements _MarketsState {
-  const _$MarketsStateImpl({
-    this.status = MarketsStatus.initial,
-    final List<CoinResponseModel> coins = const [],
-    this.currentPage = 1,
-    this.isLoadingMore = false,
-    this.errorMessage,
-    this.fromCoin,
-    this.toCoin,
-    this.fromAmount = 0.0,
-    this.toAmount = 0.0,
-    this.rate = 0.0,
-    this.tradeStatus = TradeStatus.initial,
-    this.tradeErrorMessage,
-    this.leverage = 1.0,
-    this.selectedMarginCoin,
-    this.marginMode = MarginMode.cross,
-    this.amountToTrade = 0.0,
-    this.maxBuy = 0.0,
-    this.liquidationPrice = 0.0,
-    this.riskPercentage = 0.0,
-    this.riskLevel = RiskLevel.low,
-    this.availableBalance = 1234.56,
-    this.actualOrderAmount = 0.0,
-    this.totalOrderValueUSD = 0.0,
-    this.fiatDepositAmount = 0.0,
-    this.selectedPaymentMethodIndex = 0,
-  }) : _coins = coins;
+  const _$MarketsStateImpl(
+      {this.status = MarketsStatus.initial,
+      final List<CoinResponseModel> coins = const [],
+      this.currentPage = 1,
+      this.isLoadingMore = false,
+      this.errorMessage,
+      this.fromCoin,
+      this.toCoin,
+      this.fromAmount = 0.0,
+      this.toAmount = 0.0,
+      this.rate = 0.0,
+      this.tradeStatus = TradeStatus.initial,
+      this.tradeErrorMessage,
+      this.leverage = 1.0,
+      this.selectedMarginCoin,
+      this.marginMode = MarginMode.cross,
+      this.amountToTrade = 0.0,
+      this.maxBuy = 0.0,
+      this.liquidationPrice = 0.0,
+      this.riskPercentage = 0.0,
+      this.riskLevel = RiskLevel.low,
+      this.availableBalance = 1234.56,
+      this.actualOrderAmount = 0.0,
+      this.totalOrderValueUSD = 0.0,
+      this.fiatDepositAmount = 0.0,
+      this.selectedPaymentMethodIndex = 0})
+      : _coins = coins;
 
   @override
   @JsonKey()
@@ -475,7 +464,7 @@ class _$MarketsStateImpl implements _MarketsState {
   final bool isLoadingMore;
   @override
   final String? errorMessage;
-  // convert fields
+// convert fields
   @override
   final CoinResponseModel? fromCoin;
   @override
@@ -489,7 +478,7 @@ class _$MarketsStateImpl implements _MarketsState {
   @override
   @JsonKey()
   final double rate;
-  // margin fields and trade status
+// margin fields and trade status
   @override
   @JsonKey()
   final TradeStatus tradeStatus;
@@ -527,7 +516,7 @@ class _$MarketsStateImpl implements _MarketsState {
   @override
   @JsonKey()
   final double totalOrderValueUSD;
-  // Fiat deposit fields
+// Fiat deposit fields
   @override
   @JsonKey()
   final double fiatDepositAmount;
@@ -588,43 +577,41 @@ class _$MarketsStateImpl implements _MarketsState {
                 other.totalOrderValueUSD == totalOrderValueUSD) &&
             (identical(other.fiatDepositAmount, fiatDepositAmount) ||
                 other.fiatDepositAmount == fiatDepositAmount) &&
-            (identical(
-                  other.selectedPaymentMethodIndex,
-                  selectedPaymentMethodIndex,
-                ) ||
+            (identical(other.selectedPaymentMethodIndex,
+                    selectedPaymentMethodIndex) ||
                 other.selectedPaymentMethodIndex ==
                     selectedPaymentMethodIndex));
   }
 
   @override
   int get hashCode => Object.hashAll([
-    runtimeType,
-    status,
-    const DeepCollectionEquality().hash(_coins),
-    currentPage,
-    isLoadingMore,
-    errorMessage,
-    fromCoin,
-    toCoin,
-    fromAmount,
-    toAmount,
-    rate,
-    tradeStatus,
-    tradeErrorMessage,
-    leverage,
-    selectedMarginCoin,
-    marginMode,
-    amountToTrade,
-    maxBuy,
-    liquidationPrice,
-    riskPercentage,
-    riskLevel,
-    availableBalance,
-    actualOrderAmount,
-    totalOrderValueUSD,
-    fiatDepositAmount,
-    selectedPaymentMethodIndex,
-  ]);
+        runtimeType,
+        status,
+        const DeepCollectionEquality().hash(_coins),
+        currentPage,
+        isLoadingMore,
+        errorMessage,
+        fromCoin,
+        toCoin,
+        fromAmount,
+        toAmount,
+        rate,
+        tradeStatus,
+        tradeErrorMessage,
+        leverage,
+        selectedMarginCoin,
+        marginMode,
+        amountToTrade,
+        maxBuy,
+        liquidationPrice,
+        riskPercentage,
+        riskLevel,
+        availableBalance,
+        actualOrderAmount,
+        totalOrderValueUSD,
+        fiatDepositAmount,
+        selectedPaymentMethodIndex
+      ]);
 
   /// Create a copy of MarketsState
   /// with the given fields replaced by the non-null parameter values.
@@ -636,33 +623,32 @@ class _$MarketsStateImpl implements _MarketsState {
 }
 
 abstract class _MarketsState implements MarketsState {
-  const factory _MarketsState({
-    final MarketsStatus status,
-    final List<CoinResponseModel> coins,
-    final int currentPage,
-    final bool isLoadingMore,
-    final String? errorMessage,
-    final CoinResponseModel? fromCoin,
-    final CoinResponseModel? toCoin,
-    final double fromAmount,
-    final double toAmount,
-    final double rate,
-    final TradeStatus tradeStatus,
-    final String? tradeErrorMessage,
-    final double leverage,
-    final CoinResponseModel? selectedMarginCoin,
-    final MarginMode marginMode,
-    final double amountToTrade,
-    final double maxBuy,
-    final double liquidationPrice,
-    final double riskPercentage,
-    final RiskLevel riskLevel,
-    final double availableBalance,
-    final double actualOrderAmount,
-    final double totalOrderValueUSD,
-    final double fiatDepositAmount,
-    final int selectedPaymentMethodIndex,
-  }) = _$MarketsStateImpl;
+  const factory _MarketsState(
+      {final MarketsStatus status,
+      final List<CoinResponseModel> coins,
+      final int currentPage,
+      final bool isLoadingMore,
+      final String? errorMessage,
+      final CoinResponseModel? fromCoin,
+      final CoinResponseModel? toCoin,
+      final double fromAmount,
+      final double toAmount,
+      final double rate,
+      final TradeStatus tradeStatus,
+      final String? tradeErrorMessage,
+      final double leverage,
+      final CoinResponseModel? selectedMarginCoin,
+      final MarginMode marginMode,
+      final double amountToTrade,
+      final double maxBuy,
+      final double liquidationPrice,
+      final double riskPercentage,
+      final RiskLevel riskLevel,
+      final double availableBalance,
+      final double actualOrderAmount,
+      final double totalOrderValueUSD,
+      final double fiatDepositAmount,
+      final int selectedPaymentMethodIndex}) = _$MarketsStateImpl;
 
   @override
   MarketsStatus get status;

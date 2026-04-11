@@ -6,11 +6,14 @@ part of 'otp_models.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-SendOtpModel _$SendOtpModelFromJson(Map<String, dynamic> json) =>
-    SendOtpModel(phoneNumber: json['phoneNumber'] as String);
+SendOtpModel _$SendOtpModelFromJson(Map<String, dynamic> json) => SendOtpModel(
+      phoneNumber: json['phoneNumber'] as String,
+    );
 
 Map<String, dynamic> _$SendOtpModelToJson(SendOtpModel instance) =>
-    <String, dynamic>{'phoneNumber': instance.phoneNumber};
+    <String, dynamic>{
+      'phoneNumber': instance.phoneNumber,
+    };
 
 VerifyOtpModel _$VerifyOtpModelFromJson(Map<String, dynamic> json) =>
     VerifyOtpModel(

@@ -12,8 +12,7 @@ part of 'home_cubit.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
-);
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$HomeState {
@@ -35,13 +34,12 @@ abstract class $HomeStateCopyWith<$Res> {
   factory $HomeStateCopyWith(HomeState value, $Res Function(HomeState) then) =
       _$HomeStateCopyWithImpl<$Res, HomeState>;
   @useResult
-  $Res call({
-    HomeStatus topCoinsStatus,
-    HomeStatus recentCoinsStatus,
-    List<CoinResponseModel> recentCoins,
-    List<CoinResponseModel> topCoins,
-    String? errorMessage,
-  });
+  $Res call(
+      {HomeStatus topCoinsStatus,
+      HomeStatus recentCoinsStatus,
+      List<CoinResponseModel> recentCoins,
+      List<CoinResponseModel> topCoins,
+      String? errorMessage});
 }
 
 /// @nodoc
@@ -65,31 +63,28 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
     Object? topCoins = null,
     Object? errorMessage = freezed,
   }) {
-    return _then(
-      _value.copyWith(
-            topCoinsStatus: null == topCoinsStatus
-                ? _value.topCoinsStatus
-                : topCoinsStatus // ignore: cast_nullable_to_non_nullable
-                      as HomeStatus,
-            recentCoinsStatus: null == recentCoinsStatus
-                ? _value.recentCoinsStatus
-                : recentCoinsStatus // ignore: cast_nullable_to_non_nullable
-                      as HomeStatus,
-            recentCoins: null == recentCoins
-                ? _value.recentCoins
-                : recentCoins // ignore: cast_nullable_to_non_nullable
-                      as List<CoinResponseModel>,
-            topCoins: null == topCoins
-                ? _value.topCoins
-                : topCoins // ignore: cast_nullable_to_non_nullable
-                      as List<CoinResponseModel>,
-            errorMessage: freezed == errorMessage
-                ? _value.errorMessage
-                : errorMessage // ignore: cast_nullable_to_non_nullable
-                      as String?,
-          )
-          as $Val,
-    );
+    return _then(_value.copyWith(
+      topCoinsStatus: null == topCoinsStatus
+          ? _value.topCoinsStatus
+          : topCoinsStatus // ignore: cast_nullable_to_non_nullable
+              as HomeStatus,
+      recentCoinsStatus: null == recentCoinsStatus
+          ? _value.recentCoinsStatus
+          : recentCoinsStatus // ignore: cast_nullable_to_non_nullable
+              as HomeStatus,
+      recentCoins: null == recentCoins
+          ? _value.recentCoins
+          : recentCoins // ignore: cast_nullable_to_non_nullable
+              as List<CoinResponseModel>,
+      topCoins: null == topCoins
+          ? _value.topCoins
+          : topCoins // ignore: cast_nullable_to_non_nullable
+              as List<CoinResponseModel>,
+      errorMessage: freezed == errorMessage
+          ? _value.errorMessage
+          : errorMessage // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ) as $Val);
   }
 }
 
@@ -97,18 +92,16 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
 abstract class _$$HomeStateImplCopyWith<$Res>
     implements $HomeStateCopyWith<$Res> {
   factory _$$HomeStateImplCopyWith(
-    _$HomeStateImpl value,
-    $Res Function(_$HomeStateImpl) then,
-  ) = __$$HomeStateImplCopyWithImpl<$Res>;
+          _$HomeStateImpl value, $Res Function(_$HomeStateImpl) then) =
+      __$$HomeStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({
-    HomeStatus topCoinsStatus,
-    HomeStatus recentCoinsStatus,
-    List<CoinResponseModel> recentCoins,
-    List<CoinResponseModel> topCoins,
-    String? errorMessage,
-  });
+  $Res call(
+      {HomeStatus topCoinsStatus,
+      HomeStatus recentCoinsStatus,
+      List<CoinResponseModel> recentCoins,
+      List<CoinResponseModel> topCoins,
+      String? errorMessage});
 }
 
 /// @nodoc
@@ -116,9 +109,8 @@ class __$$HomeStateImplCopyWithImpl<$Res>
     extends _$HomeStateCopyWithImpl<$Res, _$HomeStateImpl>
     implements _$$HomeStateImplCopyWith<$Res> {
   __$$HomeStateImplCopyWithImpl(
-    _$HomeStateImpl _value,
-    $Res Function(_$HomeStateImpl) _then,
-  ) : super(_value, _then);
+      _$HomeStateImpl _value, $Res Function(_$HomeStateImpl) _then)
+      : super(_value, _then);
 
   /// Create a copy of HomeState
   /// with the given fields replaced by the non-null parameter values.
@@ -131,44 +123,42 @@ class __$$HomeStateImplCopyWithImpl<$Res>
     Object? topCoins = null,
     Object? errorMessage = freezed,
   }) {
-    return _then(
-      _$HomeStateImpl(
-        topCoinsStatus: null == topCoinsStatus
-            ? _value.topCoinsStatus
-            : topCoinsStatus // ignore: cast_nullable_to_non_nullable
-                  as HomeStatus,
-        recentCoinsStatus: null == recentCoinsStatus
-            ? _value.recentCoinsStatus
-            : recentCoinsStatus // ignore: cast_nullable_to_non_nullable
-                  as HomeStatus,
-        recentCoins: null == recentCoins
-            ? _value._recentCoins
-            : recentCoins // ignore: cast_nullable_to_non_nullable
-                  as List<CoinResponseModel>,
-        topCoins: null == topCoins
-            ? _value._topCoins
-            : topCoins // ignore: cast_nullable_to_non_nullable
-                  as List<CoinResponseModel>,
-        errorMessage: freezed == errorMessage
-            ? _value.errorMessage
-            : errorMessage // ignore: cast_nullable_to_non_nullable
-                  as String?,
-      ),
-    );
+    return _then(_$HomeStateImpl(
+      topCoinsStatus: null == topCoinsStatus
+          ? _value.topCoinsStatus
+          : topCoinsStatus // ignore: cast_nullable_to_non_nullable
+              as HomeStatus,
+      recentCoinsStatus: null == recentCoinsStatus
+          ? _value.recentCoinsStatus
+          : recentCoinsStatus // ignore: cast_nullable_to_non_nullable
+              as HomeStatus,
+      recentCoins: null == recentCoins
+          ? _value._recentCoins
+          : recentCoins // ignore: cast_nullable_to_non_nullable
+              as List<CoinResponseModel>,
+      topCoins: null == topCoins
+          ? _value._topCoins
+          : topCoins // ignore: cast_nullable_to_non_nullable
+              as List<CoinResponseModel>,
+      errorMessage: freezed == errorMessage
+          ? _value.errorMessage
+          : errorMessage // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
   }
 }
 
 /// @nodoc
 
 class _$HomeStateImpl implements _HomeState {
-  const _$HomeStateImpl({
-    this.topCoinsStatus = HomeStatus.initial,
-    this.recentCoinsStatus = HomeStatus.initial,
-    final List<CoinResponseModel> recentCoins = const [],
-    final List<CoinResponseModel> topCoins = const [],
-    this.errorMessage,
-  }) : _recentCoins = recentCoins,
-       _topCoins = topCoins;
+  const _$HomeStateImpl(
+      {this.topCoinsStatus = HomeStatus.initial,
+      this.recentCoinsStatus = HomeStatus.initial,
+      final List<CoinResponseModel> recentCoins = const [],
+      final List<CoinResponseModel> topCoins = const [],
+      this.errorMessage})
+      : _recentCoins = recentCoins,
+        _topCoins = topCoins;
 
   @override
   @JsonKey()
@@ -211,10 +201,8 @@ class _$HomeStateImpl implements _HomeState {
                 other.topCoinsStatus == topCoinsStatus) &&
             (identical(other.recentCoinsStatus, recentCoinsStatus) ||
                 other.recentCoinsStatus == recentCoinsStatus) &&
-            const DeepCollectionEquality().equals(
-              other._recentCoins,
-              _recentCoins,
-            ) &&
+            const DeepCollectionEquality()
+                .equals(other._recentCoins, _recentCoins) &&
             const DeepCollectionEquality().equals(other._topCoins, _topCoins) &&
             (identical(other.errorMessage, errorMessage) ||
                 other.errorMessage == errorMessage));
@@ -222,13 +210,12 @@ class _$HomeStateImpl implements _HomeState {
 
   @override
   int get hashCode => Object.hash(
-    runtimeType,
-    topCoinsStatus,
-    recentCoinsStatus,
-    const DeepCollectionEquality().hash(_recentCoins),
-    const DeepCollectionEquality().hash(_topCoins),
-    errorMessage,
-  );
+      runtimeType,
+      topCoinsStatus,
+      recentCoinsStatus,
+      const DeepCollectionEquality().hash(_recentCoins),
+      const DeepCollectionEquality().hash(_topCoins),
+      errorMessage);
 
   /// Create a copy of HomeState
   /// with the given fields replaced by the non-null parameter values.
@@ -240,13 +227,12 @@ class _$HomeStateImpl implements _HomeState {
 }
 
 abstract class _HomeState implements HomeState {
-  const factory _HomeState({
-    final HomeStatus topCoinsStatus,
-    final HomeStatus recentCoinsStatus,
-    final List<CoinResponseModel> recentCoins,
-    final List<CoinResponseModel> topCoins,
-    final String? errorMessage,
-  }) = _$HomeStateImpl;
+  const factory _HomeState(
+      {final HomeStatus topCoinsStatus,
+      final HomeStatus recentCoinsStatus,
+      final List<CoinResponseModel> recentCoins,
+      final List<CoinResponseModel> topCoins,
+      final String? errorMessage}) = _$HomeStateImpl;
 
   @override
   HomeStatus get topCoinsStatus;

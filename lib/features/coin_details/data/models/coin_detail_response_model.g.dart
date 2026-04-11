@@ -7,30 +7,28 @@ part of 'coin_detail_response_model.dart';
 // **************************************************************************
 
 CoinDetailResponseModel _$CoinDetailResponseModelFromJson(
-  Map<String, dynamic> json,
-) => CoinDetailResponseModel(
-  id: json['id'] as String,
-  symbol: json['symbol'] as String,
-  name: json['name'] as String,
-  image: CoinImageModel.fromJson(json['image'] as Map<String, dynamic>),
-  description: CoinDescriptionModel.fromJson(
-    json['description'] as Map<String, dynamic>,
-  ),
-  marketData: MarketDataModel.fromJson(
-    json['market_data'] as Map<String, dynamic>,
-  ),
-);
+        Map<String, dynamic> json) =>
+    CoinDetailResponseModel(
+      id: json['id'] as String,
+      symbol: json['symbol'] as String,
+      name: json['name'] as String,
+      image: CoinImageModel.fromJson(json['image'] as Map<String, dynamic>),
+      description: CoinDescriptionModel.fromJson(
+          json['description'] as Map<String, dynamic>),
+      marketData:
+          MarketDataModel.fromJson(json['market_data'] as Map<String, dynamic>),
+    );
 
 Map<String, dynamic> _$CoinDetailResponseModelToJson(
-  CoinDetailResponseModel instance,
-) => <String, dynamic>{
-  'id': instance.id,
-  'symbol': instance.symbol,
-  'name': instance.name,
-  'image': instance.image,
-  'description': instance.description,
-  'market_data': instance.marketData,
-};
+        CoinDetailResponseModel instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'symbol': instance.symbol,
+      'name': instance.name,
+      'image': instance.image,
+      'description': instance.description,
+      'market_data': instance.marketData,
+    };
 
 CoinImageModel _$CoinImageModelFromJson(Map<String, dynamic> json) =>
     CoinImageModel(
@@ -47,12 +45,16 @@ Map<String, dynamic> _$CoinImageModelToJson(CoinImageModel instance) =>
     };
 
 CoinDescriptionModel _$CoinDescriptionModelFromJson(
-  Map<String, dynamic> json,
-) => CoinDescriptionModel(en: json['en'] as String);
+        Map<String, dynamic> json) =>
+    CoinDescriptionModel(
+      en: json['en'] as String,
+    );
 
 Map<String, dynamic> _$CoinDescriptionModelToJson(
-  CoinDescriptionModel instance,
-) => <String, dynamic>{'en': instance.en};
+        CoinDescriptionModel instance) =>
+    <String, dynamic>{
+      'en': instance.en,
+    };
 
 MarketDataModel _$MarketDataModelFromJson(Map<String, dynamic> json) =>
     MarketDataModel(
@@ -69,8 +71,8 @@ MarketDataModel _$MarketDataModelFromJson(Map<String, dynamic> json) =>
       ath: (json['ath'] as Map<String, dynamic>).map(
         (k, e) => MapEntry(k, (e as num).toDouble()),
       ),
-      priceChangePercentage24h: (json['price_change_percentage_24h'] as num)
-          .toDouble(),
+      priceChangePercentage24h:
+          (json['price_change_percentage_24h'] as num).toDouble(),
       high24h: (json['high_24h'] as Map<String, dynamic>).map(
         (k, e) => MapEntry(k, (e as num).toDouble()),
       ),

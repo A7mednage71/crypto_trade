@@ -1,4 +1,5 @@
 import 'package:crypto_trade/core/export.dart';
+import 'package:crypto_trade/features/coin_details/data/models/coin_details_args.dart';
 import 'package:crypto_trade/features/home/data/models/coin_response_model.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +17,10 @@ class CoinCardWidget extends StatelessWidget {
         : AppColors.error;
     return InkWell(
       onTap: () {
-        context.pushNamed(Routes.coinDetailsScreen, arguments: coin.id);
+        context.pushNamed(
+          Routes.coinDetailsScreen,
+          arguments: CoinDetailsArgs(coinId: coin.id, coinName: coin.name),
+        );
       },
       child: Container(
         width: 170.w,

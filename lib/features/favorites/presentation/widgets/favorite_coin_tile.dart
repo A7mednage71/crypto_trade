@@ -1,4 +1,5 @@
 import 'package:crypto_trade/core/export.dart';
+import 'package:crypto_trade/features/coin_details/data/models/coin_details_args.dart';
 import 'package:crypto_trade/features/favorites/data/models/favorite_coin_model.dart';
 import 'package:crypto_trade/features/favorites/presentation/cubits/favorite_cubit/favorite_cubit.dart';
 import 'package:flutter/material.dart';
@@ -37,7 +38,10 @@ class FavoriteCoinTile extends StatelessWidget {
       ),
       child: InkWell(
         onTap: () {
-          context.pushNamed(Routes.coinDetailsScreen, arguments: coin.id);
+          context.pushNamed(
+            Routes.coinDetailsScreen,
+            arguments: CoinDetailsArgs(coinId: coin.id, coinName: coin.name),
+          );
         },
         borderRadius: BorderRadius.circular(16.r),
         child: Container(

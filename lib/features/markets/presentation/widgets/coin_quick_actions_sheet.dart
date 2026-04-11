@@ -1,5 +1,6 @@
 import 'package:crypto_trade/core/export.dart';
 import 'package:crypto_trade/core/mappers/favorite_mapper.dart';
+import 'package:crypto_trade/features/coin_details/data/models/coin_details_args.dart';
 import 'package:crypto_trade/features/favorites/presentation/cubits/favorite_cubit/favorite_cubit.dart';
 import 'package:crypto_trade/features/favorites/presentation/cubits/favorite_cubit/favorite_state.dart';
 import 'package:crypto_trade/features/home/data/models/coin_response_model.dart';
@@ -113,7 +114,10 @@ class CoinQuickActionsSheet extends StatelessWidget {
                   context.pop();
                   context.pushNamed(
                     Routes.coinDetailsScreen,
-                    arguments: coin.id,
+                    arguments: CoinDetailsArgs(
+                      coinId: coin.id,
+                      coinName: coin.name,
+                    ),
                   );
                 },
               ),

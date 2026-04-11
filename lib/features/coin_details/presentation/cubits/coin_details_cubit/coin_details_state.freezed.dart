@@ -12,8 +12,7 @@ part of 'coin_details_state.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
-);
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$CoinDetailsState {
@@ -33,16 +32,14 @@ mixin _$CoinDetailsState {
 /// @nodoc
 abstract class $CoinDetailsStateCopyWith<$Res> {
   factory $CoinDetailsStateCopyWith(
-    CoinDetailsState value,
-    $Res Function(CoinDetailsState) then,
-  ) = _$CoinDetailsStateCopyWithImpl<$Res, CoinDetailsState>;
+          CoinDetailsState value, $Res Function(CoinDetailsState) then) =
+      _$CoinDetailsStateCopyWithImpl<$Res, CoinDetailsState>;
   @useResult
-  $Res call({
-    CoinDetailsStatus status,
-    CoinDetailResponseModel? coinDetails,
-    MarketChartResponseModel? chartData,
-    String? errorMessage,
-  });
+  $Res call(
+      {CoinDetailsStatus status,
+      CoinDetailResponseModel? coinDetails,
+      MarketChartResponseModel? chartData,
+      String? errorMessage});
 }
 
 /// @nodoc
@@ -65,55 +62,49 @@ class _$CoinDetailsStateCopyWithImpl<$Res, $Val extends CoinDetailsState>
     Object? chartData = freezed,
     Object? errorMessage = freezed,
   }) {
-    return _then(
-      _value.copyWith(
-            status: null == status
-                ? _value.status
-                : status // ignore: cast_nullable_to_non_nullable
-                      as CoinDetailsStatus,
-            coinDetails: freezed == coinDetails
-                ? _value.coinDetails
-                : coinDetails // ignore: cast_nullable_to_non_nullable
-                      as CoinDetailResponseModel?,
-            chartData: freezed == chartData
-                ? _value.chartData
-                : chartData // ignore: cast_nullable_to_non_nullable
-                      as MarketChartResponseModel?,
-            errorMessage: freezed == errorMessage
-                ? _value.errorMessage
-                : errorMessage // ignore: cast_nullable_to_non_nullable
-                      as String?,
-          )
-          as $Val,
-    );
+    return _then(_value.copyWith(
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as CoinDetailsStatus,
+      coinDetails: freezed == coinDetails
+          ? _value.coinDetails
+          : coinDetails // ignore: cast_nullable_to_non_nullable
+              as CoinDetailResponseModel?,
+      chartData: freezed == chartData
+          ? _value.chartData
+          : chartData // ignore: cast_nullable_to_non_nullable
+              as MarketChartResponseModel?,
+      errorMessage: freezed == errorMessage
+          ? _value.errorMessage
+          : errorMessage // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ) as $Val);
   }
 }
 
 /// @nodoc
 abstract class _$$CoinDetailsStateImplCopyWith<$Res>
     implements $CoinDetailsStateCopyWith<$Res> {
-  factory _$$CoinDetailsStateImplCopyWith(
-    _$CoinDetailsStateImpl value,
-    $Res Function(_$CoinDetailsStateImpl) then,
-  ) = __$$CoinDetailsStateImplCopyWithImpl<$Res>;
+  factory _$$CoinDetailsStateImplCopyWith(_$CoinDetailsStateImpl value,
+          $Res Function(_$CoinDetailsStateImpl) then) =
+      __$$CoinDetailsStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({
-    CoinDetailsStatus status,
-    CoinDetailResponseModel? coinDetails,
-    MarketChartResponseModel? chartData,
-    String? errorMessage,
-  });
+  $Res call(
+      {CoinDetailsStatus status,
+      CoinDetailResponseModel? coinDetails,
+      MarketChartResponseModel? chartData,
+      String? errorMessage});
 }
 
 /// @nodoc
 class __$$CoinDetailsStateImplCopyWithImpl<$Res>
     extends _$CoinDetailsStateCopyWithImpl<$Res, _$CoinDetailsStateImpl>
     implements _$$CoinDetailsStateImplCopyWith<$Res> {
-  __$$CoinDetailsStateImplCopyWithImpl(
-    _$CoinDetailsStateImpl _value,
-    $Res Function(_$CoinDetailsStateImpl) _then,
-  ) : super(_value, _then);
+  __$$CoinDetailsStateImplCopyWithImpl(_$CoinDetailsStateImpl _value,
+      $Res Function(_$CoinDetailsStateImpl) _then)
+      : super(_value, _then);
 
   /// Create a copy of CoinDetailsState
   /// with the given fields replaced by the non-null parameter values.
@@ -125,38 +116,35 @@ class __$$CoinDetailsStateImplCopyWithImpl<$Res>
     Object? chartData = freezed,
     Object? errorMessage = freezed,
   }) {
-    return _then(
-      _$CoinDetailsStateImpl(
-        status: null == status
-            ? _value.status
-            : status // ignore: cast_nullable_to_non_nullable
-                  as CoinDetailsStatus,
-        coinDetails: freezed == coinDetails
-            ? _value.coinDetails
-            : coinDetails // ignore: cast_nullable_to_non_nullable
-                  as CoinDetailResponseModel?,
-        chartData: freezed == chartData
-            ? _value.chartData
-            : chartData // ignore: cast_nullable_to_non_nullable
-                  as MarketChartResponseModel?,
-        errorMessage: freezed == errorMessage
-            ? _value.errorMessage
-            : errorMessage // ignore: cast_nullable_to_non_nullable
-                  as String?,
-      ),
-    );
+    return _then(_$CoinDetailsStateImpl(
+      status: null == status
+          ? _value.status
+          : status // ignore: cast_nullable_to_non_nullable
+              as CoinDetailsStatus,
+      coinDetails: freezed == coinDetails
+          ? _value.coinDetails
+          : coinDetails // ignore: cast_nullable_to_non_nullable
+              as CoinDetailResponseModel?,
+      chartData: freezed == chartData
+          ? _value.chartData
+          : chartData // ignore: cast_nullable_to_non_nullable
+              as MarketChartResponseModel?,
+      errorMessage: freezed == errorMessage
+          ? _value.errorMessage
+          : errorMessage // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
   }
 }
 
 /// @nodoc
 
 class _$CoinDetailsStateImpl implements _CoinDetailsState {
-  const _$CoinDetailsStateImpl({
-    this.status = CoinDetailsStatus.initial,
-    this.coinDetails,
-    this.chartData,
-    this.errorMessage,
-  });
+  const _$CoinDetailsStateImpl(
+      {this.status = CoinDetailsStatus.initial,
+      this.coinDetails,
+      this.chartData,
+      this.errorMessage});
 
   @override
   @JsonKey()
@@ -198,18 +186,15 @@ class _$CoinDetailsStateImpl implements _CoinDetailsState {
   @pragma('vm:prefer-inline')
   _$$CoinDetailsStateImplCopyWith<_$CoinDetailsStateImpl> get copyWith =>
       __$$CoinDetailsStateImplCopyWithImpl<_$CoinDetailsStateImpl>(
-        this,
-        _$identity,
-      );
+          this, _$identity);
 }
 
 abstract class _CoinDetailsState implements CoinDetailsState {
-  const factory _CoinDetailsState({
-    final CoinDetailsStatus status,
-    final CoinDetailResponseModel? coinDetails,
-    final MarketChartResponseModel? chartData,
-    final String? errorMessage,
-  }) = _$CoinDetailsStateImpl;
+  const factory _CoinDetailsState(
+      {final CoinDetailsStatus status,
+      final CoinDetailResponseModel? coinDetails,
+      final MarketChartResponseModel? chartData,
+      final String? errorMessage}) = _$CoinDetailsStateImpl;
 
   @override
   CoinDetailsStatus get status;
