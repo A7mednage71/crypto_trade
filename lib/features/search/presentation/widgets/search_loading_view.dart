@@ -15,6 +15,7 @@ class SearchLoadingView extends StatelessWidget {
         name: 'Bitcoin',
         symbol: 'BTC',
         thumbImageUrl: '',
+        largeImageUrl: '',
         marketCapRank: 1,
       ),
       SearchResultModel(
@@ -22,6 +23,7 @@ class SearchLoadingView extends StatelessWidget {
         name: 'Ethereum',
         symbol: 'ETH',
         thumbImageUrl: '',
+        largeImageUrl: '',
         marketCapRank: 2,
       ),
       SearchResultModel(
@@ -29,6 +31,7 @@ class SearchLoadingView extends StatelessWidget {
         name: 'Binance Coin',
         symbol: 'BNB',
         thumbImageUrl: '',
+        largeImageUrl: '',
         marketCapRank: 3,
       ),
       SearchResultModel(
@@ -36,6 +39,7 @@ class SearchLoadingView extends StatelessWidget {
         name: 'Solana',
         symbol: 'SOL',
         thumbImageUrl: '',
+        largeImageUrl: '',
         marketCapRank: 4,
       ),
       SearchResultModel(
@@ -43,6 +47,7 @@ class SearchLoadingView extends StatelessWidget {
         name: 'Cardano',
         symbol: 'ADA',
         thumbImageUrl: '',
+        largeImageUrl: '',
         marketCapRank: 5,
       ),
       SearchResultModel(
@@ -50,6 +55,7 @@ class SearchLoadingView extends StatelessWidget {
         name: 'Ripple',
         symbol: 'XRP',
         thumbImageUrl: '',
+        largeImageUrl: '',
         marketCapRank: 6,
       ),
     ];

@@ -50,7 +50,7 @@ class SearchCoinTile extends StatelessWidget {
               verticalSpace(8),
               Center(
                 child: CustomNetworkImage(
-                  imageUrl: coin.thumbImageUrl,
+                  imageUrl: coin.largeImageUrl,
                   height: 48.r,
                   width: 48.r,
                   borderRadius: BorderRadius.circular(48.r),

@@ -12,6 +12,7 @@ SearchResultModel _$SearchResultModelFromJson(Map<String, dynamic> json) =>
       name: json['name'] as String,
       symbol: json['symbol'] as String,
       thumbImageUrl: json['thumb'] as String,
+      largeImageUrl: json['large'] as String,
       marketCapRank: (json['market_cap_rank'] as num?)?.toInt(),
     );
 
@@ -21,6 +22,7 @@ Map<String, dynamic> _$SearchResultModelToJson(SearchResultModel instance) =>
       'name': instance.name,
       'symbol': instance.symbol,
       'thumb': instance.thumbImageUrl,
+      'large': instance.largeImageUrl,
       'market_cap_rank': instance.marketCapRank,
     };
 

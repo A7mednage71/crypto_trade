@@ -10,6 +10,8 @@ class SearchResultModel {
 
   @JsonKey(name: 'thumb')
   final String thumbImageUrl;
+  @JsonKey(name: 'large')
+  final String largeImageUrl;
 
   @JsonKey(name: 'market_cap_rank')
   final int? marketCapRank;
@@ -19,6 +21,7 @@ class SearchResultModel {
     required this.name,
     required this.symbol,
     required this.thumbImageUrl,
+    required this.largeImageUrl,
     this.marketCapRank,
   });
 
