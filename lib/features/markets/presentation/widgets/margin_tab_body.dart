@@ -1,4 +1,6 @@
 import 'package:crypto_trade/core/helpers/space_helper.dart';
+import 'package:crypto_trade/features/markets/presentation/cubits/margin_cubit/margin_cubit.dart';
+import 'package:crypto_trade/features/markets/presentation/cubits/markets_cubit/markets_cubit.dart';
 import 'package:crypto_trade/features/markets/presentation/widgets/leverage_selector_slider.dart';
 import 'package:crypto_trade/features/markets/presentation/widgets/margin_action_section.dart';
 import 'package:crypto_trade/features/markets/presentation/widgets/margin_amount_input_card.dart';
@@ -6,10 +8,25 @@ import 'package:crypto_trade/features/markets/presentation/widgets/margin_detail
 import 'package:crypto_trade/features/markets/presentation/widgets/margin_header_selector.dart';
 import 'package:crypto_trade/features/markets/presentation/widgets/margin_risk_meter.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class MarginTabBody extends StatelessWidget {
+class MarginTabBody extends StatefulWidget {
   const MarginTabBody({super.key});
+
+  @override
+  State<MarginTabBody> createState() => _MarginTabBodyState();
+}
+
+class _MarginTabBodyState extends State<MarginTabBody> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final balance = context.read<MarketsCubit>().state.availableBalance;
+      context.read<MarginCubit>().updateAvailableBalance(balance);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {

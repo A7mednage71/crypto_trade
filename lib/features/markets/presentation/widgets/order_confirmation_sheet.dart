@@ -3,7 +3,8 @@ import 'package:crypto_trade/core/utils/constant/app_color.dart';
 import 'package:crypto_trade/core/utils/constant/app_style.dart';
 import 'package:crypto_trade/core/utils/enums/trade_side.dart';
 import 'package:crypto_trade/core/utils/widgets/custom_text_button.dart';
-import 'package:crypto_trade/features/markets/presentation/cubits/markets_cubit/markets_cubit.dart';
+import 'package:crypto_trade/features/markets/presentation/cubits/margin_cubit/margin_cubit.dart';
+import 'package:crypto_trade/features/markets/presentation/cubits/margin_cubit/margin_state.dart';
 import 'package:crypto_trade/features/markets/presentation/widgets/liquidation_warning_box.dart';
 import 'package:crypto_trade/features/markets/presentation/widgets/order_summary_row.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +18,7 @@ class OrderConfirmationSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<MarketsCubit, MarketsState>(
+    return BlocBuilder<MarginCubit, MarginState>(
       builder: (context, state) {
         return Padding(
           padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 24.h),
@@ -64,11 +65,11 @@ class _ConfirmOrderButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isLoading = context.select(
-      (MarketsCubit c) => c.state.tradeStatus == TradeStatus.loading,
+      (MarginCubit c) => c.state.tradeStatus == TradeStatus.loading,
     );
 
     return CustomTextButton(
-      onPressed: () => context.read<MarketsCubit>().openMarginPosition(side),
+      onPressed: () => context.read<MarginCubit>().openMarginPosition(side),
       text: 'Confirm ${side.isLong ? "Long" : "Short"}',
       isLoading: isLoading,
       background: side.isLong ? AppColors.success : AppColors.danger,

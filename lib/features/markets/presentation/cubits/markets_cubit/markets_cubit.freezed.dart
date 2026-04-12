@@ -20,22 +20,8 @@ mixin _$MarketsState {
   List<CoinResponseModel> get coins => throw _privateConstructorUsedError;
   int get currentPage => throw _privateConstructorUsedError;
   bool get isLoadingMore => throw _privateConstructorUsedError;
-  String? get errorMessage =>
-      throw _privateConstructorUsedError; // margin fields and trade status
-  TradeStatus get tradeStatus => throw _privateConstructorUsedError;
-  String? get tradeErrorMessage => throw _privateConstructorUsedError;
-  double get leverage => throw _privateConstructorUsedError;
-  CoinResponseModel? get selectedMarginCoin =>
-      throw _privateConstructorUsedError;
-  MarginMode get marginMode => throw _privateConstructorUsedError;
-  double get amountToTrade => throw _privateConstructorUsedError;
-  double get maxBuy => throw _privateConstructorUsedError;
-  double get liquidationPrice => throw _privateConstructorUsedError;
-  double get riskPercentage => throw _privateConstructorUsedError;
-  RiskLevel get riskLevel => throw _privateConstructorUsedError;
+  String? get errorMessage => throw _privateConstructorUsedError;
   double get availableBalance => throw _privateConstructorUsedError;
-  double get actualOrderAmount => throw _privateConstructorUsedError;
-  double get totalOrderValueUSD => throw _privateConstructorUsedError;
 
   /// Create a copy of MarketsState
   /// with the given fields replaced by the non-null parameter values.
@@ -56,19 +42,7 @@ abstract class $MarketsStateCopyWith<$Res> {
       int currentPage,
       bool isLoadingMore,
       String? errorMessage,
-      TradeStatus tradeStatus,
-      String? tradeErrorMessage,
-      double leverage,
-      CoinResponseModel? selectedMarginCoin,
-      MarginMode marginMode,
-      double amountToTrade,
-      double maxBuy,
-      double liquidationPrice,
-      double riskPercentage,
-      RiskLevel riskLevel,
-      double availableBalance,
-      double actualOrderAmount,
-      double totalOrderValueUSD});
+      double availableBalance});
 }
 
 /// @nodoc
@@ -91,19 +65,7 @@ class _$MarketsStateCopyWithImpl<$Res, $Val extends MarketsState>
     Object? currentPage = null,
     Object? isLoadingMore = null,
     Object? errorMessage = freezed,
-    Object? tradeStatus = null,
-    Object? tradeErrorMessage = freezed,
-    Object? leverage = null,
-    Object? selectedMarginCoin = freezed,
-    Object? marginMode = null,
-    Object? amountToTrade = null,
-    Object? maxBuy = null,
-    Object? liquidationPrice = null,
-    Object? riskPercentage = null,
-    Object? riskLevel = null,
     Object? availableBalance = null,
-    Object? actualOrderAmount = null,
-    Object? totalOrderValueUSD = null,
   }) {
     return _then(_value.copyWith(
       status: null == status
@@ -126,57 +88,9 @@ class _$MarketsStateCopyWithImpl<$Res, $Val extends MarketsState>
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
               as String?,
-      tradeStatus: null == tradeStatus
-          ? _value.tradeStatus
-          : tradeStatus // ignore: cast_nullable_to_non_nullable
-              as TradeStatus,
-      tradeErrorMessage: freezed == tradeErrorMessage
-          ? _value.tradeErrorMessage
-          : tradeErrorMessage // ignore: cast_nullable_to_non_nullable
-              as String?,
-      leverage: null == leverage
-          ? _value.leverage
-          : leverage // ignore: cast_nullable_to_non_nullable
-              as double,
-      selectedMarginCoin: freezed == selectedMarginCoin
-          ? _value.selectedMarginCoin
-          : selectedMarginCoin // ignore: cast_nullable_to_non_nullable
-              as CoinResponseModel?,
-      marginMode: null == marginMode
-          ? _value.marginMode
-          : marginMode // ignore: cast_nullable_to_non_nullable
-              as MarginMode,
-      amountToTrade: null == amountToTrade
-          ? _value.amountToTrade
-          : amountToTrade // ignore: cast_nullable_to_non_nullable
-              as double,
-      maxBuy: null == maxBuy
-          ? _value.maxBuy
-          : maxBuy // ignore: cast_nullable_to_non_nullable
-              as double,
-      liquidationPrice: null == liquidationPrice
-          ? _value.liquidationPrice
-          : liquidationPrice // ignore: cast_nullable_to_non_nullable
-              as double,
-      riskPercentage: null == riskPercentage
-          ? _value.riskPercentage
-          : riskPercentage // ignore: cast_nullable_to_non_nullable
-              as double,
-      riskLevel: null == riskLevel
-          ? _value.riskLevel
-          : riskLevel // ignore: cast_nullable_to_non_nullable
-              as RiskLevel,
       availableBalance: null == availableBalance
           ? _value.availableBalance
           : availableBalance // ignore: cast_nullable_to_non_nullable
-              as double,
-      actualOrderAmount: null == actualOrderAmount
-          ? _value.actualOrderAmount
-          : actualOrderAmount // ignore: cast_nullable_to_non_nullable
-              as double,
-      totalOrderValueUSD: null == totalOrderValueUSD
-          ? _value.totalOrderValueUSD
-          : totalOrderValueUSD // ignore: cast_nullable_to_non_nullable
               as double,
     ) as $Val);
   }
@@ -196,19 +110,7 @@ abstract class _$$MarketsStateImplCopyWith<$Res>
       int currentPage,
       bool isLoadingMore,
       String? errorMessage,
-      TradeStatus tradeStatus,
-      String? tradeErrorMessage,
-      double leverage,
-      CoinResponseModel? selectedMarginCoin,
-      MarginMode marginMode,
-      double amountToTrade,
-      double maxBuy,
-      double liquidationPrice,
-      double riskPercentage,
-      RiskLevel riskLevel,
-      double availableBalance,
-      double actualOrderAmount,
-      double totalOrderValueUSD});
+      double availableBalance});
 }
 
 /// @nodoc
@@ -229,19 +131,7 @@ class __$$MarketsStateImplCopyWithImpl<$Res>
     Object? currentPage = null,
     Object? isLoadingMore = null,
     Object? errorMessage = freezed,
-    Object? tradeStatus = null,
-    Object? tradeErrorMessage = freezed,
-    Object? leverage = null,
-    Object? selectedMarginCoin = freezed,
-    Object? marginMode = null,
-    Object? amountToTrade = null,
-    Object? maxBuy = null,
-    Object? liquidationPrice = null,
-    Object? riskPercentage = null,
-    Object? riskLevel = null,
     Object? availableBalance = null,
-    Object? actualOrderAmount = null,
-    Object? totalOrderValueUSD = null,
   }) {
     return _then(_$MarketsStateImpl(
       status: null == status
@@ -264,57 +154,9 @@ class __$$MarketsStateImplCopyWithImpl<$Res>
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
               as String?,
-      tradeStatus: null == tradeStatus
-          ? _value.tradeStatus
-          : tradeStatus // ignore: cast_nullable_to_non_nullable
-              as TradeStatus,
-      tradeErrorMessage: freezed == tradeErrorMessage
-          ? _value.tradeErrorMessage
-          : tradeErrorMessage // ignore: cast_nullable_to_non_nullable
-              as String?,
-      leverage: null == leverage
-          ? _value.leverage
-          : leverage // ignore: cast_nullable_to_non_nullable
-              as double,
-      selectedMarginCoin: freezed == selectedMarginCoin
-          ? _value.selectedMarginCoin
-          : selectedMarginCoin // ignore: cast_nullable_to_non_nullable
-              as CoinResponseModel?,
-      marginMode: null == marginMode
-          ? _value.marginMode
-          : marginMode // ignore: cast_nullable_to_non_nullable
-              as MarginMode,
-      amountToTrade: null == amountToTrade
-          ? _value.amountToTrade
-          : amountToTrade // ignore: cast_nullable_to_non_nullable
-              as double,
-      maxBuy: null == maxBuy
-          ? _value.maxBuy
-          : maxBuy // ignore: cast_nullable_to_non_nullable
-              as double,
-      liquidationPrice: null == liquidationPrice
-          ? _value.liquidationPrice
-          : liquidationPrice // ignore: cast_nullable_to_non_nullable
-              as double,
-      riskPercentage: null == riskPercentage
-          ? _value.riskPercentage
-          : riskPercentage // ignore: cast_nullable_to_non_nullable
-              as double,
-      riskLevel: null == riskLevel
-          ? _value.riskLevel
-          : riskLevel // ignore: cast_nullable_to_non_nullable
-              as RiskLevel,
       availableBalance: null == availableBalance
           ? _value.availableBalance
           : availableBalance // ignore: cast_nullable_to_non_nullable
-              as double,
-      actualOrderAmount: null == actualOrderAmount
-          ? _value.actualOrderAmount
-          : actualOrderAmount // ignore: cast_nullable_to_non_nullable
-              as double,
-      totalOrderValueUSD: null == totalOrderValueUSD
-          ? _value.totalOrderValueUSD
-          : totalOrderValueUSD // ignore: cast_nullable_to_non_nullable
               as double,
     ));
   }
@@ -329,19 +171,7 @@ class _$MarketsStateImpl implements _MarketsState {
       this.currentPage = 1,
       this.isLoadingMore = false,
       this.errorMessage,
-      this.tradeStatus = TradeStatus.initial,
-      this.tradeErrorMessage,
-      this.leverage = 1.0,
-      this.selectedMarginCoin,
-      this.marginMode = MarginMode.cross,
-      this.amountToTrade = 0.0,
-      this.maxBuy = 0.0,
-      this.liquidationPrice = 0.0,
-      this.riskPercentage = 0.0,
-      this.riskLevel = RiskLevel.low,
-      this.availableBalance = 1234.56,
-      this.actualOrderAmount = 0.0,
-      this.totalOrderValueUSD = 0.0})
+      this.availableBalance = 1234.56})
       : _coins = coins;
 
   @override
@@ -364,48 +194,13 @@ class _$MarketsStateImpl implements _MarketsState {
   final bool isLoadingMore;
   @override
   final String? errorMessage;
-// margin fields and trade status
-  @override
-  @JsonKey()
-  final TradeStatus tradeStatus;
-  @override
-  final String? tradeErrorMessage;
-  @override
-  @JsonKey()
-  final double leverage;
-  @override
-  final CoinResponseModel? selectedMarginCoin;
-  @override
-  @JsonKey()
-  final MarginMode marginMode;
-  @override
-  @JsonKey()
-  final double amountToTrade;
-  @override
-  @JsonKey()
-  final double maxBuy;
-  @override
-  @JsonKey()
-  final double liquidationPrice;
-  @override
-  @JsonKey()
-  final double riskPercentage;
-  @override
-  @JsonKey()
-  final RiskLevel riskLevel;
   @override
   @JsonKey()
   final double availableBalance;
-  @override
-  @JsonKey()
-  final double actualOrderAmount;
-  @override
-  @JsonKey()
-  final double totalOrderValueUSD;
 
   @override
   String toString() {
-    return 'MarketsState(status: $status, coins: $coins, currentPage: $currentPage, isLoadingMore: $isLoadingMore, errorMessage: $errorMessage, tradeStatus: $tradeStatus, tradeErrorMessage: $tradeErrorMessage, leverage: $leverage, selectedMarginCoin: $selectedMarginCoin, marginMode: $marginMode, amountToTrade: $amountToTrade, maxBuy: $maxBuy, liquidationPrice: $liquidationPrice, riskPercentage: $riskPercentage, riskLevel: $riskLevel, availableBalance: $availableBalance, actualOrderAmount: $actualOrderAmount, totalOrderValueUSD: $totalOrderValueUSD)';
+    return 'MarketsState(status: $status, coins: $coins, currentPage: $currentPage, isLoadingMore: $isLoadingMore, errorMessage: $errorMessage, availableBalance: $availableBalance)';
   }
 
   @override
@@ -421,31 +216,8 @@ class _$MarketsStateImpl implements _MarketsState {
                 other.isLoadingMore == isLoadingMore) &&
             (identical(other.errorMessage, errorMessage) ||
                 other.errorMessage == errorMessage) &&
-            (identical(other.tradeStatus, tradeStatus) ||
-                other.tradeStatus == tradeStatus) &&
-            (identical(other.tradeErrorMessage, tradeErrorMessage) ||
-                other.tradeErrorMessage == tradeErrorMessage) &&
-            (identical(other.leverage, leverage) ||
-                other.leverage == leverage) &&
-            (identical(other.selectedMarginCoin, selectedMarginCoin) ||
-                other.selectedMarginCoin == selectedMarginCoin) &&
-            (identical(other.marginMode, marginMode) ||
-                other.marginMode == marginMode) &&
-            (identical(other.amountToTrade, amountToTrade) ||
-                other.amountToTrade == amountToTrade) &&
-            (identical(other.maxBuy, maxBuy) || other.maxBuy == maxBuy) &&
-            (identical(other.liquidationPrice, liquidationPrice) ||
-                other.liquidationPrice == liquidationPrice) &&
-            (identical(other.riskPercentage, riskPercentage) ||
-                other.riskPercentage == riskPercentage) &&
-            (identical(other.riskLevel, riskLevel) ||
-                other.riskLevel == riskLevel) &&
             (identical(other.availableBalance, availableBalance) ||
-                other.availableBalance == availableBalance) &&
-            (identical(other.actualOrderAmount, actualOrderAmount) ||
-                other.actualOrderAmount == actualOrderAmount) &&
-            (identical(other.totalOrderValueUSD, totalOrderValueUSD) ||
-                other.totalOrderValueUSD == totalOrderValueUSD));
+                other.availableBalance == availableBalance));
   }
 
   @override
@@ -456,19 +228,7 @@ class _$MarketsStateImpl implements _MarketsState {
       currentPage,
       isLoadingMore,
       errorMessage,
-      tradeStatus,
-      tradeErrorMessage,
-      leverage,
-      selectedMarginCoin,
-      marginMode,
-      amountToTrade,
-      maxBuy,
-      liquidationPrice,
-      riskPercentage,
-      riskLevel,
-      availableBalance,
-      actualOrderAmount,
-      totalOrderValueUSD);
+      availableBalance);
 
   /// Create a copy of MarketsState
   /// with the given fields replaced by the non-null parameter values.
@@ -486,19 +246,7 @@ abstract class _MarketsState implements MarketsState {
       final int currentPage,
       final bool isLoadingMore,
       final String? errorMessage,
-      final TradeStatus tradeStatus,
-      final String? tradeErrorMessage,
-      final double leverage,
-      final CoinResponseModel? selectedMarginCoin,
-      final MarginMode marginMode,
-      final double amountToTrade,
-      final double maxBuy,
-      final double liquidationPrice,
-      final double riskPercentage,
-      final RiskLevel riskLevel,
-      final double availableBalance,
-      final double actualOrderAmount,
-      final double totalOrderValueUSD}) = _$MarketsStateImpl;
+      final double availableBalance}) = _$MarketsStateImpl;
 
   @override
   MarketsStatus get status;
@@ -509,33 +257,9 @@ abstract class _MarketsState implements MarketsState {
   @override
   bool get isLoadingMore;
   @override
-  String? get errorMessage; // margin fields and trade status
-  @override
-  TradeStatus get tradeStatus;
-  @override
-  String? get tradeErrorMessage;
-  @override
-  double get leverage;
-  @override
-  CoinResponseModel? get selectedMarginCoin;
-  @override
-  MarginMode get marginMode;
-  @override
-  double get amountToTrade;
-  @override
-  double get maxBuy;
-  @override
-  double get liquidationPrice;
-  @override
-  double get riskPercentage;
-  @override
-  RiskLevel get riskLevel;
+  String? get errorMessage;
   @override
   double get availableBalance;
-  @override
-  double get actualOrderAmount;
-  @override
-  double get totalOrderValueUSD;
 
   /// Create a copy of MarketsState
   /// with the given fields replaced by the non-null parameter values.

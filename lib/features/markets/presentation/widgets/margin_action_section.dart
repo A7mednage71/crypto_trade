@@ -2,6 +2,10 @@ import 'package:crypto_trade/core/helpers/space_helper.dart';
 import 'package:crypto_trade/core/utils/constant/app_color.dart';
 import 'package:crypto_trade/core/utils/enums/trade_side.dart';
 import 'package:crypto_trade/core/utils/widgets/app_status_dialog.dart';
+import 'package:crypto_trade/features/activity/data/models/activity_model.dart';
+import 'package:crypto_trade/features/activity/presentation/cubits/activity_cubit/activity_cubit.dart';
+import 'package:crypto_trade/features/markets/presentation/cubits/margin_cubit/margin_cubit.dart';
+import 'package:crypto_trade/features/markets/presentation/cubits/margin_cubit/margin_state.dart';
 import 'package:crypto_trade/features/markets/presentation/cubits/markets_cubit/markets_cubit.dart';
 import 'package:crypto_trade/features/markets/presentation/widgets/margin_action_button.dart';
 import 'package:crypto_trade/features/markets/presentation/widgets/order_confirmation_sheet.dart';
@@ -14,7 +18,7 @@ class MarginActionSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<MarketsCubit, MarketsState>(
+    return BlocListener<MarginCubit, MarginState>(
       listenWhen: (p, c) => p.tradeStatus != c.tradeStatus,
       listener: (context, state) {
         _handleTradeStatus(context, state);
@@ -41,8 +45,21 @@ class MarginActionSection extends StatelessWidget {
     );
   }
 
-  void _handleTradeStatus(BuildContext context, MarketsState state) {
+  void _handleTradeStatus(BuildContext context, MarginState state) {
     if (state.tradeStatus == TradeStatus.success) {
+      context.read<MarginCubit>().updateAvailableBalance(
+        state.availableBalance - state.amountToTrade,
+      );
+      context.read<MarketsCubit>().decrementAvailableBalance(
+        state.amountToTrade,
+      );
+      context.read<ActivityCubit>().log(
+        type: ActivityType.buy,
+        name: 'Margin Order',
+        symbol: state.selectedMarginCoin?.symbol.toUpperCase() ?? '',
+        amount: state.actualOrderAmount,
+        price: state.selectedMarginCoin?.currentPrice ?? 0.0,
+      );
       Navigator.pop(context);
       AppStatusDialog.show(
         context,
@@ -50,7 +67,7 @@ class MarginActionSection extends StatelessWidget {
         title: 'Order Placed!',
         message: 'Your position is now active.',
         onDone: () {
-          context.read<MarketsCubit>().resetForm();
+          context.read<MarginCubit>().resetForm();
           Navigator.pop(context);
         },
       );
@@ -65,7 +82,7 @@ class MarginActionSection extends StatelessWidget {
   }
 
   void _openConfirmation(BuildContext context, TradeSide side) {
-    final cubit = context.read<MarketsCubit>();
+    final cubit = context.read<MarginCubit>();
     showModalBottomSheet(
       context: context,
       backgroundColor: AppColors.darkSurface,

@@ -1,10 +1,50 @@
 import 'package:crypto_trade/features/home/data/models/coin_response_model.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'convert_state.dart';
 
 class ConvertCubit extends Cubit<ConvertState> {
-  ConvertCubit() : super(const ConvertState());
+  final TextEditingController fromController = TextEditingController();
+  final TextEditingController toController = TextEditingController();
+  bool _isSyncing = false;
+
+  ConvertCubit() : super(const ConvertState()) {
+    fromController.addListener(_onFromAmountChanged);
+    toController.addListener(_onToAmountChanged);
+  }
+
+  void _onFromAmountChanged() {
+    if (_isSyncing) return;
+    final amount = double.tryParse(fromController.text) ?? 0.0;
+    if (amount != state.fromAmount) {
+      updateConvertAmounts(isFromUpdate: true, amount: amount);
+    }
+  }
+
+  void _onToAmountChanged() {
+    if (_isSyncing) return;
+    final amount = double.tryParse(toController.text) ?? 0.0;
+    if (amount != state.toAmount) {
+      updateConvertAmounts(isFromUpdate: false, amount: amount);
+    }
+  }
+
+  void _syncControllers() {
+    _isSyncing = true;
+    final fromText = state.fromAmount == 0
+        ? ""
+        : state.fromAmount.toStringAsFixed(6);
+    final toText = state.toAmount == 0 ? "" : state.toAmount.toStringAsFixed(6);
+
+    if (fromController.text != fromText) {
+      fromController.text = fromText;
+    }
+    if (toController.text != toText) {
+      toController.text = toText;
+    }
+    _isSyncing = false;
+  }
 
   void selectConvertCoin({
     required bool isFrom,
@@ -30,6 +70,7 @@ class ConvertCubit extends Cubit<ConvertState> {
         toAmount: newToAmount,
       ),
     );
+    _syncControllers();
   }
 
   void updateConvertAmounts({
@@ -43,6 +84,7 @@ class ConvertCubit extends Cubit<ConvertState> {
     } else {
       emit(state.copyWith(toAmount: amount, fromAmount: amount / state.rate));
     }
+    _syncControllers();
   }
 
   void swapConvertCurrencies() {
@@ -64,6 +106,7 @@ class ConvertCubit extends Cubit<ConvertState> {
         toAmount: state.fromAmount * newRate,
       ),
     );
+    _syncControllers();
   }
 
   Future<void> executeConvert() async {
@@ -85,4 +128,11 @@ class ConvertCubit extends Cubit<ConvertState> {
 
   bool get canConvert =>
       state.fromCoin != null && state.toCoin != null && state.fromAmount > 0;
+
+  @override
+  Future<void> close() {
+    fromController.dispose();
+    toController.dispose();
+    return super.close();
+  }
 }

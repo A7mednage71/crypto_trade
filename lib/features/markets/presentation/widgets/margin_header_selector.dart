@@ -2,7 +2,8 @@ import 'package:crypto_trade/core/helpers/space_helper.dart';
 import 'package:crypto_trade/core/utils/constant/app_color.dart';
 import 'package:crypto_trade/core/utils/constant/app_style.dart';
 import 'package:crypto_trade/core/utils/enums/margin_mode.dart';
-import 'package:crypto_trade/features/markets/presentation/cubits/markets_cubit/markets_cubit.dart';
+import 'package:crypto_trade/features/markets/presentation/cubits/margin_cubit/margin_cubit.dart';
+import 'package:crypto_trade/features/markets/presentation/cubits/margin_cubit/margin_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -12,8 +13,8 @@ class MarginHeaderSelector extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final marketsCubit = context.read<MarketsCubit>();
-    return BlocBuilder<MarketsCubit, MarketsState>(
+    final marginCubit = context.read<MarginCubit>();
+    return BlocBuilder<MarginCubit, MarginState>(
       buildWhen: (previous, current) =>
           previous.marginMode != current.marginMode,
       builder: (context, state) {
@@ -29,7 +30,7 @@ class MarginHeaderSelector extends StatelessWidget {
                 child: MarginModeItem(
                   label: MarginMode.cross.name,
                   isSelected: state.marginMode == MarginMode.cross,
-                  onTap: () => marketsCubit.changeMarginMode(MarginMode.cross),
+                  onTap: () => marginCubit.changeMarginMode(MarginMode.cross),
                 ),
               ),
               horizontalSpace(4),
@@ -38,7 +39,7 @@ class MarginHeaderSelector extends StatelessWidget {
                   label: MarginMode.isolated.name,
                   isSelected: state.marginMode == MarginMode.isolated,
                   onTap: () =>
-                      marketsCubit.changeMarginMode(MarginMode.isolated),
+                      marginCubit.changeMarginMode(MarginMode.isolated),
                 ),
               ),
             ],

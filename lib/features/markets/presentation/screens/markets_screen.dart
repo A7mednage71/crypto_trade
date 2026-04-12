@@ -33,7 +33,10 @@ class MarketsScreen extends StatelessWidget {
                     ),
                     MarketCoinsBlocBuilder(),
                     // Playing with borrowed money
-                    MarginTabBody(),
+                    BlocProvider(
+                      create: (context) => ServicesLocator.marginCubit,
+                      child: MarginTabBody(),
+                    ),
                     // Deposit and Withdraw
                     BlocProvider(
                       create: (context) => ServicesLocator.fiatCubit,

@@ -1,7 +1,8 @@
 import 'package:crypto_trade/core/helpers/space_helper.dart';
 import 'package:crypto_trade/core/utils/constant/app_color.dart';
 import 'package:crypto_trade/core/utils/constant/app_style.dart';
-import 'package:crypto_trade/features/markets/presentation/cubits/markets_cubit/markets_cubit.dart';
+import 'package:crypto_trade/features/markets/presentation/cubits/margin_cubit/margin_cubit.dart';
+import 'package:crypto_trade/features/markets/presentation/cubits/margin_cubit/margin_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -11,7 +12,7 @@ class LiquidationWarningBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final state = context.watch<MarketsCubit>().state;
+    final state = context.watch<MarginCubit>().state;
     return Container(
       padding: EdgeInsets.all(12.r),
       decoration: BoxDecoration(

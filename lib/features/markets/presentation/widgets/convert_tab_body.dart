@@ -12,52 +12,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class ConvertTabBody extends StatefulWidget {
+class ConvertTabBody extends StatelessWidget {
   const ConvertTabBody({super.key});
 
-  @override
-  State<ConvertTabBody> createState() => _ConvertTabBodyState();
-}
-
-class _ConvertTabBodyState extends State<ConvertTabBody> {
-  final TextEditingController _fromController = TextEditingController();
-  final TextEditingController _toController = TextEditingController();
-  bool _isUpdating = false;
-
-  @override
-  void initState() {
-    super.initState();
-    _setupControllersListeners();
-  }
-
-  @override
-  void dispose() {
-    _fromController.dispose();
-    _toController.dispose();
-    super.dispose();
-  }
-
-  void _setupControllersListeners() {
-    _fromController.addListener(() {
-      if (_isUpdating) return;
-      _onAmountChanged(isFrom: true, text: _fromController.text);
-    });
-
-    _toController.addListener(() {
-      if (_isUpdating) return;
-      _onAmountChanged(isFrom: false, text: _toController.text);
-    });
-  }
-
-  void _onAmountChanged({required bool isFrom, required String text}) {
-    final amount = double.tryParse(text) ?? 0;
-    context.read<ConvertCubit>().updateConvertAmounts(
-      isFromUpdate: isFrom,
-      amount: amount,
-    );
-  }
-
-  void _handleSuccess(ConvertState state) {
+  void _handleSuccess(BuildContext context, ConvertState state) {
     AppStatusDialog.show(
       context,
       isSuccess: true,
@@ -79,36 +37,13 @@ class _ConvertTabBodyState extends State<ConvertTabBody> {
     );
   }
 
-  void _syncControllers(ConvertState state) {
-    _isUpdating = true;
-
-    if (double.tryParse(_fromController.text) != state.fromAmount) {
-      _fromController.text = state.fromAmount == 0
-          ? ""
-          : state.fromAmount.toStringAsFixed(6);
-    }
-
-    if (double.tryParse(_toController.text) != state.toAmount) {
-      _toController.text = state.toAmount == 0
-          ? ""
-          : state.toAmount.toStringAsFixed(6);
-    }
-
-    _isUpdating = false;
-  }
-
   @override
   Widget build(BuildContext context) {
     return BlocListener<ConvertCubit, ConvertState>(
-      listenWhen: (p, c) =>
-          p.fromAmount != c.fromAmount ||
-          p.toAmount != c.toAmount ||
-          p.convertStatus != c.convertStatus,
+      listenWhen: (p, c) => p.convertStatus != c.convertStatus,
       listener: (context, state) {
         if (state.convertStatus == ConvertStatus.success) {
-          _handleSuccess(state);
-        } else {
-          _syncControllers(state);
+          _handleSuccess(context, state);
         }
       },
       child: BlocBuilder<ConvertCubit, ConvertState>(
@@ -122,11 +57,11 @@ class _ConvertTabBodyState extends State<ConvertTabBody> {
             padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 16.h),
             child: Column(
               children: [
-                _buildExchangeCards(state),
+                _buildExchangeCards(context, state),
                 verticalSpace(24),
                 _buildRateIndicator(state, isButtonDisabled),
                 const Spacer(),
-                _buildConvertButton(state, isButtonDisabled),
+                _buildConvertButton(context, state, isButtonDisabled),
                 verticalSpace(120),
               ],
             ),
@@ -136,7 +71,8 @@ class _ConvertTabBodyState extends State<ConvertTabBody> {
     );
   }
 
-  Widget _buildExchangeCards(ConvertState state) {
+  Widget _buildExchangeCards(BuildContext context, ConvertState state) {
+    final convertCubit = context.read<ConvertCubit>();
     return Stack(
       alignment: Alignment.center,
       children: [
@@ -146,21 +82,21 @@ class _ConvertTabBodyState extends State<ConvertTabBody> {
               label: "From",
               currency: state.fromCoin?.symbol.toUpperCase() ?? "Select",
               iconUrl: state.fromCoin?.image ?? "",
-              controller: _fromController,
+              controller: convertCubit.fromController,
               balance: context
                   .read<MarketsCubit>()
                   .state
                   .availableBalance
                   .toStringAsFixed(2),
-              onCurrencyTap: () => _showCoinPicker(isFrom: true),
+              onCurrencyTap: () => _showCoinPicker(context, isFrom: true),
             ),
             verticalSpace(12),
             AssetExchangeCard(
               label: "To",
               currency: state.toCoin?.symbol.toUpperCase() ?? "Select",
               iconUrl: state.toCoin?.image ?? "",
-              controller: _toController,
-              onCurrencyTap: () => _showCoinPicker(isFrom: false),
+              controller: convertCubit.toController,
+              onCurrencyTap: () => _showCoinPicker(context, isFrom: false),
             ),
           ],
         ),
@@ -191,7 +127,11 @@ class _ConvertTabBodyState extends State<ConvertTabBody> {
     );
   }
 
-  Widget _buildConvertButton(ConvertState state, bool isDisabled) {
+  Widget _buildConvertButton(
+    BuildContext context,
+    ConvertState state,
+    bool isDisabled,
+  ) {
     return CustomTextButton(
       isLoading: state.convertStatus == ConvertStatus.loading,
       onPressed: () => context.read<ConvertCubit>().executeConvert(),
@@ -206,7 +146,7 @@ class _ConvertTabBodyState extends State<ConvertTabBody> {
     );
   }
 
-  void _showCoinPicker({required bool isFrom}) {
+  void _showCoinPicker(BuildContext context, {required bool isFrom}) {
     final convertCubit = context.read<ConvertCubit>();
     final marketsCubit = context.read<MarketsCubit>();
 

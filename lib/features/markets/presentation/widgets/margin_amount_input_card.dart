@@ -1,43 +1,22 @@
 import 'package:crypto_trade/core/helpers/space_helper.dart';
 import 'package:crypto_trade/core/utils/constant/app_color.dart';
 import 'package:crypto_trade/core/utils/constant/app_style.dart';
+import 'package:crypto_trade/features/markets/presentation/cubits/margin_cubit/margin_cubit.dart';
+import 'package:crypto_trade/features/markets/presentation/cubits/margin_cubit/margin_state.dart';
 import 'package:crypto_trade/features/markets/presentation/cubits/markets_cubit/markets_cubit.dart';
 import 'package:crypto_trade/features/markets/presentation/widgets/asset_exchange_card.dart';
 import 'package:crypto_trade/features/markets/presentation/widgets/coin_picker_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class MarginAmountInputCard extends StatefulWidget {
+class MarginAmountInputCard extends StatelessWidget {
   const MarginAmountInputCard({super.key});
 
   @override
-  State<MarginAmountInputCard> createState() => _MarginAmountInputCardState();
-}
-
-class _MarginAmountInputCardState extends State<MarginAmountInputCard> {
-  late TextEditingController _controller;
-
-  @override
-  void initState() {
-    super.initState();
-    _controller = TextEditingController();
-    _controller.addListener(_onAmountChanged);
-  }
-
-  void _onAmountChanged() {
-    final amount = double.tryParse(_controller.text) ?? 0.0;
-    context.read<MarketsCubit>().updateMarginAmount(amount);
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return BlocBuilder<MarketsCubit, MarketsState>(
+    final marginCubit = context.read<MarginCubit>();
+
+    return BlocBuilder<MarginCubit, MarginState>(
       buildWhen: (previous, current) =>
           previous.amountToTrade != current.amountToTrade ||
           previous.leverage != current.leverage ||
@@ -57,7 +36,7 @@ class _MarginAmountInputCardState extends State<MarginAmountInputCard> {
               currency:
                   state.selectedMarginCoin?.symbol.toUpperCase() ?? 'Select',
               iconUrl: state.selectedMarginCoin?.image ?? '',
-              controller: _controller,
+              controller: marginCubit.amountController,
               balance: '${state.availableBalance.toStringAsFixed(2)} USDT',
               borderColor: isExceeded ? AppColors.danger : null,
               onCurrencyTap: () => _showCoinPicker(context),
@@ -76,16 +55,20 @@ class _MarginAmountInputCardState extends State<MarginAmountInputCard> {
   }
 
   void _showCoinPicker(BuildContext context) {
-    final cubit = context.read<MarketsCubit>();
+    final marginCubit = context.read<MarginCubit>();
+    final marketsCubit = context.read<MarketsCubit>();
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
       backgroundColor: Colors.transparent,
-      builder: (_) => BlocProvider.value(
-        value: cubit,
+      builder: (_) => MultiBlocProvider(
+        providers: [
+          BlocProvider.value(value: marginCubit),
+          BlocProvider.value(value: marketsCubit),
+        ],
         child: CoinPickerSheet(
           onCoinSelected: (coin) {
-            cubit.selectMarginCoin(coin);
+            marginCubit.selectMarginCoin(coin);
           },
         ),
       ),
