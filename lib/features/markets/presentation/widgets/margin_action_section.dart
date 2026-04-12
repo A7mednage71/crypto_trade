@@ -54,8 +54,12 @@ class MarginActionSection extends StatelessWidget {
         state.amountToTrade,
       );
       context.read<ActivityCubit>().log(
-        type: ActivityType.buy,
-        name: 'Margin Order',
+        type: state.tradeSide == TradeSide.long
+            ? ActivityType.buy
+            : ActivityType.sell,
+        name:
+            'Margin ${state.tradeSide == TradeSide.long ? 'Long' : 'Short'} '
+            '(${state.leverage}x)',
         symbol: state.selectedMarginCoin?.symbol.toUpperCase() ?? '',
         amount: state.actualOrderAmount,
         price: state.selectedMarginCoin?.currentPrice ?? 0.0,

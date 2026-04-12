@@ -1,3 +1,4 @@
+import 'package:crypto_trade/core/utils/enums/fiat_payment_method.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'fiat_state.dart';
@@ -9,8 +10,8 @@ class FiatCubit extends Cubit<FiatState> {
     emit(state.copyWith(fiatDepositAmount: amount));
   }
 
-  void selectPaymentMethod(int index) {
-    emit(state.copyWith(selectedPaymentMethodIndex: index));
+  void selectPaymentMethod(FiatPaymentMethod method) {
+    emit(state.copyWith(selectedPaymentMethod: method));
   }
 
   Future<void> depositFiat(double amount) async {

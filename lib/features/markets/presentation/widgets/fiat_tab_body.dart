@@ -132,7 +132,7 @@ class _DepositButton extends StatelessWidget {
           );
           context.read<ActivityCubit>().log(
             type: ActivityType.deposit,
-            name: 'Fiat Deposit',
+            name: 'Deposit via ${state.selectedPaymentMethod.name}',
             symbol: 'USD',
             amount: state.fiatDepositAmount,
             price: 1,

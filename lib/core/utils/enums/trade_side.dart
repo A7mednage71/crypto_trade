@@ -1,4 +1,5 @@
 enum TradeSide {
+  none,
   long,
   short;
 

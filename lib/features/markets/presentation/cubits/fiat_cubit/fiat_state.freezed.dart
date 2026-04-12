@@ -18,7 +18,8 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$FiatState {
   FiatStatus get fiatStatus => throw _privateConstructorUsedError;
   double get fiatDepositAmount => throw _privateConstructorUsedError;
-  int get selectedPaymentMethodIndex => throw _privateConstructorUsedError;
+  FiatPaymentMethod get selectedPaymentMethod =>
+      throw _privateConstructorUsedError;
   String? get message => throw _privateConstructorUsedError;
 
   /// Create a copy of FiatState
@@ -36,7 +37,7 @@ abstract class $FiatStateCopyWith<$Res> {
   $Res call(
       {FiatStatus fiatStatus,
       double fiatDepositAmount,
-      int selectedPaymentMethodIndex,
+      FiatPaymentMethod selectedPaymentMethod,
       String? message});
 }
 
@@ -57,7 +58,7 @@ class _$FiatStateCopyWithImpl<$Res, $Val extends FiatState>
   $Res call({
     Object? fiatStatus = null,
     Object? fiatDepositAmount = null,
-    Object? selectedPaymentMethodIndex = null,
+    Object? selectedPaymentMethod = null,
     Object? message = freezed,
   }) {
     return _then(_value.copyWith(
@@ -69,10 +70,10 @@ class _$FiatStateCopyWithImpl<$Res, $Val extends FiatState>
           ? _value.fiatDepositAmount
           : fiatDepositAmount // ignore: cast_nullable_to_non_nullable
               as double,
-      selectedPaymentMethodIndex: null == selectedPaymentMethodIndex
-          ? _value.selectedPaymentMethodIndex
-          : selectedPaymentMethodIndex // ignore: cast_nullable_to_non_nullable
-              as int,
+      selectedPaymentMethod: null == selectedPaymentMethod
+          ? _value.selectedPaymentMethod
+          : selectedPaymentMethod // ignore: cast_nullable_to_non_nullable
+              as FiatPaymentMethod,
       message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -92,7 +93,7 @@ abstract class _$$FiatStateImplCopyWith<$Res>
   $Res call(
       {FiatStatus fiatStatus,
       double fiatDepositAmount,
-      int selectedPaymentMethodIndex,
+      FiatPaymentMethod selectedPaymentMethod,
       String? message});
 }
 
@@ -111,7 +112,7 @@ class __$$FiatStateImplCopyWithImpl<$Res>
   $Res call({
     Object? fiatStatus = null,
     Object? fiatDepositAmount = null,
-    Object? selectedPaymentMethodIndex = null,
+    Object? selectedPaymentMethod = null,
     Object? message = freezed,
   }) {
     return _then(_$FiatStateImpl(
@@ -123,10 +124,10 @@ class __$$FiatStateImplCopyWithImpl<$Res>
           ? _value.fiatDepositAmount
           : fiatDepositAmount // ignore: cast_nullable_to_non_nullable
               as double,
-      selectedPaymentMethodIndex: null == selectedPaymentMethodIndex
-          ? _value.selectedPaymentMethodIndex
-          : selectedPaymentMethodIndex // ignore: cast_nullable_to_non_nullable
-              as int,
+      selectedPaymentMethod: null == selectedPaymentMethod
+          ? _value.selectedPaymentMethod
+          : selectedPaymentMethod // ignore: cast_nullable_to_non_nullable
+              as FiatPaymentMethod,
       message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -141,7 +142,7 @@ class _$FiatStateImpl implements _FiatState {
   const _$FiatStateImpl(
       {this.fiatStatus = FiatStatus.initial,
       this.fiatDepositAmount = 0.0,
-      this.selectedPaymentMethodIndex = 0,
+      this.selectedPaymentMethod = FiatPaymentMethod.creditCard,
       this.message});
 
   @override
@@ -152,13 +153,13 @@ class _$FiatStateImpl implements _FiatState {
   final double fiatDepositAmount;
   @override
   @JsonKey()
-  final int selectedPaymentMethodIndex;
+  final FiatPaymentMethod selectedPaymentMethod;
   @override
   final String? message;
 
   @override
   String toString() {
-    return 'FiatState(fiatStatus: $fiatStatus, fiatDepositAmount: $fiatDepositAmount, selectedPaymentMethodIndex: $selectedPaymentMethodIndex, message: $message)';
+    return 'FiatState(fiatStatus: $fiatStatus, fiatDepositAmount: $fiatDepositAmount, selectedPaymentMethod: $selectedPaymentMethod, message: $message)';
   }
 
   @override
@@ -170,16 +171,14 @@ class _$FiatStateImpl implements _FiatState {
                 other.fiatStatus == fiatStatus) &&
             (identical(other.fiatDepositAmount, fiatDepositAmount) ||
                 other.fiatDepositAmount == fiatDepositAmount) &&
-            (identical(other.selectedPaymentMethodIndex,
-                    selectedPaymentMethodIndex) ||
-                other.selectedPaymentMethodIndex ==
-                    selectedPaymentMethodIndex) &&
+            (identical(other.selectedPaymentMethod, selectedPaymentMethod) ||
+                other.selectedPaymentMethod == selectedPaymentMethod) &&
             (identical(other.message, message) || other.message == message));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, fiatStatus, fiatDepositAmount,
-      selectedPaymentMethodIndex, message);
+      selectedPaymentMethod, message);
 
   /// Create a copy of FiatState
   /// with the given fields replaced by the non-null parameter values.
@@ -194,7 +193,7 @@ abstract class _FiatState implements FiatState {
   const factory _FiatState(
       {final FiatStatus fiatStatus,
       final double fiatDepositAmount,
-      final int selectedPaymentMethodIndex,
+      final FiatPaymentMethod selectedPaymentMethod,
       final String? message}) = _$FiatStateImpl;
 
   @override
@@ -202,7 +201,7 @@ abstract class _FiatState implements FiatState {
   @override
   double get fiatDepositAmount;
   @override
-  int get selectedPaymentMethodIndex;
+  FiatPaymentMethod get selectedPaymentMethod;
   @override
   String? get message;
 

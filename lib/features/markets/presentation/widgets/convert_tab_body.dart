@@ -25,8 +25,8 @@ class ConvertTabBody extends StatelessWidget {
         context.read<ActivityCubit>().log(
           type: ActivityType.swap,
           symbol:
-              '${state.fromCoin!.symbol.toUpperCase()}/${state.toCoin!.symbol.toUpperCase()}',
-          name: 'Asset Conversion',
+              '${state.fromCoin!.symbol.toUpperCase()} ➔ ${state.toCoin!.symbol.toUpperCase()}',
+          name: 'Currency Swap',
           amount: state.fromAmount,
           price: state.rate,
         );

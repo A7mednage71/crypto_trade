@@ -1,5 +1,6 @@
 import 'package:crypto_trade/core/utils/enums/margin_mode.dart';
 import 'package:crypto_trade/core/utils/enums/risk_level.dart';
+import 'package:crypto_trade/core/utils/enums/trade_side.dart';
 import 'package:crypto_trade/features/home/data/models/coin_response_model.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -15,6 +16,7 @@ class MarginState with _$MarginState {
     @Default(1.0) double leverage,
     CoinResponseModel? selectedMarginCoin,
     @Default(MarginMode.cross) MarginMode marginMode,
+    @Default(TradeSide.none) TradeSide tradeSide,
     @Default(0.0) double amountToTrade,
     @Default(0.0) double maxBuy,
     @Default(0.0) double liquidationPrice,

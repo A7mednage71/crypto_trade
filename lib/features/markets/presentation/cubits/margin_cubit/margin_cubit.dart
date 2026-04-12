@@ -81,7 +81,7 @@ class MarginCubit extends Cubit<MarginState> {
   }
 
   void openMarginPosition(TradeSide side) async {
-    emit(state.copyWith(tradeStatus: TradeStatus.loading));
+    emit(state.copyWith(tradeStatus: TradeStatus.loading, tradeSide: side));
 
     await Future.delayed(const Duration(seconds: 2));
 

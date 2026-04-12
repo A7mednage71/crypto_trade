@@ -22,6 +22,7 @@ mixin _$MarginState {
   CoinResponseModel? get selectedMarginCoin =>
       throw _privateConstructorUsedError;
   MarginMode get marginMode => throw _privateConstructorUsedError;
+  TradeSide get tradeSide => throw _privateConstructorUsedError;
   double get amountToTrade => throw _privateConstructorUsedError;
   double get maxBuy => throw _privateConstructorUsedError;
   double get liquidationPrice => throw _privateConstructorUsedError;
@@ -50,6 +51,7 @@ abstract class $MarginStateCopyWith<$Res> {
       double leverage,
       CoinResponseModel? selectedMarginCoin,
       MarginMode marginMode,
+      TradeSide tradeSide,
       double amountToTrade,
       double maxBuy,
       double liquidationPrice,
@@ -80,6 +82,7 @@ class _$MarginStateCopyWithImpl<$Res, $Val extends MarginState>
     Object? leverage = null,
     Object? selectedMarginCoin = freezed,
     Object? marginMode = null,
+    Object? tradeSide = null,
     Object? amountToTrade = null,
     Object? maxBuy = null,
     Object? liquidationPrice = null,
@@ -110,6 +113,10 @@ class _$MarginStateCopyWithImpl<$Res, $Val extends MarginState>
           ? _value.marginMode
           : marginMode // ignore: cast_nullable_to_non_nullable
               as MarginMode,
+      tradeSide: null == tradeSide
+          ? _value.tradeSide
+          : tradeSide // ignore: cast_nullable_to_non_nullable
+              as TradeSide,
       amountToTrade: null == amountToTrade
           ? _value.amountToTrade
           : amountToTrade // ignore: cast_nullable_to_non_nullable
@@ -160,6 +167,7 @@ abstract class _$$MarginStateImplCopyWith<$Res>
       double leverage,
       CoinResponseModel? selectedMarginCoin,
       MarginMode marginMode,
+      TradeSide tradeSide,
       double amountToTrade,
       double maxBuy,
       double liquidationPrice,
@@ -188,6 +196,7 @@ class __$$MarginStateImplCopyWithImpl<$Res>
     Object? leverage = null,
     Object? selectedMarginCoin = freezed,
     Object? marginMode = null,
+    Object? tradeSide = null,
     Object? amountToTrade = null,
     Object? maxBuy = null,
     Object? liquidationPrice = null,
@@ -218,6 +227,10 @@ class __$$MarginStateImplCopyWithImpl<$Res>
           ? _value.marginMode
           : marginMode // ignore: cast_nullable_to_non_nullable
               as MarginMode,
+      tradeSide: null == tradeSide
+          ? _value.tradeSide
+          : tradeSide // ignore: cast_nullable_to_non_nullable
+              as TradeSide,
       amountToTrade: null == amountToTrade
           ? _value.amountToTrade
           : amountToTrade // ignore: cast_nullable_to_non_nullable
@@ -263,6 +276,7 @@ class _$MarginStateImpl implements _MarginState {
       this.leverage = 1.0,
       this.selectedMarginCoin,
       this.marginMode = MarginMode.cross,
+      this.tradeSide = TradeSide.none,
       this.amountToTrade = 0.0,
       this.maxBuy = 0.0,
       this.liquidationPrice = 0.0,
@@ -270,7 +284,7 @@ class _$MarginStateImpl implements _MarginState {
       this.riskLevel = RiskLevel.low,
       this.actualOrderAmount = 0.0,
       this.totalOrderValueUSD = 0.0,
-      this.availableBalance = 1234.56});
+      this.availableBalance = 0.0});
 
   @override
   @JsonKey()
@@ -285,6 +299,9 @@ class _$MarginStateImpl implements _MarginState {
   @override
   @JsonKey()
   final MarginMode marginMode;
+  @override
+  @JsonKey()
+  final TradeSide tradeSide;
   @override
   @JsonKey()
   final double amountToTrade;
@@ -312,7 +329,7 @@ class _$MarginStateImpl implements _MarginState {
 
   @override
   String toString() {
-    return 'MarginState(tradeStatus: $tradeStatus, tradeErrorMessage: $tradeErrorMessage, leverage: $leverage, selectedMarginCoin: $selectedMarginCoin, marginMode: $marginMode, amountToTrade: $amountToTrade, maxBuy: $maxBuy, liquidationPrice: $liquidationPrice, riskPercentage: $riskPercentage, riskLevel: $riskLevel, actualOrderAmount: $actualOrderAmount, totalOrderValueUSD: $totalOrderValueUSD, availableBalance: $availableBalance)';
+    return 'MarginState(tradeStatus: $tradeStatus, tradeErrorMessage: $tradeErrorMessage, leverage: $leverage, selectedMarginCoin: $selectedMarginCoin, marginMode: $marginMode, tradeSide: $tradeSide, amountToTrade: $amountToTrade, maxBuy: $maxBuy, liquidationPrice: $liquidationPrice, riskPercentage: $riskPercentage, riskLevel: $riskLevel, actualOrderAmount: $actualOrderAmount, totalOrderValueUSD: $totalOrderValueUSD, availableBalance: $availableBalance)';
   }
 
   @override
@@ -330,6 +347,8 @@ class _$MarginStateImpl implements _MarginState {
                 other.selectedMarginCoin == selectedMarginCoin) &&
             (identical(other.marginMode, marginMode) ||
                 other.marginMode == marginMode) &&
+            (identical(other.tradeSide, tradeSide) ||
+                other.tradeSide == tradeSide) &&
             (identical(other.amountToTrade, amountToTrade) ||
                 other.amountToTrade == amountToTrade) &&
             (identical(other.maxBuy, maxBuy) || other.maxBuy == maxBuy) &&
@@ -355,6 +374,7 @@ class _$MarginStateImpl implements _MarginState {
       leverage,
       selectedMarginCoin,
       marginMode,
+      tradeSide,
       amountToTrade,
       maxBuy,
       liquidationPrice,
@@ -380,6 +400,7 @@ abstract class _MarginState implements MarginState {
       final double leverage,
       final CoinResponseModel? selectedMarginCoin,
       final MarginMode marginMode,
+      final TradeSide tradeSide,
       final double amountToTrade,
       final double maxBuy,
       final double liquidationPrice,
@@ -399,6 +420,8 @@ abstract class _MarginState implements MarginState {
   CoinResponseModel? get selectedMarginCoin;
   @override
   MarginMode get marginMode;
+  @override
+  TradeSide get tradeSide;
   @override
   double get amountToTrade;
   @override

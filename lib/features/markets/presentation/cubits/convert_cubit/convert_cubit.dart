@@ -34,8 +34,8 @@ class ConvertCubit extends Cubit<ConvertState> {
     _isSyncing = true;
     final fromText = state.fromAmount == 0
         ? ""
-        : state.fromAmount.toStringAsFixed(6);
-    final toText = state.toAmount == 0 ? "" : state.toAmount.toStringAsFixed(6);
+        : state.fromAmount.toStringAsFixed(4);
+    final toText = state.toAmount == 0 ? "" : state.toAmount.toStringAsFixed(4);
 
     if (fromController.text != fromText) {
       fromController.text = fromText;

@@ -13,16 +13,16 @@ class ActionButtonsWidget extends StatelessWidget {
         children: [
           Expanded(
             child: _buildActionButton(
-              label: 'SELL',
-              color: AppColors.errorRed,
+              label: 'Sell',
+              color: AppColors.red,
               onPressed: () {},
             ),
           ),
           horizontalSpace(12),
           Expanded(
             child: _buildActionButton(
-              label: 'BUY',
-              color: AppColors.primaryGreen,
+              label: 'Buy',
+              color: AppColors.secondary,
               textColor: AppColors.black,
               onPressed: () {},
             ),
@@ -44,17 +44,14 @@ class ActionButtonsWidget extends StatelessWidget {
         backgroundColor: color,
         foregroundColor: textColor,
         elevation: 0,
-        padding: EdgeInsets.symmetric(vertical: 16.h),
+        fixedSize: Size(double.infinity, 48.h),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(16.r),
         ),
       ),
       child: Text(
         label,
-        style: AppStyle.font16_600Weight.copyWith(
-          color: textColor,
-          letterSpacing: 1,
-        ),
+        style: AppStyle.font18_400Weight.copyWith(color: textColor),
       ),
     );
   }

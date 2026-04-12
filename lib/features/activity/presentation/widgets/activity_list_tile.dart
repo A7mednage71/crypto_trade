@@ -32,7 +32,7 @@ class ActivityListTile extends StatelessWidget {
             child: Center(
               child: Text(
                 _typeInitials(activity.type),
-                style: AppStyle.font14_700Weight.copyWith(color: statusColor),
+                style: AppStyle.font18_400Weight.copyWith(color: statusColor),
               ),
             ),
           ),
@@ -42,32 +42,32 @@ class ActivityListTile extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
-                      '${activity.coinName ?? activity.coinSymbol} / ${activity.coinSymbol.toUpperCase()}',
-                      style: AppStyle.font16_600Weight.copyWith(
-                        color: AppColors.white,
-                        fontWeight: FontWeight.w700,
+                    Expanded(
+                      child: Text(
+                        activity.type == ActivityType.swap
+                            ? activity.coinSymbol
+                            : activity.coinName ?? activity.coinSymbol,
+                        style: AppStyle.font16_600Weight.copyWith(
+                          color: AppColors.white,
+                          fontWeight: FontWeight.w700,
+                        ),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
                       ),
                     ),
-                    Row(
-                      children: [
-                        Text(
-                          DateFormat(
-                            'yyyy-MM-dd HH:mm',
-                          ).format(activity.dateTime),
-                          style: AppStyle.font12_400Weight.copyWith(
-                            color: AppColors.grey,
-                          ),
-                        ),
-                        horizontalSpace(4),
-                        Icon(
-                          Icons.arrow_forward_ios,
-                          color: AppColors.grey,
-                          size: 12.sp,
-                        ),
-                      ],
+                    horizontalSpace(8),
+                    Text(
+                      DateFormat('yyyy-MM-dd HH:mm').format(activity.dateTime),
+                      style: AppStyle.font12_400Weight.copyWith(
+                        color: AppColors.grey,
+                      ),
+                    ),
+                    horizontalSpace(4),
+                    Icon(
+                      Icons.arrow_forward_ios,
+                      color: AppColors.grey,
+                      size: 10.sp,
                     ),
                   ],
                 ),
@@ -76,14 +76,17 @@ class ActivityListTile extends StatelessWidget {
                 verticalSpace(4),
                 _buildDetailRow(
                   'Amount',
-                  '${activity.amount.toStringAsFixed(6)} ${activity.coinSymbol.toUpperCase()}',
+                  '${activity.amount.toStringAsFixed(2)} ${activity.coinSymbol.split('➔').first.toUpperCase()}',
                   valueColor: AppColors.primary,
                 ),
-                if (activity.priceAtTime != null) ...[
+                if (activity.priceAtTime != null &&
+                    activity.type != ActivityType.deposit) ...[
                   verticalSpace(4),
                   _buildDetailRow(
-                    'Price',
-                    '\$${activity.priceAtTime!.toStringAsFixed(2)}',
+                    activity.type == ActivityType.swap ? 'Rate' : 'Price',
+                    activity.type == ActivityType.swap
+                        ? activity.priceAtTime!.toStringAsFixed(2)
+                        : '\$${activity.priceAtTime!.toStringAsFixed(2)}',
                   ),
                 ],
                 verticalSpace(4),
@@ -112,17 +115,22 @@ class ActivityListTile extends StatelessWidget {
 
   Widget _buildDetailRow(String label, String value, {Color? valueColor}) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
           label,
           style: AppStyle.font14_400Weight.copyWith(color: AppColors.grey),
         ),
-        Text(
-          value,
-          style: AppStyle.font14_400Weight.copyWith(
-            color: valueColor ?? AppColors.lightGrey,
-            fontWeight: FontWeight.w500,
+        horizontalSpace(12),
+        Expanded(
+          child: Text(
+            value,
+            textAlign: TextAlign.end,
+            style: AppStyle.font14_400Weight.copyWith(
+              color: valueColor ?? AppColors.lightGrey,
+              fontWeight: FontWeight.w500,
+            ),
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
           ),
         ),
       ],

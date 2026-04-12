@@ -13,8 +13,7 @@ class FiatPaymentMethodSelector extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<FiatCubit, FiatState>(
       buildWhen: (previous, current) =>
-          previous.selectedPaymentMethodIndex !=
-          current.selectedPaymentMethodIndex,
+          previous.selectedPaymentMethod != current.selectedPaymentMethod,
       builder: (context, state) {
         return SizedBox(
           height: 100.h,
@@ -24,12 +23,12 @@ class FiatPaymentMethodSelector extends StatelessWidget {
             separatorBuilder: (context, index) => SizedBox(width: 12.w),
             itemBuilder: (context, index) {
               final method = FiatPaymentMethod.values[index];
-              final isSelected = state.selectedPaymentMethodIndex == index;
+              final isSelected = state.selectedPaymentMethod == method;
               return FiatPaymentMethodItem(
                 method: method,
                 isSelected: isSelected,
                 onTap: () =>
-                    context.read<FiatCubit>().selectPaymentMethod(index),
+                    context.read<FiatCubit>().selectPaymentMethod(method),
               );
             },
           ),
