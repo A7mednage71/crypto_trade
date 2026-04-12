@@ -31,12 +31,24 @@ class CoinHeaderWidget extends StatelessWidget {
               coinDetails.name,
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
-              style: AppStyle.font18_500Weight,
+              style: AppStyle.font18_600Weight, // Updated to bolder weight
             ),
-            Text(
-              coinDetails.symbol.toUpperCase(),
-              style: AppStyle.font14_400Weight.copyWith(
-                color: AppColors.white.withValues(alpha: 0.6),
+            verticalSpace(4),
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 2.h),
+              decoration: BoxDecoration(
+                color: AppColors.white.withValues(alpha: 0.08),
+                borderRadius: BorderRadius.circular(6.r),
+                border: Border.all(
+                  color: AppColors.white.withValues(alpha: 0.05),
+                ),
+              ),
+              child: Text(
+                coinDetails.symbol.toUpperCase(),
+                style: AppStyle.font12_400Weight.copyWith(
+                  color: AppColors.white.withValues(alpha: 0.8),
+                  letterSpacing: 0.5,
+                ),
               ),
             ),
           ],
@@ -54,15 +66,22 @@ class CoinHeaderWidget extends StatelessWidget {
                   coinDetails.toFavoriteCoinModel(),
                 );
               },
-              child: Container(
+              child: AnimatedContainer(
+                duration: const Duration(milliseconds: 300),
                 padding: EdgeInsets.all(8.w),
-                decoration: const BoxDecoration(
-                  color: AppColors.darkSurface,
+                decoration: BoxDecoration(
+                  color: isFavorite
+                      ? AppColors.secondary.withValues(alpha: 0.2)
+                      : AppColors.grey.withValues(alpha: 0.2),
                   shape: BoxShape.circle,
+                  border: Border.all(
+                    color: isFavorite ? AppColors.secondary : AppColors.grey,
+                    width: 1,
+                  ),
                 ),
                 child: Icon(
                   isFavorite ? Icons.star_rounded : Icons.star_border_rounded,
-                  color: isFavorite ? Colors.amber : Colors.white,
+                  color: isFavorite ? AppColors.secondary : AppColors.grey,
                   size: 24.w,
                 ),
               ),

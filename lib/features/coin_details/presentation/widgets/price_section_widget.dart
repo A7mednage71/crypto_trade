@@ -38,17 +38,32 @@ class PriceSectionWidget extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 6.h),
               decoration: BoxDecoration(
                 color: isPositive
-                    ? AppColors.primaryGreen.withValues(alpha: 0.1)
-                    : AppColors.errorRed.withValues(alpha: 0.1),
+                    ? AppColors.neonGreen.withValues(alpha: 0.1)
+                    : AppColors.neonRed.withValues(alpha: 0.1),
                 borderRadius: BorderRadius.circular(8.r),
+                border: Border.all(
+                  color: isPositive 
+                      ? AppColors.neonGreen.withValues(alpha: 0.3) 
+                      : AppColors.neonRed.withValues(alpha: 0.3),
+                  width: 1,
+                ),
+                boxShadow: [
+                  BoxShadow(
+                    color: isPositive
+                        ? AppColors.neonGreen.withValues(alpha: 0.1)
+                        : AppColors.neonRed.withValues(alpha: 0.1),
+                    blurRadius: 8,
+                    offset: const Offset(0, 2),
+                  ),
+                ],
               ),
               child: Row(
                 children: [
                   Icon(
                     isPositive ? Icons.trending_up : Icons.trending_down,
                     color: isPositive
-                        ? AppColors.primaryGreen
-                        : AppColors.errorRed,
+                        ? AppColors.neonGreen
+                        : AppColors.neonRed,
                     size: 14.w,
                   ),
                   horizontalSpace(4),
@@ -56,8 +71,8 @@ class PriceSectionWidget extends StatelessWidget {
                     '${isPositive ? '+' : ''}${change.toStringAsFixed(2)}%',
                     style: AppStyle.font14_700Weight.copyWith(
                       color: isPositive
-                          ? AppColors.primaryGreen
-                          : AppColors.errorRed,
+                          ? AppColors.neonGreen
+                          : AppColors.neonRed,
                     ),
                   ),
                 ],
@@ -94,8 +109,19 @@ class PriceSectionWidget extends StatelessWidget {
                       height: 4.h,
                       width: indicatorPos,
                       decoration: BoxDecoration(
-                        color: AppColors.primaryGreen,
+                        gradient: LinearGradient(
+                          colors: [
+                            AppColors.neonGreen.withValues(alpha: 0.5),
+                            AppColors.neonGreen,
+                          ],
+                        ),
                         borderRadius: BorderRadius.circular(2.r),
+                        boxShadow: [
+                          BoxShadow(
+                            color: AppColors.neonGreen.withValues(alpha: 0.5),
+                            blurRadius: 6,
+                          ),
+                        ],
                       ),
                     );
                   },

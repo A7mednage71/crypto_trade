@@ -65,7 +65,7 @@ class _CoinChartWidgetState extends State<CoinChartWidget> {
                         return indicators.map((int index) {
                           return TouchedSpotIndicatorData(
                             FlLine(
-                              color: AppColors.primaryGreen.withValues(
+                              color: AppColors.neonGreen.withValues(
                                 alpha: 0.2,
                               ),
                               strokeWidth: 1.5,
@@ -76,7 +76,7 @@ class _CoinChartWidgetState extends State<CoinChartWidget> {
                               getDotPainter: (spot, percent, barData, index) =>
                                   FlDotCirclePainter(
                                     radius: 5,
-                                    color: AppColors.primaryGreen,
+                                    color: AppColors.neonGreen,
                                     strokeWidth: 1.5,
                                     strokeColor: Colors.white,
                                   ),
@@ -90,7 +90,7 @@ class _CoinChartWidgetState extends State<CoinChartWidget> {
                     spots: spots,
                     isCurved: true,
                     curveSmoothness: 0.35,
-                    color: AppColors.primaryGreen,
+                    color: AppColors.neonGreen,
                     barWidth: 2.5.w,
                     isStrokeCapRound: true,
                     dotData: const FlDotData(show: false),
@@ -100,9 +100,9 @@ class _CoinChartWidgetState extends State<CoinChartWidget> {
                         begin: Alignment.topCenter,
                         end: Alignment.bottomCenter,
                         colors: [
-                          AppColors.primaryGreen.withValues(alpha: 0.2),
-                          AppColors.primaryGreen.withValues(alpha: 0.02),
-                          AppColors.primaryGreen.withValues(alpha: 0.0),
+                          AppColors.neonGreen.withValues(alpha: 0.25),
+                          AppColors.neonGreen.withValues(alpha: 0.05),
+                          AppColors.neonGreen.withValues(alpha: 0.0),
                         ],
                       ),
                     ),
@@ -143,9 +143,18 @@ class _CoinChartWidgetState extends State<CoinChartWidget> {
                   ),
                   decoration: BoxDecoration(
                     color: isSelected
-                        ? AppColors.primaryGreen
+                        ? AppColors.neonGreen
                         : Colors.transparent,
                     borderRadius: BorderRadius.circular(16.r),
+                    boxShadow: isSelected
+                        ? [
+                            BoxShadow(
+                              color: AppColors.neonGreen.withValues(alpha: 0.3),
+                              blurRadius: 8,
+                              offset: const Offset(0, 2),
+                            )
+                          ]
+                        : [],
                   ),
                   child: Text(
                     tf.label,

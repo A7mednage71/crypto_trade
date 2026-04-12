@@ -85,8 +85,8 @@ class CoinQuickActionsSheet extends StatelessWidget {
               verticalSpace(8),
               _ActionTile(
                 icon: isFavorite
-                    ? Icons.favorite_rounded
-                    : Icons.favorite_border_rounded,
+                    ? Icons.star_rounded
+                    : Icons.star_border_rounded,
                 iconColor: isFavorite ? AppColors.secondary : AppColors.grey,
                 label: isFavorite
                     ? 'Remove from Favorites'
