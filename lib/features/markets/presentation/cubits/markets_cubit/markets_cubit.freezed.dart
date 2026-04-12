@@ -35,10 +35,7 @@ mixin _$MarketsState {
   RiskLevel get riskLevel => throw _privateConstructorUsedError;
   double get availableBalance => throw _privateConstructorUsedError;
   double get actualOrderAmount => throw _privateConstructorUsedError;
-  double get totalOrderValueUSD =>
-      throw _privateConstructorUsedError; // Fiat deposit fields
-  double get fiatDepositAmount => throw _privateConstructorUsedError;
-  int get selectedPaymentMethodIndex => throw _privateConstructorUsedError;
+  double get totalOrderValueUSD => throw _privateConstructorUsedError;
 
   /// Create a copy of MarketsState
   /// with the given fields replaced by the non-null parameter values.
@@ -71,9 +68,7 @@ abstract class $MarketsStateCopyWith<$Res> {
       RiskLevel riskLevel,
       double availableBalance,
       double actualOrderAmount,
-      double totalOrderValueUSD,
-      double fiatDepositAmount,
-      int selectedPaymentMethodIndex});
+      double totalOrderValueUSD});
 }
 
 /// @nodoc
@@ -109,8 +104,6 @@ class _$MarketsStateCopyWithImpl<$Res, $Val extends MarketsState>
     Object? availableBalance = null,
     Object? actualOrderAmount = null,
     Object? totalOrderValueUSD = null,
-    Object? fiatDepositAmount = null,
-    Object? selectedPaymentMethodIndex = null,
   }) {
     return _then(_value.copyWith(
       status: null == status
@@ -185,14 +178,6 @@ class _$MarketsStateCopyWithImpl<$Res, $Val extends MarketsState>
           ? _value.totalOrderValueUSD
           : totalOrderValueUSD // ignore: cast_nullable_to_non_nullable
               as double,
-      fiatDepositAmount: null == fiatDepositAmount
-          ? _value.fiatDepositAmount
-          : fiatDepositAmount // ignore: cast_nullable_to_non_nullable
-              as double,
-      selectedPaymentMethodIndex: null == selectedPaymentMethodIndex
-          ? _value.selectedPaymentMethodIndex
-          : selectedPaymentMethodIndex // ignore: cast_nullable_to_non_nullable
-              as int,
     ) as $Val);
   }
 }
@@ -223,9 +208,7 @@ abstract class _$$MarketsStateImplCopyWith<$Res>
       RiskLevel riskLevel,
       double availableBalance,
       double actualOrderAmount,
-      double totalOrderValueUSD,
-      double fiatDepositAmount,
-      int selectedPaymentMethodIndex});
+      double totalOrderValueUSD});
 }
 
 /// @nodoc
@@ -259,8 +242,6 @@ class __$$MarketsStateImplCopyWithImpl<$Res>
     Object? availableBalance = null,
     Object? actualOrderAmount = null,
     Object? totalOrderValueUSD = null,
-    Object? fiatDepositAmount = null,
-    Object? selectedPaymentMethodIndex = null,
   }) {
     return _then(_$MarketsStateImpl(
       status: null == status
@@ -335,14 +316,6 @@ class __$$MarketsStateImplCopyWithImpl<$Res>
           ? _value.totalOrderValueUSD
           : totalOrderValueUSD // ignore: cast_nullable_to_non_nullable
               as double,
-      fiatDepositAmount: null == fiatDepositAmount
-          ? _value.fiatDepositAmount
-          : fiatDepositAmount // ignore: cast_nullable_to_non_nullable
-              as double,
-      selectedPaymentMethodIndex: null == selectedPaymentMethodIndex
-          ? _value.selectedPaymentMethodIndex
-          : selectedPaymentMethodIndex // ignore: cast_nullable_to_non_nullable
-              as int,
     ));
   }
 }
@@ -368,9 +341,7 @@ class _$MarketsStateImpl implements _MarketsState {
       this.riskLevel = RiskLevel.low,
       this.availableBalance = 1234.56,
       this.actualOrderAmount = 0.0,
-      this.totalOrderValueUSD = 0.0,
-      this.fiatDepositAmount = 0.0,
-      this.selectedPaymentMethodIndex = 0})
+      this.totalOrderValueUSD = 0.0})
       : _coins = coins;
 
   @override
@@ -431,17 +402,10 @@ class _$MarketsStateImpl implements _MarketsState {
   @override
   @JsonKey()
   final double totalOrderValueUSD;
-// Fiat deposit fields
-  @override
-  @JsonKey()
-  final double fiatDepositAmount;
-  @override
-  @JsonKey()
-  final int selectedPaymentMethodIndex;
 
   @override
   String toString() {
-    return 'MarketsState(status: $status, coins: $coins, currentPage: $currentPage, isLoadingMore: $isLoadingMore, errorMessage: $errorMessage, tradeStatus: $tradeStatus, tradeErrorMessage: $tradeErrorMessage, leverage: $leverage, selectedMarginCoin: $selectedMarginCoin, marginMode: $marginMode, amountToTrade: $amountToTrade, maxBuy: $maxBuy, liquidationPrice: $liquidationPrice, riskPercentage: $riskPercentage, riskLevel: $riskLevel, availableBalance: $availableBalance, actualOrderAmount: $actualOrderAmount, totalOrderValueUSD: $totalOrderValueUSD, fiatDepositAmount: $fiatDepositAmount, selectedPaymentMethodIndex: $selectedPaymentMethodIndex)';
+    return 'MarketsState(status: $status, coins: $coins, currentPage: $currentPage, isLoadingMore: $isLoadingMore, errorMessage: $errorMessage, tradeStatus: $tradeStatus, tradeErrorMessage: $tradeErrorMessage, leverage: $leverage, selectedMarginCoin: $selectedMarginCoin, marginMode: $marginMode, amountToTrade: $amountToTrade, maxBuy: $maxBuy, liquidationPrice: $liquidationPrice, riskPercentage: $riskPercentage, riskLevel: $riskLevel, availableBalance: $availableBalance, actualOrderAmount: $actualOrderAmount, totalOrderValueUSD: $totalOrderValueUSD)';
   }
 
   @override
@@ -481,39 +445,30 @@ class _$MarketsStateImpl implements _MarketsState {
             (identical(other.actualOrderAmount, actualOrderAmount) ||
                 other.actualOrderAmount == actualOrderAmount) &&
             (identical(other.totalOrderValueUSD, totalOrderValueUSD) ||
-                other.totalOrderValueUSD == totalOrderValueUSD) &&
-            (identical(other.fiatDepositAmount, fiatDepositAmount) ||
-                other.fiatDepositAmount == fiatDepositAmount) &&
-            (identical(other.selectedPaymentMethodIndex,
-                    selectedPaymentMethodIndex) ||
-                other.selectedPaymentMethodIndex ==
-                    selectedPaymentMethodIndex));
+                other.totalOrderValueUSD == totalOrderValueUSD));
   }
 
   @override
-  int get hashCode => Object.hashAll([
-        runtimeType,
-        status,
-        const DeepCollectionEquality().hash(_coins),
-        currentPage,
-        isLoadingMore,
-        errorMessage,
-        tradeStatus,
-        tradeErrorMessage,
-        leverage,
-        selectedMarginCoin,
-        marginMode,
-        amountToTrade,
-        maxBuy,
-        liquidationPrice,
-        riskPercentage,
-        riskLevel,
-        availableBalance,
-        actualOrderAmount,
-        totalOrderValueUSD,
-        fiatDepositAmount,
-        selectedPaymentMethodIndex
-      ]);
+  int get hashCode => Object.hash(
+      runtimeType,
+      status,
+      const DeepCollectionEquality().hash(_coins),
+      currentPage,
+      isLoadingMore,
+      errorMessage,
+      tradeStatus,
+      tradeErrorMessage,
+      leverage,
+      selectedMarginCoin,
+      marginMode,
+      amountToTrade,
+      maxBuy,
+      liquidationPrice,
+      riskPercentage,
+      riskLevel,
+      availableBalance,
+      actualOrderAmount,
+      totalOrderValueUSD);
 
   /// Create a copy of MarketsState
   /// with the given fields replaced by the non-null parameter values.
@@ -543,9 +498,7 @@ abstract class _MarketsState implements MarketsState {
       final RiskLevel riskLevel,
       final double availableBalance,
       final double actualOrderAmount,
-      final double totalOrderValueUSD,
-      final double fiatDepositAmount,
-      final int selectedPaymentMethodIndex}) = _$MarketsStateImpl;
+      final double totalOrderValueUSD}) = _$MarketsStateImpl;
 
   @override
   MarketsStatus get status;
@@ -582,11 +535,7 @@ abstract class _MarketsState implements MarketsState {
   @override
   double get actualOrderAmount;
   @override
-  double get totalOrderValueUSD; // Fiat deposit fields
-  @override
-  double get fiatDepositAmount;
-  @override
-  int get selectedPaymentMethodIndex;
+  double get totalOrderValueUSD;
 
   /// Create a copy of MarketsState
   /// with the given fields replaced by the non-null parameter values.

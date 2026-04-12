@@ -170,27 +170,8 @@ class MarketsCubit extends Cubit<MarketsState> {
     );
   }
 
-  // --- Fiat Deposit Logic ---
-
-  void updateFiatAmount(double amount) {
-    emit(state.copyWith(fiatDepositAmount: amount));
-  }
-
-  void selectPaymentMethod(int index) {
-    emit(state.copyWith(selectedPaymentMethodIndex: index));
-  }
-
-  Future<void> depositFiat(double amount) async {
+  void incrementAvailableBalance(double amount) {
     if (amount <= 0) return;
-    emit(state.copyWith(tradeStatus: TradeStatus.loading));
-    await Future.delayed(const Duration(seconds: 2));
-    final newBalance = state.availableBalance + amount;
-    emit(
-      state.copyWith(
-        tradeStatus: TradeStatus.success,
-        availableBalance: newBalance,
-        fiatDepositAmount: 0.0,
-      ),
-    );
+    emit(state.copyWith(availableBalance: state.availableBalance + amount));
   }
 }

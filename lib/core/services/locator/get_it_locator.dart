@@ -18,6 +18,7 @@ import 'package:crypto_trade/features/home/presentation/cubits/home_cubit/home_c
 import 'package:crypto_trade/features/markets/data/repos/markets_repo.dart';
 import 'package:crypto_trade/features/markets/data/repos/markets_repo_impl.dart';
 import 'package:crypto_trade/features/markets/presentation/cubits/convert_cubit/convert_cubit.dart';
+import 'package:crypto_trade/features/markets/presentation/cubits/fiat_cubit/fiat_cubit.dart';
 import 'package:crypto_trade/features/markets/presentation/cubits/markets_cubit/markets_cubit.dart';
 import 'package:crypto_trade/features/search/data/repos/search_repo.dart';
 import 'package:crypto_trade/features/search/data/repos/search_repo_impl.dart';
@@ -78,16 +79,14 @@ class ServicesLocator {
       () => SearchCubit(locator<SearchRepo>()),
     );
 
-    locator.registerLazySingleton<ActivityRepo>(
-      () => ActivityRepoImpl(),
-    );
+    locator.registerLazySingleton<ActivityRepo>(() => ActivityRepoImpl());
     locator.registerLazySingleton<ActivityCubit>(
       () => ActivityCubit(locator<ActivityRepo>()),
     );
 
-    locator.registerFactory<ConvertCubit>(
-      () => ConvertCubit(),
-    );
+    locator.registerFactory<ConvertCubit>(() => ConvertCubit());
+
+    locator.registerFactory<FiatCubit>(() => FiatCubit());
   }
 
   static HomeCubit get homeCubit => locator<HomeCubit>();
@@ -100,4 +99,5 @@ class ServicesLocator {
   static SearchCubit get searchCubit => locator<SearchCubit>();
   static ActivityCubit get activityCubit => locator<ActivityCubit>();
   static ConvertCubit get convertCubit => locator<ConvertCubit>();
+  static FiatCubit get fiatCubit => locator<FiatCubit>();
 }

@@ -1,9 +1,14 @@
+import 'package:crypto_trade/core/helpers/extensions.dart';
 import 'package:crypto_trade/core/helpers/space_helper.dart';
 import 'package:crypto_trade/core/utils/constant/app_color.dart';
 import 'package:crypto_trade/core/utils/constant/app_style.dart';
 import 'package:crypto_trade/core/utils/widgets/app_status_dialog.dart';
 import 'package:crypto_trade/core/utils/widgets/custom_text_button.dart';
 import 'package:crypto_trade/core/utils/widgets/custom_text_form_field.dart';
+import 'package:crypto_trade/features/activity/data/models/activity_model.dart';
+import 'package:crypto_trade/features/activity/presentation/cubits/activity_cubit/activity_cubit.dart';
+import 'package:crypto_trade/features/markets/presentation/cubits/fiat_cubit/fiat_cubit.dart';
+import 'package:crypto_trade/features/markets/presentation/cubits/fiat_cubit/fiat_state.dart';
 import 'package:crypto_trade/features/markets/presentation/cubits/markets_cubit/markets_cubit.dart';
 import 'package:crypto_trade/features/markets/presentation/widgets/fiat_balance_card.dart';
 import 'package:crypto_trade/features/markets/presentation/widgets/fiat_payment_method_selector.dart';
@@ -31,7 +36,7 @@ class _FiatTabBodyState extends State<FiatTabBody> {
 
   void _onAmountChanged() {
     final amount = double.tryParse(_amountController.text) ?? 0.0;
-    context.read<MarketsCubit>().updateFiatAmount(amount);
+    context.read<FiatCubit>().updateFiatAmount(amount);
   }
 
   @override
@@ -42,9 +47,9 @@ class _FiatTabBodyState extends State<FiatTabBody> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<MarketsCubit, MarketsState>(
+    return BlocListener<FiatCubit, FiatState>(
       listenWhen: (previous, current) =>
-          previous.tradeStatus != current.tradeStatus ||
+          previous.fiatStatus != current.fiatStatus ||
           previous.fiatDepositAmount != current.fiatDepositAmount,
       listener: (context, state) {
         // Sync controller from state (e.g. when chip is selected)
@@ -116,25 +121,39 @@ class _FiatTabBodyState extends State<FiatTabBody> {
 class _DepositButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final cubit = context.read<MarketsCubit>();
-    return BlocConsumer<MarketsCubit, MarketsState>(
+    final cubit = context.read<FiatCubit>();
+    return BlocConsumer<FiatCubit, FiatState>(
       listenWhen: (previous, current) =>
-          previous.tradeStatus != current.tradeStatus,
+          previous.fiatStatus != current.fiatStatus,
       listener: (context, state) {
-        if (state.tradeStatus == TradeStatus.success) {
+        if (state.fiatStatus == FiatStatus.success) {
+          context.read<MarketsCubit>().incrementAvailableBalance(
+            state.fiatDepositAmount,
+          );
+          context.read<ActivityCubit>().log(
+            type: ActivityType.deposit,
+            name: 'Fiat Deposit',
+            symbol: 'USD',
+            amount: state.fiatDepositAmount,
+            price: 1,
+          );
           AppStatusDialog.show(
             context,
             isSuccess: true,
             title: 'Deposit Success',
             message: 'Your funds have been added successfully.',
+            onDone: () {
+              context.read<FiatCubit>().reset();
+              context.pop();
+            },
           );
         }
       },
       buildWhen: (previous, current) =>
-          previous.tradeStatus != current.tradeStatus ||
+          previous.fiatStatus != current.fiatStatus ||
           previous.fiatDepositAmount != current.fiatDepositAmount,
       builder: (context, state) {
-        final isLoading = state.tradeStatus == TradeStatus.loading;
+        final isLoading = state.fiatStatus == FiatStatus.loading;
         final isDisabled = state.fiatDepositAmount <= 0;
 
         return CustomTextButton(

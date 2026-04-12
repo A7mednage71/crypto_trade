@@ -76,11 +76,3 @@ class FiatBalanceCard extends StatelessWidget {
     );
   }
 }
-
-// Add font32_700Weight if missing, but I'll use 600 or custom
-extension on TextStyle {
-  // Helper to ensure we have the style
-}
-
-// Correction for font32_700Weight which was listed in prompt but maybe differs in file
-// I'll use font32_600Weight from the file or font36_700Weight

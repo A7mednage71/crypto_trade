@@ -147,7 +147,11 @@ class _ConvertTabBodyState extends State<ConvertTabBody> {
               currency: state.fromCoin?.symbol.toUpperCase() ?? "Select",
               iconUrl: state.fromCoin?.image ?? "",
               controller: _fromController,
-              balance: "0.450",
+              balance: context
+                  .read<MarketsCubit>()
+                  .state
+                  .availableBalance
+                  .toStringAsFixed(2),
               onCurrencyTap: () => _showCoinPicker(isFrom: true),
             ),
             verticalSpace(12),
