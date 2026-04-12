@@ -64,57 +64,6 @@ class MarketsCubit extends Cubit<MarketsState> {
     getMarketsCoins(page: state.currentPage + 1);
   }
 
-  void selectConvertCoin({
-    required bool isFrom,
-    required CoinResponseModel coin,
-  }) {
-    if (isFrom) {
-      emit(state.copyWith(fromCoin: coin));
-    } else {
-      emit(state.copyWith(toCoin: coin));
-    }
-    _calculateRate();
-    updateConvertAmounts(isFromUpdate: true, amount: state.fromAmount);
-  }
-
-  void _calculateRate() {
-    // How many units of currency (B) are equal to one unit of currency (A)?
-    if (state.fromCoin != null && state.toCoin != null) {
-      final double newRate =
-          state.fromCoin!.currentPrice / state.toCoin!.currentPrice;
-      emit(state.copyWith(rate: newRate));
-    }
-  }
-
-  void updateConvertAmounts({
-    required bool isFromUpdate,
-    required double amount,
-  }) {
-    if (state.rate == 0) return;
-
-    if (isFromUpdate) {
-      emit(state.copyWith(fromAmount: amount, toAmount: amount * state.rate));
-    } else {
-      emit(state.copyWith(toAmount: amount, fromAmount: amount / state.rate));
-    }
-  }
-
-  void swapConvertCurrencies() {
-    if (state.fromCoin == null || state.toCoin == null) return;
-    final tempCoin = state.fromCoin;
-    final tempAmount = state.fromAmount;
-
-    emit(
-      state.copyWith(
-        fromCoin: state.toCoin,
-        toCoin: tempCoin,
-        fromAmount: state.toAmount,
-        toAmount: tempAmount,
-      ),
-    );
-    _calculateRate();
-  }
-
   void changeLeverage(double value) {
     emit(state.copyWith(leverage: value));
     _updateMarginCalculations();

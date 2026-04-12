@@ -1,5 +1,5 @@
 import 'package:crypto_trade/core/utils/constant/app_color.dart';
-import 'package:crypto_trade/features/markets/presentation/cubits/markets_cubit/markets_cubit.dart';
+import 'package:crypto_trade/features/markets/presentation/cubits/convert_cubit/convert_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -11,7 +11,7 @@ class ConvertSwapButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        context.read<MarketsCubit>().swapConvertCurrencies();
+        context.read<ConvertCubit>().swapConvertCurrencies();
       },
       borderRadius: BorderRadius.circular(50.r),
       child: Container(

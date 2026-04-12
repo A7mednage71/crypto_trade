@@ -27,7 +27,10 @@ class MarketsScreen extends StatelessWidget {
               Expanded(
                 child: TabBarView(
                   children: [
-                    ConvertTabBody(),
+                    BlocProvider(
+                      create: (context) => ServicesLocator.convertCubit,
+                      child: ConvertTabBody(),
+                    ),
                     MarketCoinsBlocBuilder(),
                     // Playing with borrowed money
                     MarginTabBody(),

@@ -13,13 +13,6 @@ class MarketsState with _$MarketsState {
     @Default(false) bool isLoadingMore,
     String? errorMessage,
 
-    // convert fields
-    CoinResponseModel? fromCoin,
-    CoinResponseModel? toCoin,
-    @Default(0.0) double fromAmount,
-    @Default(0.0) double toAmount,
-    @Default(0.0) double rate,
-
     // margin fields and trade status
     @Default(TradeStatus.initial) TradeStatus tradeStatus,
     String? tradeErrorMessage,
