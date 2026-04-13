@@ -18,6 +18,7 @@ import 'package:crypto_trade/features/profile/presentation/screens/view_profile_
 import 'package:crypto_trade/features/search/presentation/screens/search_screen.dart';
 import 'package:crypto_trade/features/settings/presentation/screens/settings_screen.dart';
 import 'package:crypto_trade/features/splash/splash_screen.dart';
+import 'package:crypto_trade/features/trades/presentation/screens/trades_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -58,6 +59,8 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => const EditProfileScreen());
       case Routes.mainLayoutScreen:
         return MaterialPageRoute(builder: (_) => const MainLayoutScreen());
+      case Routes.tradeScreen:
+        return MaterialPageRoute(builder: (_) => const TradesScreen());
       case Routes.homeScreen:
         return MaterialPageRoute(builder: (_) => const HomeScreen());
       case Routes.notificationScreen:

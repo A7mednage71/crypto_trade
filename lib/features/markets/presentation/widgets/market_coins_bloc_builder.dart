@@ -7,8 +7,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:skeletonizer/skeletonizer.dart' show Skeletonizer;
 
+enum MarketTabType { convert, spot, margin, fiat }
+
 class MarketCoinsBlocBuilder extends StatelessWidget {
-  const MarketCoinsBlocBuilder({super.key});
+  final MarketTabType tabType;
+
+  const MarketCoinsBlocBuilder({required this.tabType, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +20,10 @@ class MarketCoinsBlocBuilder extends StatelessWidget {
       buildWhen: (p, c) =>
           p.status != c.status ||
           p.isLoadingMore != c.isLoadingMore ||
-          p.coins.length != c.coins.length,
+          p.spotCoins.length != c.spotCoins.length ||
+          p.convertCoins.length != c.convertCoins.length ||
+          p.marginCoins.length != c.marginCoins.length ||
+          p.fiatCoins.length != c.fiatCoins.length,
       builder: (context, state) {
         switch (state.status) {
           case MarketsStatus.initial:
@@ -26,16 +33,24 @@ class MarketCoinsBlocBuilder extends StatelessWidget {
               containersColor: AppColors.lightGrey,
               child: MarketScreenListView(
                 coins: CoinsDummyModel.dummyCoins + CoinsDummyModel.dummyCoins,
+                tabType: tabType,
               ),
             );
           case MarketsStatus.success:
-            if (state.coins.isEmpty) {
+            final filteredCoins = switch (tabType) {
+              MarketTabType.convert => state.convertCoins,
+              MarketTabType.spot => state.spotCoins,
+              MarketTabType.margin => state.marginCoins,
+              MarketTabType.fiat => state.fiatCoins,
+            };
+
+            if (filteredCoins.isEmpty) {
               return EmptyState(
                 message: "No coins found",
                 animationSize: 100.h,
               );
             }
-            return MarketScreenListView(coins: state.coins);
+            return MarketScreenListView(coins: filteredCoins, tabType: tabType);
           case MarketsStatus.failure:
             return FailureState(
               titleColor: AppColors.white,

@@ -4,11 +4,11 @@ import 'package:crypto_trade/core/utils/enums/trade_side.dart';
 import 'package:crypto_trade/core/utils/widgets/app_status_dialog.dart';
 import 'package:crypto_trade/features/activity/data/models/activity_model.dart';
 import 'package:crypto_trade/features/activity/presentation/cubits/activity_cubit/activity_cubit.dart';
-import 'package:crypto_trade/features/markets/presentation/cubits/margin_cubit/margin_cubit.dart';
-import 'package:crypto_trade/features/markets/presentation/cubits/margin_cubit/margin_state.dart';
-import 'package:crypto_trade/features/markets/presentation/cubits/markets_cubit/markets_cubit.dart';
-import 'package:crypto_trade/features/markets/presentation/widgets/margin_action_button.dart';
-import 'package:crypto_trade/features/markets/presentation/widgets/order_confirmation_sheet.dart';
+import 'package:crypto_trade/features/trades/presentation/cubits/margin_cubit/margin_cubit.dart';
+import 'package:crypto_trade/features/trades/presentation/cubits/margin_cubit/margin_state.dart';
+import 'package:crypto_trade/features/wallets/presentation/cubits/wallet_cubit/wallet_cubit.dart';
+import 'package:crypto_trade/features/trades/presentation/widgets/margin_action_button.dart';
+import 'package:crypto_trade/features/trades/presentation/widgets/order_confirmation_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -47,10 +47,7 @@ class MarginActionSection extends StatelessWidget {
 
   void _handleTradeStatus(BuildContext context, MarginState state) {
     if (state.tradeStatus == TradeStatus.success) {
-      context.read<MarginCubit>().updateAvailableBalance(
-        state.availableBalance - state.amountToTrade,
-      );
-      context.read<MarketsCubit>().decrementAvailableBalance(
+      context.read<WalletCubit>().deductBalance(
         state.amountToTrade,
       );
       context.read<ActivityCubit>().log(

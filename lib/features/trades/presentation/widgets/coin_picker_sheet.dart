@@ -2,7 +2,7 @@ import 'package:crypto_trade/core/export.dart';
 import 'package:crypto_trade/features/home/data/models/coin_response_model.dart';
 import 'package:crypto_trade/features/home/data/models/coins_dummy_model.dart';
 import 'package:crypto_trade/features/markets/presentation/cubits/markets_cubit/markets_cubit.dart';
-import 'package:crypto_trade/features/markets/presentation/widgets/search_coins_bottom_sheet_listView.dart';
+import 'package:crypto_trade/features/trades/presentation/widgets/search_coins_bottom_sheet_listView.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -113,7 +113,7 @@ class ShowBottomSheetCoinsBlocBuilder extends StatelessWidget {
               return ValueListenableBuilder<String>(
                 valueListenable: searchNotifier,
                 builder: (context, query, _) {
-                  final filteredCoins = state.coins.where((coin) {
+                  final filteredCoins = state.spotCoins.where((coin) {
                     return coin.name.toLowerCase().contains(query) ||
                         coin.symbol.toLowerCase().contains(query);
                   }).toList();

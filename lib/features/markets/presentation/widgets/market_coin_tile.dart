@@ -1,15 +1,18 @@
 import 'package:crypto_trade/core/export.dart';
 import 'package:crypto_trade/features/home/data/models/coin_response_model.dart';
 import 'package:crypto_trade/features/markets/presentation/widgets/coin_quick_actions_sheet.dart';
-import 'package:fl_chart/fl_chart.dart';
+import 'package:crypto_trade/features/markets/presentation/widgets/market_coin_middle_section.dart';
+import 'package:crypto_trade/features/markets/presentation/widgets/market_coin_trailing_section.dart';
+import 'package:crypto_trade/features/markets/presentation/widgets/market_coins_bloc_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class MarketCoinTile extends StatelessWidget {
   final CoinResponseModel coin;
+  final MarketTabType tabType;
 
-  const MarketCoinTile({super.key, required this.coin});
+  const MarketCoinTile({super.key, required this.coin, required this.tabType});
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +32,6 @@ class MarketCoinTile extends StatelessWidget {
         );
       },
       borderRadius: BorderRadius.circular(12.r),
-
       child: Padding(
         padding: EdgeInsets.symmetric(vertical: 12.h, horizontal: 20.w),
         child: Row(
@@ -49,13 +51,28 @@ class MarketCoinTile extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Text(
-                    coin.name,
-                    style: AppStyle.font16_600Weight.copyWith(
-                      color: AppColors.white,
-                    ),
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
+                  Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Flexible(
+                        child: Text(
+                          coin.name,
+                          style: AppStyle.font16_600Weight.copyWith(
+                            color: AppColors.white,
+                          ),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                      if (tabType == MarketTabType.fiat) ...[
+                        horizontalSpace(4),
+                        Icon(
+                          Icons.verified_rounded,
+                          size: 14.r,
+                          color: AppColors.success,
+                        ),
+                      ],
+                    ],
                   ),
                   verticalSpace(4),
                   Text(
@@ -71,66 +88,19 @@ class MarketCoinTile extends StatelessWidget {
               flex: 3,
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 8.w),
-                child: SizedBox(
-                  height: 35.h,
-                  child: LineChart(
-                    LineChartData(
-                      gridData: const FlGridData(show: false),
-                      titlesData: const FlTitlesData(show: false),
-                      borderData: FlBorderData(show: false),
-                      lineTouchData: const LineTouchData(enabled: false),
-                      minX: 0,
-                      maxX: coin.sparklineSpots.length.toDouble() - 1,
-                      lineBarsData: [
-                        LineChartBarData(
-                          spots: coin.sparklineSpots,
-                          isCurved: true,
-                          color: stateColor,
-                          barWidth: 1.5.w,
-                          isStrokeCapRound: true,
-                          dotData: const FlDotData(show: false),
-                          belowBarData: BarAreaData(
-                            show: true,
-                            gradient: LinearGradient(
-                              colors: [
-                                stateColor.withValues(alpha: 0.3),
-                                stateColor.withValues(alpha: 0.0),
-                              ],
-                              begin: Alignment.topCenter,
-                              end: Alignment.bottomCenter,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
+                child: MarketCoinMiddleSection(
+                  coin: coin,
+                  tabType: tabType,
+                  stateColor: stateColor,
                 ),
               ),
             ),
             Expanded(
               flex: 2,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text(
-                    coin.formattedPrice,
-                    style: AppStyle.font16_600Weight.copyWith(
-                      color: AppColors.white,
-                    ),
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                  verticalSpace(4),
-                  Text(
-                    coin.formattedChange,
-                    style: AppStyle.font12_400Weight.copyWith(
-                      color: stateColor,
-                    ),
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                ],
+              child: MarketCoinTrailingSection(
+                coin: coin,
+                tabType: tabType,
+                stateColor: stateColor,
               ),
             ),
           ],
