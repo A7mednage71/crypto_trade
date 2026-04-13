@@ -2,8 +2,9 @@ import 'package:crypto_trade/core/export.dart';
 import 'package:crypto_trade/features/activity/presentation/screens/activity_screen.dart';
 import 'package:crypto_trade/features/home/presentation/cubits/home_cubit/home_cubit.dart';
 import 'package:crypto_trade/features/home/presentation/screens/home_screen.dart';
+import 'package:crypto_trade/features/home/presentation/widgets/home_app_bar.dart';
 import 'package:crypto_trade/features/main_layout/presentation/widgets/custom_floating_nav_bar.dart';
-import 'package:crypto_trade/features/main_layout/presentation/widgets/nav_item.dart'; // تأكد من الـ import للـ enum
+import 'package:crypto_trade/features/main_layout/presentation/widgets/nav_item.dart';
 import 'package:crypto_trade/features/markets/presentation/screens/markets_screen.dart';
 import 'package:crypto_trade/features/trades/presentation/screens/trades_screen.dart';
 import 'package:crypto_trade/features/wallets/presentation/screens/wallets_screen.dart';
@@ -23,12 +24,12 @@ class _MainLayoutScreenState extends State<MainLayoutScreen> {
   final List<Widget> _screens = [
     BlocProvider(
       create: (context) => ServicesLocator.locator<HomeCubit>()..getHomeData(),
-      child: HomeScreen(),
+      child: const HomeScreen(),
     ),
-    MarketsScreen(),
-    TradesScreen(),
-    ActivityScreen(),
-    WalletsScreen(),
+    const MarketsScreen(),
+    const TradesScreen(),
+    const ActivityScreen(),
+    const WalletsScreen(),
   ];
 
   @override
@@ -36,6 +37,7 @@ class _MainLayoutScreenState extends State<MainLayoutScreen> {
     return Scaffold(
       backgroundColor: AppColors.darkBackground,
       extendBody: true,
+      appBar: const HomeAppBar(),
       body: IndexedStack(index: _selectedItem.index, children: _screens),
       bottomNavigationBar: CustomFloatingNavBar(
         currentItem: _selectedItem,

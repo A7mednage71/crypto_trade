@@ -1,4 +1,5 @@
 import 'package:crypto_trade/core/export.dart';
+import 'package:crypto_trade/core/utils/enums/market_tab_type.dart';
 import 'package:crypto_trade/features/home/data/models/coins_dummy_model.dart';
 import 'package:crypto_trade/features/markets/presentation/cubits/markets_cubit/markets_cubit.dart';
 import 'package:crypto_trade/features/markets/presentation/widgets/market_screen_list_view.dart';
@@ -6,8 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:skeletonizer/skeletonizer.dart' show Skeletonizer;
-
-enum MarketTabType { convert, spot, margin, fiat }
 
 class MarketCoinsBlocBuilder extends StatelessWidget {
   final MarketTabType tabType;

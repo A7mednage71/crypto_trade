@@ -1,9 +1,12 @@
-import 'package:crypto_trade/core/export.dart';
+import 'package:crypto_trade/core/helpers/space_helper.dart';
+import 'package:crypto_trade/core/utils/constant/app_color.dart';
+import 'package:crypto_trade/core/utils/constant/app_style.dart';
+import 'package:crypto_trade/core/utils/enums/market_tab_type.dart';
+import 'package:crypto_trade/core/utils/widgets/custom_cache_network_image.dart';
 import 'package:crypto_trade/features/home/data/models/coin_response_model.dart';
 import 'package:crypto_trade/features/markets/presentation/widgets/coin_quick_actions_sheet.dart';
 import 'package:crypto_trade/features/markets/presentation/widgets/market_coin_middle_section.dart';
 import 'package:crypto_trade/features/markets/presentation/widgets/market_coin_trailing_section.dart';
-import 'package:crypto_trade/features/markets/presentation/widgets/market_coins_bloc_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -28,7 +31,8 @@ class MarketCoinTile extends StatelessWidget {
           backgroundColor: Colors.transparent,
           barrierColor: Colors.black.withValues(alpha: 0.5),
           isScrollControlled: true,
-          builder: (context) => CoinQuickActionsSheet(coin: coin),
+          builder: (context) =>
+              CoinQuickActionsSheet(coin: coin, tabType: tabType),
         );
       },
       borderRadius: BorderRadius.circular(12.r),

@@ -1,7 +1,8 @@
-import 'package:crypto_trade/core/export.dart';
+import 'package:crypto_trade/core/utils/constant/app_color.dart';
+import 'package:crypto_trade/core/utils/constant/app_style.dart';
+import 'package:crypto_trade/core/utils/enums/market_tab_type.dart';
 import 'package:crypto_trade/features/home/data/models/coin_response_model.dart';
 import 'package:crypto_trade/features/markets/presentation/widgets/coin_sparkline_chart.dart';
-import 'package:crypto_trade/features/markets/presentation/widgets/market_coins_bloc_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 

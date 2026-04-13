@@ -1,5 +1,4 @@
 import 'package:crypto_trade/core/export.dart';
-import 'package:crypto_trade/features/home/presentation/widgets/home_app_bar.dart';
 import 'package:crypto_trade/features/markets/presentation/widgets/markets_tab_bar.dart';
 import 'package:crypto_trade/features/trades/presentation/widgets/trade_convert_tab_body.dart';
 import 'package:crypto_trade/features/trades/presentation/widgets/trade_fiat_tab_body.dart';
@@ -16,34 +15,30 @@ class TradesScreen extends StatelessWidget {
     return DefaultTabController(
       length: 4,
       initialIndex: 1,
-      child: Scaffold(
-        backgroundColor: AppColors.darkBackground,
-        appBar: const HomeAppBar(),
-        body: Column(
-          children: [
-            verticalSpace(8),
-            const MarketsTabBar(),
-            Expanded(
-              child: TabBarView(
-                children: [
-                  BlocProvider(
-                    create: (context) => ServicesLocator.convertCubit,
-                    child: const TradeConvertTabBody(),
-                  ),
-                  const TradeSpotTabBody(),
-                  BlocProvider(
-                    create: (context) => ServicesLocator.marginCubit,
-                    child: const TradeMarginTabBody(),
-                  ),
-                  BlocProvider(
-                    create: (context) => ServicesLocator.fiatCubit,
-                    child: const TradeFiatTabBody(),
-                  ),
-                ],
-              ),
+      child: Column(
+        children: [
+          verticalSpace(16),
+          const MarketsTabBar(),
+          Expanded(
+            child: TabBarView(
+              children: [
+                BlocProvider(
+                  create: (context) => ServicesLocator.convertCubit,
+                  child: const TradeConvertTabBody(),
+                ),
+                const TradeSpotTabBody(),
+                BlocProvider(
+                  create: (context) => ServicesLocator.marginCubit,
+                  child: const TradeMarginTabBody(),
+                ),
+                BlocProvider(
+                  create: (context) => ServicesLocator.fiatCubit,
+                  child: const TradeFiatTabBody(),
+                ),
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
