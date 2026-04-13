@@ -17,6 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$WalletState {
   double get myBalance => throw _privateConstructorUsedError;
+  List<WalletCoinModel> get walletCoins => throw _privateConstructorUsedError;
 
   /// Create a copy of WalletState
   /// with the given fields replaced by the non-null parameter values.
@@ -31,7 +32,7 @@ abstract class $WalletStateCopyWith<$Res> {
           WalletState value, $Res Function(WalletState) then) =
       _$WalletStateCopyWithImpl<$Res, WalletState>;
   @useResult
-  $Res call({double myBalance});
+  $Res call({double myBalance, List<WalletCoinModel> walletCoins});
 }
 
 /// @nodoc
@@ -50,12 +51,17 @@ class _$WalletStateCopyWithImpl<$Res, $Val extends WalletState>
   @override
   $Res call({
     Object? myBalance = null,
+    Object? walletCoins = null,
   }) {
     return _then(_value.copyWith(
       myBalance: null == myBalance
           ? _value.myBalance
           : myBalance // ignore: cast_nullable_to_non_nullable
               as double,
+      walletCoins: null == walletCoins
+          ? _value.walletCoins
+          : walletCoins // ignore: cast_nullable_to_non_nullable
+              as List<WalletCoinModel>,
     ) as $Val);
   }
 }
@@ -68,7 +74,7 @@ abstract class _$$WalletStateImplCopyWith<$Res>
       __$$WalletStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({double myBalance});
+  $Res call({double myBalance, List<WalletCoinModel> walletCoins});
 }
 
 /// @nodoc
@@ -85,12 +91,17 @@ class __$$WalletStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? myBalance = null,
+    Object? walletCoins = null,
   }) {
     return _then(_$WalletStateImpl(
       myBalance: null == myBalance
           ? _value.myBalance
           : myBalance // ignore: cast_nullable_to_non_nullable
               as double,
+      walletCoins: null == walletCoins
+          ? _value._walletCoins
+          : walletCoins // ignore: cast_nullable_to_non_nullable
+              as List<WalletCoinModel>,
     ));
   }
 }
@@ -98,15 +109,26 @@ class __$$WalletStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$WalletStateImpl implements _WalletState {
-  const _$WalletStateImpl({this.myBalance = 10000.0});
+  const _$WalletStateImpl(
+      {this.myBalance = 10000.0,
+      final List<WalletCoinModel> walletCoins = const []})
+      : _walletCoins = walletCoins;
 
   @override
   @JsonKey()
   final double myBalance;
+  final List<WalletCoinModel> _walletCoins;
+  @override
+  @JsonKey()
+  List<WalletCoinModel> get walletCoins {
+    if (_walletCoins is EqualUnmodifiableListView) return _walletCoins;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_walletCoins);
+  }
 
   @override
   String toString() {
-    return 'WalletState(myBalance: $myBalance)';
+    return 'WalletState(myBalance: $myBalance, walletCoins: $walletCoins)';
   }
 
   @override
@@ -115,11 +137,14 @@ class _$WalletStateImpl implements _WalletState {
         (other.runtimeType == runtimeType &&
             other is _$WalletStateImpl &&
             (identical(other.myBalance, myBalance) ||
-                other.myBalance == myBalance));
+                other.myBalance == myBalance) &&
+            const DeepCollectionEquality()
+                .equals(other._walletCoins, _walletCoins));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, myBalance);
+  int get hashCode => Object.hash(runtimeType, myBalance,
+      const DeepCollectionEquality().hash(_walletCoins));
 
   /// Create a copy of WalletState
   /// with the given fields replaced by the non-null parameter values.
@@ -131,10 +156,14 @@ class _$WalletStateImpl implements _WalletState {
 }
 
 abstract class _WalletState implements WalletState {
-  const factory _WalletState({final double myBalance}) = _$WalletStateImpl;
+  const factory _WalletState(
+      {final double myBalance,
+      final List<WalletCoinModel> walletCoins}) = _$WalletStateImpl;
 
   @override
   double get myBalance;
+  @override
+  List<WalletCoinModel> get walletCoins;
 
   /// Create a copy of WalletState
   /// with the given fields replaced by the non-null parameter values.

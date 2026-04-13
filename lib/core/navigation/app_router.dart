@@ -59,8 +59,15 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => const EditProfileScreen());
       case Routes.mainLayoutScreen:
         return MaterialPageRoute(
-          builder: (_) => BlocProvider(
-            create: (context) => ServicesLocator.appNavigationCubit,
+          builder: (_) => MultiBlocProvider(
+            providers: [
+              BlocProvider(create: (_) => ServicesLocator.appNavigationCubit),
+              BlocProvider(create: (_) => ServicesLocator.activityCubit),
+              BlocProvider(
+                create: (_) => ServicesLocator.marketsCubit..getMarketsCoins(),
+              ),
+              BlocProvider(create: (_) => ServicesLocator.walletCubit),
+            ],
             child: const MainLayoutScreen(),
           ),
         );
