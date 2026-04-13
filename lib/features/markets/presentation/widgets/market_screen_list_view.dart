@@ -1,3 +1,4 @@
+import 'package:crypto_trade/core/utils/enums/market_tab_type.dart';
 import 'package:crypto_trade/features/home/data/models/coin_response_model.dart';
 import 'package:crypto_trade/features/markets/presentation/cubits/markets_cubit/markets_cubit.dart';
 import 'package:crypto_trade/features/markets/presentation/widgets/market_coin_tile.dart';
@@ -7,8 +8,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class MarketScreenListView extends StatefulWidget {
   final List<CoinResponseModel> coins;
+  final MarketTabType tabType;
 
-  const MarketScreenListView({super.key, required this.coins});
+  const MarketScreenListView({
+    super.key,
+    required this.coins,
+    required this.tabType,
+  });
 
   @override
   State<MarketScreenListView> createState() => _MarketScreenListViewState();
@@ -43,7 +49,10 @@ class _MarketScreenListViewState extends State<MarketScreenListView> {
       padding: EdgeInsets.only(bottom: 100.h),
       itemCount: widget.coins.length,
       itemBuilder: (context, index) {
-        return MarketCoinTile(coin: widget.coins[index]);
+        return MarketCoinTile(
+          coin: widget.coins[index],
+          tabType: widget.tabType,
+        );
       },
     );
   }

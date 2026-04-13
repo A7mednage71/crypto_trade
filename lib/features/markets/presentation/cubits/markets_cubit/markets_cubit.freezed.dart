@@ -17,11 +17,14 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$MarketsState {
   MarketsStatus get status => throw _privateConstructorUsedError;
-  List<CoinResponseModel> get coins => throw _privateConstructorUsedError;
+  List<CoinResponseModel> get spotCoins => throw _privateConstructorUsedError;
+  List<CoinResponseModel> get convertCoins =>
+      throw _privateConstructorUsedError;
+  List<CoinResponseModel> get marginCoins => throw _privateConstructorUsedError;
+  List<CoinResponseModel> get fiatCoins => throw _privateConstructorUsedError;
   int get currentPage => throw _privateConstructorUsedError;
   bool get isLoadingMore => throw _privateConstructorUsedError;
   String? get errorMessage => throw _privateConstructorUsedError;
-  double get availableBalance => throw _privateConstructorUsedError;
 
   /// Create a copy of MarketsState
   /// with the given fields replaced by the non-null parameter values.
@@ -38,11 +41,13 @@ abstract class $MarketsStateCopyWith<$Res> {
   @useResult
   $Res call(
       {MarketsStatus status,
-      List<CoinResponseModel> coins,
+      List<CoinResponseModel> spotCoins,
+      List<CoinResponseModel> convertCoins,
+      List<CoinResponseModel> marginCoins,
+      List<CoinResponseModel> fiatCoins,
       int currentPage,
       bool isLoadingMore,
-      String? errorMessage,
-      double availableBalance});
+      String? errorMessage});
 }
 
 /// @nodoc
@@ -61,20 +66,34 @@ class _$MarketsStateCopyWithImpl<$Res, $Val extends MarketsState>
   @override
   $Res call({
     Object? status = null,
-    Object? coins = null,
+    Object? spotCoins = null,
+    Object? convertCoins = null,
+    Object? marginCoins = null,
+    Object? fiatCoins = null,
     Object? currentPage = null,
     Object? isLoadingMore = null,
     Object? errorMessage = freezed,
-    Object? availableBalance = null,
   }) {
     return _then(_value.copyWith(
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as MarketsStatus,
-      coins: null == coins
-          ? _value.coins
-          : coins // ignore: cast_nullable_to_non_nullable
+      spotCoins: null == spotCoins
+          ? _value.spotCoins
+          : spotCoins // ignore: cast_nullable_to_non_nullable
+              as List<CoinResponseModel>,
+      convertCoins: null == convertCoins
+          ? _value.convertCoins
+          : convertCoins // ignore: cast_nullable_to_non_nullable
+              as List<CoinResponseModel>,
+      marginCoins: null == marginCoins
+          ? _value.marginCoins
+          : marginCoins // ignore: cast_nullable_to_non_nullable
+              as List<CoinResponseModel>,
+      fiatCoins: null == fiatCoins
+          ? _value.fiatCoins
+          : fiatCoins // ignore: cast_nullable_to_non_nullable
               as List<CoinResponseModel>,
       currentPage: null == currentPage
           ? _value.currentPage
@@ -88,10 +107,6 @@ class _$MarketsStateCopyWithImpl<$Res, $Val extends MarketsState>
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
               as String?,
-      availableBalance: null == availableBalance
-          ? _value.availableBalance
-          : availableBalance // ignore: cast_nullable_to_non_nullable
-              as double,
     ) as $Val);
   }
 }
@@ -106,11 +121,13 @@ abstract class _$$MarketsStateImplCopyWith<$Res>
   @useResult
   $Res call(
       {MarketsStatus status,
-      List<CoinResponseModel> coins,
+      List<CoinResponseModel> spotCoins,
+      List<CoinResponseModel> convertCoins,
+      List<CoinResponseModel> marginCoins,
+      List<CoinResponseModel> fiatCoins,
       int currentPage,
       bool isLoadingMore,
-      String? errorMessage,
-      double availableBalance});
+      String? errorMessage});
 }
 
 /// @nodoc
@@ -127,20 +144,34 @@ class __$$MarketsStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? status = null,
-    Object? coins = null,
+    Object? spotCoins = null,
+    Object? convertCoins = null,
+    Object? marginCoins = null,
+    Object? fiatCoins = null,
     Object? currentPage = null,
     Object? isLoadingMore = null,
     Object? errorMessage = freezed,
-    Object? availableBalance = null,
   }) {
     return _then(_$MarketsStateImpl(
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as MarketsStatus,
-      coins: null == coins
-          ? _value._coins
-          : coins // ignore: cast_nullable_to_non_nullable
+      spotCoins: null == spotCoins
+          ? _value._spotCoins
+          : spotCoins // ignore: cast_nullable_to_non_nullable
+              as List<CoinResponseModel>,
+      convertCoins: null == convertCoins
+          ? _value._convertCoins
+          : convertCoins // ignore: cast_nullable_to_non_nullable
+              as List<CoinResponseModel>,
+      marginCoins: null == marginCoins
+          ? _value._marginCoins
+          : marginCoins // ignore: cast_nullable_to_non_nullable
+              as List<CoinResponseModel>,
+      fiatCoins: null == fiatCoins
+          ? _value._fiatCoins
+          : fiatCoins // ignore: cast_nullable_to_non_nullable
               as List<CoinResponseModel>,
       currentPage: null == currentPage
           ? _value.currentPage
@@ -154,10 +185,6 @@ class __$$MarketsStateImplCopyWithImpl<$Res>
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
               as String?,
-      availableBalance: null == availableBalance
-          ? _value.availableBalance
-          : availableBalance // ignore: cast_nullable_to_non_nullable
-              as double,
     ));
   }
 }
@@ -167,23 +194,55 @@ class __$$MarketsStateImplCopyWithImpl<$Res>
 class _$MarketsStateImpl implements _MarketsState {
   const _$MarketsStateImpl(
       {this.status = MarketsStatus.initial,
-      final List<CoinResponseModel> coins = const [],
+      final List<CoinResponseModel> spotCoins = const [],
+      final List<CoinResponseModel> convertCoins = const [],
+      final List<CoinResponseModel> marginCoins = const [],
+      final List<CoinResponseModel> fiatCoins = const [],
       this.currentPage = 1,
       this.isLoadingMore = false,
-      this.errorMessage,
-      this.availableBalance = 1234.56})
-      : _coins = coins;
+      this.errorMessage})
+      : _spotCoins = spotCoins,
+        _convertCoins = convertCoins,
+        _marginCoins = marginCoins,
+        _fiatCoins = fiatCoins;
 
   @override
   @JsonKey()
   final MarketsStatus status;
-  final List<CoinResponseModel> _coins;
+  final List<CoinResponseModel> _spotCoins;
   @override
   @JsonKey()
-  List<CoinResponseModel> get coins {
-    if (_coins is EqualUnmodifiableListView) return _coins;
+  List<CoinResponseModel> get spotCoins {
+    if (_spotCoins is EqualUnmodifiableListView) return _spotCoins;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_coins);
+    return EqualUnmodifiableListView(_spotCoins);
+  }
+
+  final List<CoinResponseModel> _convertCoins;
+  @override
+  @JsonKey()
+  List<CoinResponseModel> get convertCoins {
+    if (_convertCoins is EqualUnmodifiableListView) return _convertCoins;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_convertCoins);
+  }
+
+  final List<CoinResponseModel> _marginCoins;
+  @override
+  @JsonKey()
+  List<CoinResponseModel> get marginCoins {
+    if (_marginCoins is EqualUnmodifiableListView) return _marginCoins;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_marginCoins);
+  }
+
+  final List<CoinResponseModel> _fiatCoins;
+  @override
+  @JsonKey()
+  List<CoinResponseModel> get fiatCoins {
+    if (_fiatCoins is EqualUnmodifiableListView) return _fiatCoins;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_fiatCoins);
   }
 
   @override
@@ -194,13 +253,10 @@ class _$MarketsStateImpl implements _MarketsState {
   final bool isLoadingMore;
   @override
   final String? errorMessage;
-  @override
-  @JsonKey()
-  final double availableBalance;
 
   @override
   String toString() {
-    return 'MarketsState(status: $status, coins: $coins, currentPage: $currentPage, isLoadingMore: $isLoadingMore, errorMessage: $errorMessage, availableBalance: $availableBalance)';
+    return 'MarketsState(status: $status, spotCoins: $spotCoins, convertCoins: $convertCoins, marginCoins: $marginCoins, fiatCoins: $fiatCoins, currentPage: $currentPage, isLoadingMore: $isLoadingMore, errorMessage: $errorMessage)';
   }
 
   @override
@@ -209,26 +265,33 @@ class _$MarketsStateImpl implements _MarketsState {
         (other.runtimeType == runtimeType &&
             other is _$MarketsStateImpl &&
             (identical(other.status, status) || other.status == status) &&
-            const DeepCollectionEquality().equals(other._coins, _coins) &&
+            const DeepCollectionEquality()
+                .equals(other._spotCoins, _spotCoins) &&
+            const DeepCollectionEquality()
+                .equals(other._convertCoins, _convertCoins) &&
+            const DeepCollectionEquality()
+                .equals(other._marginCoins, _marginCoins) &&
+            const DeepCollectionEquality()
+                .equals(other._fiatCoins, _fiatCoins) &&
             (identical(other.currentPage, currentPage) ||
                 other.currentPage == currentPage) &&
             (identical(other.isLoadingMore, isLoadingMore) ||
                 other.isLoadingMore == isLoadingMore) &&
             (identical(other.errorMessage, errorMessage) ||
-                other.errorMessage == errorMessage) &&
-            (identical(other.availableBalance, availableBalance) ||
-                other.availableBalance == availableBalance));
+                other.errorMessage == errorMessage));
   }
 
   @override
   int get hashCode => Object.hash(
       runtimeType,
       status,
-      const DeepCollectionEquality().hash(_coins),
+      const DeepCollectionEquality().hash(_spotCoins),
+      const DeepCollectionEquality().hash(_convertCoins),
+      const DeepCollectionEquality().hash(_marginCoins),
+      const DeepCollectionEquality().hash(_fiatCoins),
       currentPage,
       isLoadingMore,
-      errorMessage,
-      availableBalance);
+      errorMessage);
 
   /// Create a copy of MarketsState
   /// with the given fields replaced by the non-null parameter values.
@@ -242,24 +305,30 @@ class _$MarketsStateImpl implements _MarketsState {
 abstract class _MarketsState implements MarketsState {
   const factory _MarketsState(
       {final MarketsStatus status,
-      final List<CoinResponseModel> coins,
+      final List<CoinResponseModel> spotCoins,
+      final List<CoinResponseModel> convertCoins,
+      final List<CoinResponseModel> marginCoins,
+      final List<CoinResponseModel> fiatCoins,
       final int currentPage,
       final bool isLoadingMore,
-      final String? errorMessage,
-      final double availableBalance}) = _$MarketsStateImpl;
+      final String? errorMessage}) = _$MarketsStateImpl;
 
   @override
   MarketsStatus get status;
   @override
-  List<CoinResponseModel> get coins;
+  List<CoinResponseModel> get spotCoins;
+  @override
+  List<CoinResponseModel> get convertCoins;
+  @override
+  List<CoinResponseModel> get marginCoins;
+  @override
+  List<CoinResponseModel> get fiatCoins;
   @override
   int get currentPage;
   @override
   bool get isLoadingMore;
   @override
   String? get errorMessage;
-  @override
-  double get availableBalance;
 
   /// Create a copy of MarketsState
   /// with the given fields replaced by the non-null parameter values.

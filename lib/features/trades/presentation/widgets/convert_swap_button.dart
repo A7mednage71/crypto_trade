@@ -1,5 +1,5 @@
 import 'package:crypto_trade/core/utils/constant/app_color.dart';
-import 'package:crypto_trade/features/markets/presentation/cubits/convert_cubit/convert_cubit.dart';
+import 'package:crypto_trade/features/trades/presentation/cubits/convert_cubit/convert_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

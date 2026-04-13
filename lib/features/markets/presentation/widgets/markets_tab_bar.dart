@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class MarketsTabBar extends StatelessWidget {
-  const MarketsTabBar({super.key});
+  final TabController? controller;
+  const MarketsTabBar({this.controller, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,6 +19,7 @@ class MarketsTabBar extends StatelessWidget {
           borderRadius: BorderRadius.circular(15.r),
         ),
         child: TabBar(
+          controller: controller,
           indicatorSize: TabBarIndicatorSize.tab,
           dividerColor: Colors.transparent,
           indicator: BoxDecoration(

@@ -6,6 +6,7 @@ import 'package:crypto_trade/features/auth/data/repos/auth_repo.dart';
 import 'package:crypto_trade/features/auth/data/repos/auth_repo_impl.dart';
 import 'package:crypto_trade/features/auth/presentation/cubits/auth_cubit/auth_cubit.dart';
 import 'package:crypto_trade/features/auth/presentation/cubits/otp_cubit/otp_cubit.dart';
+import 'package:crypto_trade/features/main_layout/presentation/cubits/app_navigation_cubit/app_navigation_cubit.dart';
 import 'package:crypto_trade/features/coin_details/data/repos/coin_details_repo.dart';
 import 'package:crypto_trade/features/coin_details/data/repos/coin_details_repo_impl.dart';
 import 'package:crypto_trade/features/coin_details/presentation/cubits/coin_details_cubit/coin_details_cubit.dart';
@@ -17,13 +18,14 @@ import 'package:crypto_trade/features/home/data/repos/home_repo_impl.dart';
 import 'package:crypto_trade/features/home/presentation/cubits/home_cubit/home_cubit.dart';
 import 'package:crypto_trade/features/markets/data/repos/markets_repo.dart';
 import 'package:crypto_trade/features/markets/data/repos/markets_repo_impl.dart';
-import 'package:crypto_trade/features/markets/presentation/cubits/convert_cubit/convert_cubit.dart';
-import 'package:crypto_trade/features/markets/presentation/cubits/fiat_cubit/fiat_cubit.dart';
-import 'package:crypto_trade/features/markets/presentation/cubits/margin_cubit/margin_cubit.dart';
 import 'package:crypto_trade/features/markets/presentation/cubits/markets_cubit/markets_cubit.dart';
 import 'package:crypto_trade/features/search/data/repos/search_repo.dart';
 import 'package:crypto_trade/features/search/data/repos/search_repo_impl.dart';
 import 'package:crypto_trade/features/search/presentation/cubits/search_cubit/search_cubit.dart';
+import 'package:crypto_trade/features/trades/presentation/cubits/convert_cubit/convert_cubit.dart';
+import 'package:crypto_trade/features/trades/presentation/cubits/fiat_cubit/fiat_cubit.dart';
+import 'package:crypto_trade/features/trades/presentation/cubits/margin_cubit/margin_cubit.dart';
+import 'package:crypto_trade/features/wallets/presentation/cubits/wallet_cubit/wallet_cubit.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 
@@ -65,6 +67,7 @@ class ServicesLocator {
     );
 
     locator.registerLazySingleton<IntroAppCubit>(() => IntroAppCubit());
+    locator.registerLazySingleton<AppNavigationCubit>(() => AppNavigationCubit());
 
     locator.registerLazySingleton<FavoritesRepo>(
       () => FavoritesRepositoryImpl(),
@@ -90,11 +93,13 @@ class ServicesLocator {
     locator.registerFactory<FiatCubit>(() => FiatCubit());
 
     locator.registerFactory<MarginCubit>(() => MarginCubit());
+    locator.registerFactory<WalletCubit>(() => WalletCubit());
   }
 
   static HomeCubit get homeCubit => locator<HomeCubit>();
   static MarketsCubit get marketsCubit => locator<MarketsCubit>();
   static IntroAppCubit get introAppCubit => locator<IntroAppCubit>();
+  static AppNavigationCubit get appNavigationCubit => locator<AppNavigationCubit>();
   static OtpCubit get otpCubit => locator<OtpCubit>();
   static AuthCubit get authCubit => locator<AuthCubit>();
   static CoinDetailsCubit get coinDetailsCubit => locator<CoinDetailsCubit>();
@@ -104,4 +109,5 @@ class ServicesLocator {
   static ConvertCubit get convertCubit => locator<ConvertCubit>();
   static FiatCubit get fiatCubit => locator<FiatCubit>();
   static MarginCubit get marginCubit => locator<MarginCubit>();
+  static WalletCubit get walletCubit => locator<WalletCubit>();
 }

@@ -1,9 +1,12 @@
 import 'package:crypto_trade/core/export.dart';
 import 'package:crypto_trade/core/mappers/favorite_mapper.dart';
+import 'package:crypto_trade/core/utils/enums/market_tab_type.dart';
 import 'package:crypto_trade/features/coin_details/data/models/coin_details_args.dart';
 import 'package:crypto_trade/features/favorites/presentation/cubits/favorite_cubit/favorite_cubit.dart';
-import 'package:crypto_trade/features/favorites/presentation/cubits/favorite_cubit/favorite_state.dart';
+import 'package:crypto_trade/features/favorites/presentation/cubits/favorite_cubit/favorite_state.dart'
+    show FavoriteState;
 import 'package:crypto_trade/features/home/data/models/coin_response_model.dart';
+import 'package:crypto_trade/features/main_layout/presentation/cubits/app_navigation_cubit/app_navigation_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -11,8 +14,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CoinQuickActionsSheet extends StatelessWidget {
   final CoinResponseModel coin;
+  final MarketTabType tabType;
 
-  const CoinQuickActionsSheet({super.key, required this.coin});
+  const CoinQuickActionsSheet({
+    super.key,
+    required this.coin,
+    required this.tabType,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -84,6 +92,16 @@ class CoinQuickActionsSheet extends StatelessWidget {
               ),
               verticalSpace(8),
               _ActionTile(
+                icon: tabType.icon,
+                iconColor: AppColors.primary,
+                label: tabType.getActionLabel(coin.symbol),
+                onTap: () {
+                  HapticFeedback.lightImpact();
+                  context.pop();
+                  context.read<AppNavigationCubit>().mapToTrades(tabType);
+                },
+              ),
+              _ActionTile(
                 icon: isFavorite
                     ? Icons.star_rounded
                     : Icons.star_border_rounded,
@@ -99,16 +117,9 @@ class CoinQuickActionsSheet extends StatelessWidget {
                 },
               ),
               _ActionTile(
-                icon: Icons.notifications_active_outlined,
-                label: 'Set Price Alert',
-                onTap: () {
-                  HapticFeedback.lightImpact();
-                  context.pop();
-                },
-              ),
-              _ActionTile(
                 icon: Icons.insights,
                 label: 'Go to Coin Details',
+                iconColor: AppColors.primary,
                 onTap: () {
                   HapticFeedback.lightImpact();
                   context.pop();

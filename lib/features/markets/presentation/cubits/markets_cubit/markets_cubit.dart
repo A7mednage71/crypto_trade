@@ -18,7 +18,10 @@ class MarketsCubit extends Cubit<MarketsState> {
         state.copyWith(
           status: MarketsStatus.loading,
           currentPage: 1,
-          coins: [],
+          spotCoins: [],
+          convertCoins: [],
+          marginCoins: [],
+          fiatCoins: [],
         ),
       );
     } else {
@@ -31,14 +34,49 @@ class MarketsCubit extends Cubit<MarketsState> {
 
     result.when(
       success: (newCoins) {
-        final List<CoinResponseModel> updatedCoins = page == 1
+        final List<CoinResponseModel> updatedSpot = page == 1
             ? newCoins
-            : [...state.coins, ...newCoins];
+            : [...state.spotCoins, ...newCoins];
+
+        final List<CoinResponseModel> updatedConvert = updatedSpot
+            .where(
+              (c) => [
+                'btc',
+                'eth',
+                'sol',
+                'bnb',
+                'usdt',
+                'usdc',
+              ].contains(c.symbol.toLowerCase()),
+            )
+            .toList();
+
+        final List<CoinResponseModel> updatedMargin = updatedSpot
+            .where(
+              (c) =>
+                  (c.marketCapRank != null && c.marketCapRank! <= 30) ||
+                  (c.priceChangePercentage24h.abs() > 5),
+            )
+            .toList();
+
+        final List<CoinResponseModel> updatedFiat = updatedSpot
+            .where(
+              (c) => [
+                'usdt',
+                'usdc',
+                'busd',
+                'pyusd',
+              ].contains(c.symbol.toLowerCase()),
+            )
+            .toList();
 
         emit(
           state.copyWith(
             status: MarketsStatus.success,
-            coins: updatedCoins,
+            spotCoins: updatedSpot,
+            convertCoins: updatedConvert,
+            marginCoins: updatedMargin,
+            fiatCoins: updatedFiat,
             currentPage: page,
             isLoadingMore: false,
           ),
@@ -59,15 +97,5 @@ class MarketsCubit extends Cubit<MarketsState> {
   void loadMore() {
     if (state.isLoadingMore || state.status == MarketsStatus.loading) return;
     getMarketsCoins(page: state.currentPage + 1);
-  }
-
-  void incrementAvailableBalance(double amount) {
-    if (amount <= 0) return;
-    emit(state.copyWith(availableBalance: state.availableBalance + amount));
-  }
-
-  void decrementAvailableBalance(double amount) {
-    if (amount <= 0) return;
-    emit(state.copyWith(availableBalance: state.availableBalance - amount));
   }
 }

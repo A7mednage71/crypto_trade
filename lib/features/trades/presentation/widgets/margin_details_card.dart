@@ -1,8 +1,8 @@
 import 'package:crypto_trade/core/helpers/space_helper.dart';
 import 'package:crypto_trade/core/utils/constant/app_color.dart';
 import 'package:crypto_trade/core/utils/constant/app_style.dart';
-import 'package:crypto_trade/features/markets/presentation/cubits/margin_cubit/margin_cubit.dart';
-import 'package:crypto_trade/features/markets/presentation/cubits/margin_cubit/margin_state.dart';
+import 'package:crypto_trade/features/trades/presentation/cubits/margin_cubit/margin_cubit.dart';
+import 'package:crypto_trade/features/trades/presentation/cubits/margin_cubit/margin_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

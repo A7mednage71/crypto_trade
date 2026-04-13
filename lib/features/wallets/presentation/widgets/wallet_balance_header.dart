@@ -19,7 +19,7 @@ class _WalletBalanceHeaderState extends State<WalletBalanceHeader> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          verticalSpace(40),
+          verticalSpace(24),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [

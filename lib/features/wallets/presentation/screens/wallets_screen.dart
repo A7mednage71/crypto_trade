@@ -10,26 +10,22 @@ class WalletsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors.darkBackground,
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          verticalSpace(16),
-          const WalletBalanceHeader(),
-          const WalletActionButtons(),
-          verticalSpace(24),
-          Expanded(
-            child: ListView.builder(
-              padding: EdgeInsets.zero,
-              itemCount: dummyWalletCoins.length,
-              itemBuilder: (context, index) {
-                return WalletCoinTile(coin: dummyWalletCoins[index]);
-              },
-            ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const WalletBalanceHeader(),
+        const WalletActionButtons(),
+        verticalSpace(24),
+        Expanded(
+          child: ListView.builder(
+            padding: EdgeInsets.zero,
+            itemCount: dummyWalletCoins.length,
+            itemBuilder: (context, index) {
+              return WalletCoinTile(coin: dummyWalletCoins[index]);
+            },
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

@@ -1,11 +1,12 @@
 import 'package:crypto_trade/core/helpers/space_helper.dart';
 import 'package:crypto_trade/core/utils/constant/app_color.dart';
 import 'package:crypto_trade/core/utils/constant/app_style.dart';
-import 'package:crypto_trade/features/markets/presentation/cubits/margin_cubit/margin_cubit.dart';
-import 'package:crypto_trade/features/markets/presentation/cubits/margin_cubit/margin_state.dart';
 import 'package:crypto_trade/features/markets/presentation/cubits/markets_cubit/markets_cubit.dart';
-import 'package:crypto_trade/features/markets/presentation/widgets/asset_exchange_card.dart';
-import 'package:crypto_trade/features/markets/presentation/widgets/coin_picker_sheet.dart';
+import 'package:crypto_trade/features/trades/presentation/cubits/margin_cubit/margin_cubit.dart';
+import 'package:crypto_trade/features/trades/presentation/cubits/margin_cubit/margin_state.dart';
+import 'package:crypto_trade/features/trades/presentation/widgets/asset_exchange_card.dart';
+import 'package:crypto_trade/features/trades/presentation/widgets/coin_picker_sheet.dart';
+import 'package:crypto_trade/features/wallets/presentation/cubits/wallet_cubit/wallet_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -15,17 +16,17 @@ class MarginAmountInputCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final marginCubit = context.read<MarginCubit>();
+    final myBalance = context.watch<WalletCubit>().state.myBalance;
 
     return BlocBuilder<MarginCubit, MarginState>(
       buildWhen: (previous, current) =>
           previous.amountToTrade != current.amountToTrade ||
           previous.leverage != current.leverage ||
           previous.selectedMarginCoin != current.selectedMarginCoin ||
-          previous.availableBalance != current.availableBalance ||
           previous.actualOrderAmount != current.actualOrderAmount ||
           previous.totalOrderValueUSD != current.totalOrderValueUSD,
       builder: (context, state) {
-        final isExceeded = state.amountToTrade > state.availableBalance;
+        final isExceeded = state.amountToTrade > myBalance;
         final symbol = state.selectedMarginCoin?.symbol.toUpperCase() ?? '';
 
         return Column(
@@ -37,7 +38,7 @@ class MarginAmountInputCard extends StatelessWidget {
                   state.selectedMarginCoin?.symbol.toUpperCase() ?? 'Select',
               iconUrl: state.selectedMarginCoin?.image ?? '',
               controller: marginCubit.amountController,
-              balance: '${state.availableBalance.toStringAsFixed(2)} USDT',
+              balance: '${myBalance.toStringAsFixed(2)} USDT',
               borderColor: isExceeded ? AppColors.danger : null,
               onCurrencyTap: () => _showCoinPicker(context),
             ),

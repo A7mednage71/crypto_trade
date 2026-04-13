@@ -2,20 +2,23 @@ import 'package:crypto_trade/core/export.dart';
 import 'package:crypto_trade/core/utils/widgets/app_status_dialog.dart';
 import 'package:crypto_trade/features/activity/data/models/activity_model.dart';
 import 'package:crypto_trade/features/activity/presentation/cubits/activity_cubit/activity_cubit.dart';
-import 'package:crypto_trade/features/markets/presentation/cubits/convert_cubit/convert_cubit.dart';
-import 'package:crypto_trade/features/markets/presentation/cubits/convert_cubit/convert_state.dart';
 import 'package:crypto_trade/features/markets/presentation/cubits/markets_cubit/markets_cubit.dart';
-import 'package:crypto_trade/features/markets/presentation/widgets/asset_exchange_card.dart';
-import 'package:crypto_trade/features/markets/presentation/widgets/coin_picker_sheet.dart';
-import 'package:crypto_trade/features/markets/presentation/widgets/convert_swap_button.dart';
+import 'package:crypto_trade/features/trades/presentation/cubits/convert_cubit/convert_cubit.dart';
+import 'package:crypto_trade/features/trades/presentation/cubits/convert_cubit/convert_state.dart';
+import 'package:crypto_trade/features/trades/presentation/widgets/asset_exchange_card.dart';
+import 'package:crypto_trade/features/trades/presentation/widgets/coin_picker_sheet.dart';
+import 'package:crypto_trade/features/trades/presentation/widgets/convert_swap_button.dart';
+import 'package:crypto_trade/features/wallets/presentation/cubits/wallet_cubit/wallet_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class ConvertTabBody extends StatelessWidget {
-  const ConvertTabBody({super.key});
+class TradeConvertTabBody extends StatelessWidget {
+  const TradeConvertTabBody({super.key});
 
   void _handleSuccess(BuildContext context, ConvertState state) {
+    context.read<WalletCubit>().deductBalance(state.fromAmount);
+
     AppStatusDialog.show(
       context,
       isSuccess: true,
@@ -39,35 +42,33 @@ class ConvertTabBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<ConvertCubit, ConvertState>(
+    return BlocConsumer<ConvertCubit, ConvertState>(
       listenWhen: (p, c) => p.convertStatus != c.convertStatus,
       listener: (context, state) {
         if (state.convertStatus == ConvertStatus.success) {
           _handleSuccess(context, state);
         }
       },
-      child: BlocBuilder<ConvertCubit, ConvertState>(
-        builder: (context, state) {
-          final bool isButtonDisabled =
-              state.fromCoin == null ||
-              state.toCoin == null ||
-              state.fromAmount <= 0;
+      builder: (context, state) {
+        final bool isButtonDisabled =
+            state.fromCoin == null ||
+            state.toCoin == null ||
+            state.fromAmount <= 0;
 
-          return Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 16.h),
-            child: Column(
-              children: [
-                _buildExchangeCards(context, state),
-                verticalSpace(24),
-                _buildRateIndicator(state, isButtonDisabled),
-                const Spacer(),
-                _buildConvertButton(context, state, isButtonDisabled),
-                verticalSpace(120),
-              ],
-            ),
-          );
-        },
-      ),
+        return Padding(
+          padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 16.h),
+          child: Column(
+            children: [
+              _buildExchangeCards(context, state),
+              verticalSpace(24),
+              _buildRateIndicator(state, isButtonDisabled),
+              const Spacer(),
+              _buildConvertButton(context, state, isButtonDisabled),
+              verticalSpace(120),
+            ],
+          ),
+        );
+      },
     );
   }
 
@@ -84,9 +85,9 @@ class ConvertTabBody extends StatelessWidget {
               iconUrl: state.fromCoin?.image ?? "",
               controller: convertCubit.fromController,
               balance: context
-                  .read<MarketsCubit>()
+                  .watch<WalletCubit>()
                   .state
-                  .availableBalance
+                  .myBalance
                   .toStringAsFixed(2),
               onCurrencyTap: () => _showCoinPicker(context, isFrom: true),
             ),

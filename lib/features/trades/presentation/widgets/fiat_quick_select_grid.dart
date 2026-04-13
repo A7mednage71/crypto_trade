@@ -1,8 +1,8 @@
 import 'package:crypto_trade/core/utils/constant/app_color.dart';
 import 'package:crypto_trade/core/utils/constant/app_style.dart';
 import 'package:crypto_trade/core/utils/enums/fiat_quick_amount.dart';
-import 'package:crypto_trade/features/markets/presentation/cubits/fiat_cubit/fiat_cubit.dart';
-import 'package:crypto_trade/features/markets/presentation/cubits/fiat_cubit/fiat_state.dart';
+import 'package:crypto_trade/features/trades/presentation/cubits/fiat_cubit/fiat_cubit.dart';
+import 'package:crypto_trade/features/trades/presentation/cubits/fiat_cubit/fiat_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

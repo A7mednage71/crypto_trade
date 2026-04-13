@@ -1,6 +1,7 @@
 import 'package:crypto_trade/core/utils/constant/app_color.dart';
 import 'package:crypto_trade/core/utils/constant/app_style.dart';
-import 'package:crypto_trade/features/markets/presentation/cubits/markets_cubit/markets_cubit.dart';
+import 'package:crypto_trade/features/wallets/presentation/cubits/wallet_cubit/wallet_cubit.dart';
+import 'package:crypto_trade/features/wallets/presentation/cubits/wallet_cubit/wallet_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -10,11 +11,10 @@ class FiatBalanceCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<MarketsCubit, MarketsState>(
-      buildWhen: (previous, current) =>
-          previous.availableBalance != current.availableBalance,
+    return BlocBuilder<WalletCubit, WalletState>(
+      buildWhen: (previous, current) => previous.myBalance != current.myBalance,
       builder: (context, state) {
-        final usdBalance = state.availableBalance;
+        final usdBalance = state.myBalance;
         final egpBalance = usdBalance * 50.0; // Mock rate: 1 USD = 50 EGP
 
         return Container(
