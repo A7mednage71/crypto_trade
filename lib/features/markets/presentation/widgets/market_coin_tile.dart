@@ -4,11 +4,13 @@ import 'package:crypto_trade/core/utils/constant/app_style.dart';
 import 'package:crypto_trade/core/utils/enums/market_tab_type.dart';
 import 'package:crypto_trade/core/utils/widgets/custom_cache_network_image.dart';
 import 'package:crypto_trade/features/home/data/models/coin_response_model.dart';
+import 'package:crypto_trade/features/main_layout/presentation/cubits/app_navigation_cubit/app_navigation_cubit.dart';
 import 'package:crypto_trade/features/markets/presentation/widgets/coin_quick_actions_sheet.dart';
 import 'package:crypto_trade/features/markets/presentation/widgets/market_coin_middle_section.dart';
 import 'package:crypto_trade/features/markets/presentation/widgets/market_coin_trailing_section.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class MarketCoinTile extends StatelessWidget {
@@ -19,6 +21,7 @@ class MarketCoinTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final navCubit = context.read<AppNavigationCubit>();
     final Color stateColor = coin.isPositive
         ? AppColors.primary
         : AppColors.error;
@@ -31,8 +34,10 @@ class MarketCoinTile extends StatelessWidget {
           backgroundColor: Colors.transparent,
           barrierColor: Colors.black.withValues(alpha: 0.5),
           isScrollControlled: true,
-          builder: (context) =>
-              CoinQuickActionsSheet(coin: coin, tabType: tabType),
+          builder: (context) => BlocProvider.value(
+            value: navCubit,
+            child: CoinQuickActionsSheet(coin: coin, tabType: tabType),
+          ),
         );
       },
       borderRadius: BorderRadius.circular(12.r),

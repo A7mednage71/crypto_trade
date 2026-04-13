@@ -6,6 +6,7 @@ import 'package:crypto_trade/features/auth/data/repos/auth_repo.dart';
 import 'package:crypto_trade/features/auth/data/repos/auth_repo_impl.dart';
 import 'package:crypto_trade/features/auth/presentation/cubits/auth_cubit/auth_cubit.dart';
 import 'package:crypto_trade/features/auth/presentation/cubits/otp_cubit/otp_cubit.dart';
+import 'package:crypto_trade/features/main_layout/presentation/cubits/app_navigation_cubit/app_navigation_cubit.dart';
 import 'package:crypto_trade/features/coin_details/data/repos/coin_details_repo.dart';
 import 'package:crypto_trade/features/coin_details/data/repos/coin_details_repo_impl.dart';
 import 'package:crypto_trade/features/coin_details/presentation/cubits/coin_details_cubit/coin_details_cubit.dart';
@@ -66,6 +67,7 @@ class ServicesLocator {
     );
 
     locator.registerLazySingleton<IntroAppCubit>(() => IntroAppCubit());
+    locator.registerLazySingleton<AppNavigationCubit>(() => AppNavigationCubit());
 
     locator.registerLazySingleton<FavoritesRepo>(
       () => FavoritesRepositoryImpl(),
@@ -97,6 +99,7 @@ class ServicesLocator {
   static HomeCubit get homeCubit => locator<HomeCubit>();
   static MarketsCubit get marketsCubit => locator<MarketsCubit>();
   static IntroAppCubit get introAppCubit => locator<IntroAppCubit>();
+  static AppNavigationCubit get appNavigationCubit => locator<AppNavigationCubit>();
   static OtpCubit get otpCubit => locator<OtpCubit>();
   static AuthCubit get authCubit => locator<AuthCubit>();
   static CoinDetailsCubit get coinDetailsCubit => locator<CoinDetailsCubit>();

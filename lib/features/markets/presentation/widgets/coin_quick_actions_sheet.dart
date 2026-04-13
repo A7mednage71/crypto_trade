@@ -6,6 +6,7 @@ import 'package:crypto_trade/features/favorites/presentation/cubits/favorite_cub
 import 'package:crypto_trade/features/favorites/presentation/cubits/favorite_cubit/favorite_state.dart'
     show FavoriteState;
 import 'package:crypto_trade/features/home/data/models/coin_response_model.dart';
+import 'package:crypto_trade/features/main_layout/presentation/cubits/app_navigation_cubit/app_navigation_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -95,16 +96,9 @@ class CoinQuickActionsSheet extends StatelessWidget {
                 iconColor: AppColors.primary,
                 label: tabType.getActionLabel(coin.symbol),
                 onTap: () {
-                  switch (tabType) {
-                    case MarketTabType.convert:
-                      break;
-                    case MarketTabType.spot:
-                      break;
-                    case MarketTabType.margin:
-                      break;
-                    case MarketTabType.fiat:
-                      break;
-                  }
+                  HapticFeedback.lightImpact();
+                  context.pop();
+                  context.read<AppNavigationCubit>().mapToTrades(tabType);
                 },
               ),
               _ActionTile(
