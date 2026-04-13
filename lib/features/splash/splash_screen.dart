@@ -1,8 +1,8 @@
 import 'package:crypto_trade/core/export.dart';
 import 'package:crypto_trade/core/helpers/secure_storage_helper.dart';
-import 'package:crypto_trade/core/navigation/routes.dart';
 import 'package:crypto_trade/core/utils/constant/app_assets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -11,16 +11,35 @@ class SplashScreen extends StatefulWidget {
   State<SplashScreen> createState() => _SplashScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen> {
+class _SplashScreenState extends State<SplashScreen>
+    with TickerProviderStateMixin {
+  late AnimationController _animationController;
+  late Animation<double> _scaleAnimation;
+  late Animation<double> _fadeAnimation;
+
   @override
   void initState() {
     super.initState();
+
+    _animationController = AnimationController(
+      duration: const Duration(milliseconds: 2500),
+      vsync: this,
+    );
+
+    _scaleAnimation = Tween<double>(begin: 0.3, end: 1.1).animate(
+      CurvedAnimation(parent: _animationController, curve: Curves.easeOutBack),
+    );
+
+    _fadeAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
+      CurvedAnimation(parent: _animationController, curve: Curves.easeIn),
+    );
+
+    _animationController.forward();
     _checkLoginStatus();
   }
 
   Future<void> _checkLoginStatus() async {
     final uId = await EncryptedStorage.getUserId();
-
     await Future.delayed(const Duration(seconds: 3));
 
     if (mounted) {
@@ -33,35 +52,32 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   @override
+  void dispose() {
+    _animationController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.darkBackground,
-      body: Container(
-        width: double.infinity,
-        height: double.infinity,
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [
-              AppColors.primary.withValues(alpha: 0.0),
-              AppColors.primary.withValues(alpha: 0.05),
-              AppColors.primary.withValues(alpha: 0.10),
-              AppColors.primary.withValues(alpha: 0.15),
-            ],
-            stops: const [0.8, 0.85, 0.95, 1.0],
-          ),
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Expanded(
-              child: Image.asset(
-                Assets.imagesPngSplashLogo,
-                fit: BoxFit.contain,
+      body: Center(
+        child: AnimatedBuilder(
+          animation: _animationController,
+          builder: (context, child) {
+            return FadeTransition(
+              opacity: _fadeAnimation,
+              child: Transform.scale(
+                scale: _scaleAnimation.value,
+                child: Image.asset(
+                  Assets.imagesPngAppLogoWithName,
+                  width: 200.w,
+                  height: 200.h,
+                  fit: BoxFit.contain,
+                ),
               ),
-            ),
-          ],
+            );
+          },
         ),
       ),
     );
